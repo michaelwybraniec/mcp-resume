@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Resume Client - Open Source LLM Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .config-section {
+            margin-bottom: 30px;
+        }
+
+        .config-section h3 {
+            margin-bottom: 15px;
+            color: #374151;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background: #4338ca;
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            margin-left: auto;
+        }
+
+        .message-content {
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.user .message-content {
+            background: #4f46e5;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.assistant .message-content {
+            background: #f3f4f6;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.system .message-content {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            font-style: italic;
+        }
+
+        .input-area {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .input-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-form input {
+            flex: 1;
+            margin: 0;
+        }
+
+        .input-form button {
+            padding: 10px 20px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .input-form button:hover {
+            background: #059669;
+        }
+
+        .status {
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .status.connected {
+            color: #10b981;
+        }
+
+        .status.error {
+            color: #ef4444;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: 100vh;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="config-section">
+                <h3>🤖 LLM Provider</h3>
+                <div class="form-group">
+                    <label for="provider">Provider</label>
+                    <select id="provider">
+                        <option value="">Loading...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <select id="model">
+                        <option value="">Select provider first</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h3>🛠️ MCP Tools</h3>
+                <button class="btn btn-secondary" onclick="callMCPTool('get_resume', {})">Get Full Resume</button>
+                <button class="btn btn-secondary" onclick="callMCPTool('get_experience', {})">Get Experience</button>
+                <button class="btn btn-secondary" onclick="callMCPTool('get_skills', {})">Get Skills</button>
+                <button class="btn btn-secondary" onclick="showSearchDialog()">Search Resume</button>
+            </div>
+
+            <div class="config-section">
+                <h3>📄 Quick Actions</h3>
+                <button class="btn btn-secondary" onclick="askQuestion('Tell me about your work experience')">Work Experience</button>
+                <button class="btn btn-secondary" onclick="askQuestion('What are your technical skills?')">Technical Skills</button>
+                <button class="btn btn-secondary" onclick="askQuestion('Summarize your background')">Background Summary</button>
+            </div>
+
+            <div class="status" id="status">Connecting...</div>
+        </div>
+
+        <div class="chat-area">
+            <div class="header">
+                <h1>🎯 MCP Resume Client</h1>
+                <p>Chat about the resume using open-source LLMs</p>
+            </div>
+
+            <div class="messages" id="messages">
+                <div class="message system">
+                    <div class="message-content">
+                        Welcome! This client connects to your MCP Resume Server and lets you chat about the resume using various open-source LLMs. Select a provider and model to get started.
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-form">
+                    <input type="text" id="messageInput" placeholder="Ask about the resume..." onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let currentProvider = '';
+        let currentModel = '';
+
+        // Initialize WebSocket connection
+        function initWebSocket() {
+            ws = new WebSocket('ws://localhost:3000');
+            
+            ws.onopen = function() {
+                setStatus('Connected', 'connected');
+                loadProviders();
+            };
+            
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                handleMessage(data);
+            };
+            
+            ws.onclose = function() {
+                setStatus('Disconnected', 'error');
+                setTimeout(initWebSocket, 3000);
+            };
+            
+            ws.onerror = function() {
+                setStatus('Connection Error', 'error');
+            };
+        }
+
+        function handleMessage(data) {
+            switch(data.type) {
+                case 'providers':
+                    updateProviders(data.providers);
+                    break;
+                case 'chat_response':
+                    addMessage('assistant', data.response);
+                    break;
+                case 'mcp_response':
+                    addMessage('system', `MCP Tool Result (${data.tool}):\n${JSON.stringify(data.result, null, 2)}`);
+                    break;
+                case 'error':
+                    addMessage('system', `Error: ${data.error}`);
+                    break;
+            }
+        }
+
+        function loadProviders() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'get_providers' }));
+            }
+        }
+
+        function updateProviders(providers) {
+            const providerSelect = document.getElementById('provider');
+            providerSelect.innerHTML = '<option value="">Select a provider</option>';
+            
+            providers.forEach(provider => {
+                const option = document.createElement('option');
+                option.value = provider;
+                option.textContent = provider.charAt(0).toUpperCase() + provider.slice(1);
+                providerSelect.appendChild(option);
+            });
+        }
+
+        function setStatus(message, className = '') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${className}`;
+        }
+
+        function addMessage(type, content) {
+            const messages = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = content;
+            
+            messageDiv.appendChild(contentDiv);
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || !currentProvider || !currentModel) {
+                alert('Please select a provider and model first');
+                return;
+            }
+            
+            addMessage('user', message);
+            input.value = '';
+            
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'chat',
+                    message,
+                    provider: currentProvider,
+                    model: currentModel
+                }));
+            }
+        }
+
+        function callMCPTool(tool, args) {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'mcp_tool',
+                    tool,
+                    args
+                }));
+            }
+        }
+
+        function askQuestion(question) {
+            document.getElementById('messageInput').value = question;
+            sendMessage();
+        }
+
+        function showSearchDialog() {
+            const query = prompt('Enter search terms:');
+            if (query) {
+                callMCPTool('search_resume', { query });
+            }
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Provider and model selection
+        document.getElementById('provider').addEventListener('change', function(e) {
+            currentProvider = e.target.value;
+            updateModels();
+        });
+
+        document.getElementById('model').addEventListener('change', function(e) {
+            currentModel = e.target.value;
+        });
+
+        function updateModels() {
+            const modelSelect = document.getElementById('model');
+            modelSelect.innerHTML = '<option value="">Loading models...</option>';
+            
+            // This would need to be implemented to fetch models for the selected provider
+            // For now, we'll use some default models
+            const models = {
+                'ollama': ['llama3.2', 'llama3.1', 'mistral', 'codellama'],
+                'openrouter': ['meta-llama/llama-3.1-8b-instruct:free', 'meta-llama/llama-3.2-3b-instruct:free'],
+                'huggingface': ['microsoft/DialoGPT-medium', 'google/flan-t5-large'],
+                'localai': ['gpt-3.5-turbo', 'llama-2-7b']
+            };
+            
+            const providerModels = models[currentProvider] || [];
+            modelSelect.innerHTML = '<option value="">Select a model</option>';
+            
+            providerModels.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model;
+                option.textContent = model;
+                modelSelect.appendChild(option);
+            });
+        }
+
+        // Initialize on page load
+        initWebSocket();
+    </script>
+</body>
+</html> 
