@@ -8,85 +8,102 @@ This allows the app to demonstrate functionality even without the full MCP setup
 import json
 from typing import Dict, Any
 
-# Michael Wybraniec's actual CV data for demo mode
+# Michael Wybraniec's REAL CV data from gist (hardcoded for deployment reliability)
 SAMPLE_RESUME_DATA = {
     "personal": {
         "name": "Michael Wybraniec",
-        "title": "Senior Full-Stack Developer & AI Specialist",
-        "location": "Global Remote",
-        "email": "contact@michaelwybraniec.com",
-        "website": "https://www.one-front.com",
-        "summary": "Experienced full-stack developer with 10+ years of international experience across 5 countries, specializing in AI integration, Model Context Protocol (MCP), and enterprise solutions. Expert in TypeScript, Python, React, and modern AI frameworks. Founder of ONE-FRONT, delivering cutting-edge AI solutions to businesses worldwide."
+        "title": "10 Years' Experience · Software Engineer · Architecture · MCP Servers & Coding Agents",
+        "location": "Paris & Lyon, FR 🇫🇷 • London, UK 🇬🇧",
+        "email": "michael@one-front.com",
+        "phone": "(+33) 0 XXX XXX XXX",
+        "website": "https://one-front.com",
+        "image": "https://media.licdn.com/dms/image/v2/D4D03AQFfMCJNe-bGQA/profile-displayphoto-shrink_800_800/B4DZdAFfIzH4Ac-/0/1749126870070?e=1754524800&v=beta&t=9o7NFNiNcgzPEpll8Xj372MxELNuzo6wloIq9tTqz3U",
+        "summary": "With a decade of professional experience spanning the UK 🇬🇧, Spain 🇪🇸, Netherlands 🇳🇱, France 🇫🇷 and Poland 🇵🇱. I bring a unique blend of hands-on full-stack development and strategic software architecture. Over the past seven years, I have delivered scalable, high-performance applications, and for three years, I have architected complex systems that align technical solutions with business goals. As a tech lead, I have driven cross-functional projects in finance, public safety, healthcare, and Web3, leading developer teams and shaping company policies for sustainable growth. I am also a passionate community builder — founding ONE-FRONT and the santeJS JavaScript community — and have shared my expertise at industry conferences. Currently, my focus is on AI-driven development projects, integrating LLMs, Agentic workflows, IDEs, and MCP Servers to drive innovation and build next-generation solutions. To contribute to open-source, I have begun publishing content and code on my website's blog and R&D sections, one-front.com."
     },
     "experience": [
         {
-            "company": "ONE-FRONT",
-            "position": "Founder & Lead Developer",
-            "duration": "2020 - Present",
-            "location": "Global Remote",
-            "description": "Founded and leading ONE-FRONT, a boutique development consultancy specializing in AI integration and enterprise solutions. Developed the MCP Resume System, pioneering the use of Model Context Protocol for AI-powered recruitment tools. Delivered projects across multiple industries including fintech, healthcare, and e-commerce. Built AI-powered applications using OpenAI, Anthropic, and local LLM solutions."
+            "company": "ONE-FRONT (Freelance · AI-Driven Agentic Development)",
+            "position": "Full-Stack Developer · Architect",
+            "duration": "March 2021 - Present",
+            "location": "Paris & Lyon, FR 🇫🇷 • London, UK 🇬🇧 • Sicuani, PE 🇵🇪",
+            "description": "Delivered high-impact solutions across finance, insurance, public safety, non-profit, and Web3 sectors. Led international teams and end-to-end projects focused on building reliable, scalable, and maintainable systems using modern web technologies and cloud platforms. Built and maintained MCP Server for project documentation, using TypeScript and open-source language models. Created multilingual blog portfolio with error monitoring. Led development of platforms for Eco Village in France, insurance web applications for SanteVet (France/Spain/Italy), secure graph analysis tool for Interpol, Web3 NFT marketplace for Aventus (UK), and finance platforms with QuickBooks integration. Tech Stack: TS · Vue · React · Node · GraphQL · Sentry · Nuxt · CMS · MCP"
         },
         {
-            "company": "Enterprise Technology Solutions",
-            "position": "Senior Full-Stack Developer",
-            "duration": "2018 - 2020",
-            "location": "London, UK",
-            "description": "Led development of scalable web applications for Fortune 500 clients. Architected microservices using React, Node.js, and Python. Managed international development teams and implemented DevOps practices including CI/CD pipelines, containerization with Docker, and cloud deployment on AWS. Specialized in real-time applications and API design."
+            "company": "SanteVet (Freelance · Micro-services, Domain-Driven Design)",
+            "position": "Software Architect & Frontend Strategy Lead",
+            "duration": "July 2022 - March 2024",
+            "location": "Lyon, FR 🇫🇷",
+            "description": "Drove pivotal multinational transformation of frontend architecture, establishing foundation for scalable product development across France 🇫🇷, Spain 🇪🇸, and Italy 🇮🇹. Planned and executed company-wide ONE-FRONT Engineering Strategy (2022–2024). Unified frontend architecture across regions with shared components and Contentful CMS integration. Founded and led 'santeJS' internal JavaScript community. Defined Frontend Security Policy v1 (2023). Led technical interviews and code reviews. Tech Stack: TypeScript, Vue 2 & 3, Nuxt 2 Bridge & Nuxt 3, Pinia, Contentful, AWS."
         },
         {
-            "company": "Digital Innovation Labs",
-            "position": "Full-Stack Developer",
-            "duration": "2016 - 2018",
-            "location": "Berlin, Germany",
-            "description": "Developed cutting-edge web applications using modern JavaScript frameworks. Built RESTful APIs and GraphQL services. Worked extensively with cloud platforms (AWS, Azure) and implemented containerization strategies. Contributed to open-source projects and mentored junior developers."
+            "company": "Interpol (Freelance via Accenture & Asenium · Ripjar Solutions)",
+            "position": "Full-Stack Developer · Security & Intelligence Systems",
+            "duration": "July 2021 - June 2022",
+            "location": "Lyon, FR 🇫🇷",
+            "description": "Maintained secure architecture in scalable intelligence platform supporting European law enforcement agencies. Engineered modular full-stack system for large-scale graph analytics, entity resolution, and real-time visualization. Integrated heterogeneous data sources across cloud, on-premise, and data lake architectures. Developed secure orchestration pipelines and implemented NLP techniques for multilingual unstructured data. Built hardened, high-security features for sensitive deployments. Tech Stack: TypeScript, React, Elasticsearch, GraphQL, SQL, NLP."
         },
         {
-            "company": "TechStart Solutions",
-            "position": "Software Engineer",
-            "duration": "2014 - 2016",
-            "location": "Warsaw, Poland",
-            "description": "Developed web applications using PHP, JavaScript, and MySQL. Worked on e-commerce platforms and content management systems. Gained experience with version control systems, agile methodologies, and collaborative development practices."
+            "company": "Inpart (Biopharmacy Lead Discovery)",
+            "position": "Frontend Developer · Cross-Platform Web & Mobile",
+            "duration": "March 2020 - March 2021",
+            "location": "Lyon, FR 🇫🇷",
+            "description": "Contributed to design and development of 'Lead Space' — cross-platform partnering platform for pharma and innovation industry. Built responsive, mobile-ready UIs using Vue.js, Quasar Framework, and TypeScript. Improved performance and accessibility, ensuring consistent UX across devices. Integrated real-time user feedback and analytics to rapidly iterate on product features. Tech Stack: Vue.js, Quasar, TypeScript, JavaScript, Responsive Design."
+        },
+        {
+            "company": "Uplab · eCommerce SaaS",
+            "position": "Full-Stack Developer · Financial SaaS & API Integrations",
+            "duration": "August 2019 - March 2020",
+            "location": "Lyon, FR 🇫🇷",
+            "description": "Designed and delivered full-stack SaaS platform to automate financial reporting, tax declaration, and forecasting for Labelium. Integrated QuickBooks API for real-time financial data sync. Developed backend logic using Node.js and MongoDB. Built interactive dashboards with Vue.js and jQuery. Tech Stack: TypeScript, Node.js, MongoDB, Vue.js, jQuery, QuickBooks API."
+        },
+        {
+            "company": "PVH Corp.",
+            "position": "Senior Data Analyst · Calvin Klein & Tommy Hilfiger Division",
+            "duration": "August 2017 - April 2018",
+            "location": "Amsterdam, NL 🇳🇱",
+            "description": "Supported data analysis and production planning for Calvin Klein and Tommy Hilfiger operations across Europe. Delivered insights for customer service optimization and B2B application reliability through analytics and software testing. Performed data analysis for production planning, provided 3rd-line support for customer service, and tested internal B2B sales applications."
         }
     ],
     "skills": {
-        "technical": [
-            "TypeScript", "JavaScript", "Python", "React", "Next.js", "Node.js", 
-            "Express.js", "FastAPI", "Streamlit", "AI/ML", "OpenAI API", "Anthropic Claude", 
-            "LangChain", "Vector Databases", "MCP Protocol", "Docker", "Kubernetes",
-            "AWS", "Azure", "GCP", "PostgreSQL", "MongoDB", "Redis", "GraphQL", 
-            "REST APIs", "WebSockets", "Git", "CI/CD", "Jest", "Playwright",
-            "Tailwind CSS", "Material-UI", "Figma", "Vercel", "Netlify"
+        "core_expertise": [
+            "Full-Stack", "JavaScript", "TypeScript", "Vue 3", "Nuxt 3", "React", 
+            "Next.js", "Node.js", "Migration", "Architecture", "Agile", "API", 
+            "REST", "GraphQL", "Swagger", "Postman", "OpenAPI"
         ],
-        "frameworks": [
-            "React", "Next.js", "Vue.js", "Angular", "Svelte", "Express.js", 
-            "NestJS", "Django", "Flask", "FastAPI", "Streamlit"
+        "ai_mcp": [
+            "AI Software Engineering", "LLM-Integrated Platforms", "Model Context Protocol (MCP)", 
+            "MCP Server Management", "Autonomous Agents", "Agent Scheduling", "Prompt Engineering", 
+            "RAG (Retrieval-Augmented Generation)", "Vector Databases", "System Architecture for AI", 
+            "OpenAI API", "Anthropic Claude", "Function Calling", "Tool Use", "Multi-Agent Coordination"
         ],
-        "ai_ml": [
-            "OpenAI GPT Models", "Anthropic Claude", "Ollama", "LangChain", 
-            "Vector Embeddings", "RAG Systems", "Prompt Engineering", 
-            "Fine-tuning", "Model Context Protocol (MCP)"
+        "backend_devops": [
+            "Node.js", "Express", "Fastify", "NestJS", "TypeORM", "Prisma", 
+            "MySQL", "PostgreSQL", "MongoDB", "MariaDB", "Firebase", "Redis", 
+            "ElasticSearch", "DynamoDB", "WebSockets", "Socket.IO", "RabbitMQ", 
+            "Jenkins", "Docker", "GitHub Actions", "GitLab CI", "Bitbucket Pipelines"
         ],
-        "languages": ["English (Fluent)", "Polish (Native)", "German (Conversational)"],
+        "cloud_serverless": [
+            "AWS Lambda", "API Gateway", "AppSync", "Cognito", "Step Functions", 
+            "Lambda@Edge", "S3", "AWS Amplify", "Heroku"
+        ],
+        "frontend": [
+            "Vue 3", "Nuxt 3", "Pinia", "Vuex", "Vuetify", "Quasar", "ReactJS", 
+            "Redux", "NextJS", "Tailwind CSS", "SASS", "LESS", "Bootstrap", 
+            "Vite", "Webpack", "Responsive Web Design", "Web Components", "PWA"
+        ],
+        "languages": ["🇬🇧 English (Native speaker)", "🇫🇷 French (Advanced)", "🇵🇱 Polish (Native speaker)", "🇪🇸 Spanish (Beginner)"],
         "certifications": [
-            "AWS Certified Solutions Architect", 
-            "Google Cloud Professional Developer",
-            "OpenAI API Specialist"
+            "Advanced React Development", "Node.js Security", "Vue.js Fundamentals", 
+            "TypeScript for Node.js Developers", "Scrum Master Prep", "AWS Deep Learning"
         ]
     },
     "education": [
         {
-            "degree": "Master of Science in Computer Science",
-            "institution": "Warsaw University of Technology",
-            "year": "2014",
-            "location": "Warsaw, Poland",
-            "specialization": "Software Engineering & AI"
-        },
-        {
-            "degree": "Bachelor of Science in Computer Science",
-            "institution": "Warsaw University of Technology", 
-            "year": "2012",
-            "location": "Warsaw, Poland",
-            "specialization": "Programming & Algorithms"
+            "degree": "Ongoing - Continuous Professional Development",
+            "institution": "Various Platforms (LinkedIn Learning, Pluralsight)",
+            "year": "2019-2024",
+            "location": "Online",
+            "specialization": "AI/ML, Cloud Architecture, Advanced JavaScript"
         }
     ],
     "projects": [
@@ -99,45 +116,50 @@ SAMPLE_RESUME_DATA = {
             "year": "2024"
         },
         {
-            "name": "Enterprise AI Dashboard",
-            "description": "Real-time analytics dashboard with AI-powered insights for business intelligence. Features custom LLM integration, vector search, and automated report generation.",
-            "technologies": ["React", "Python", "FastAPI", "PostgreSQL", "OpenAI", "LangChain"],
-            "url": "https://www.one-front.com/projects/ai-dashboard",
-            "status": "Production",
-            "year": "2023"
-        },
-        {
-            "name": "Multi-Tenant SaaS Platform",
-            "description": "Scalable multi-tenant SaaS platform with advanced authentication, real-time collaboration, and API management. Serves 10,000+ users across multiple countries.",
-            "technologies": ["Next.js", "Node.js", "PostgreSQL", "Redis", "AWS", "Docker", "Kubernetes"],
-            "url": "https://www.one-front.com/projects/saas-platform",
-            "status": "Production",
-            "year": "2022"
-        },
-        {
-            "name": "AI-Powered E-commerce Engine",
-            "description": "Intelligent e-commerce platform with AI-driven product recommendations, dynamic pricing, and automated inventory management.",
-            "technologies": ["React", "Python", "Django", "TensorFlow", "AWS", "PostgreSQL"],
-            "url": "https://www.one-front.com/projects/ecommerce-ai",
+            "name": "SanteVet Frontend Architecture",
+            "description": "Led multinational transformation of frontend architecture across France, Spain, and Italy. Unified components with Contentful CMS integration and established scalable development practices.",
+            "technologies": ["Vue 3", "Nuxt 3", "TypeScript", "Contentful", "AWS", "Pinia"],
+            "url": "https://www.santevet.com",
             "status": "Production", 
-            "year": "2021"
+            "year": "2022-2024"
+        },
+        {
+            "name": "Interpol Intelligence Platform",
+            "description": "Secure graph analysis tool for European law enforcement. Large-scale analytics, entity resolution, and real-time visualization with multilingual NLP integration.",
+            "technologies": ["React", "TypeScript", "Elasticsearch", "GraphQL", "SQL", "NLP"],
+            "url": "https://ripjar.com",
+            "status": "Production",
+            "year": "2021-2022"
+        },
+        {
+            "name": "Lead Space - Pharma Platform",
+            "description": "Cross-platform partnering platform for pharma and innovation industry. Responsive UIs with seamless web-to-mobile experiences.",
+            "technologies": ["Vue.js", "Quasar", "TypeScript", "Responsive Design"],
+            "url": "https://www.inpart.io",
+            "status": "Production",
+            "year": "2020-2021"
         }
     ],
     "achievements": [
-        "Founded ONE-FRONT, serving international clients across 5 countries",
-        "Pioneered MCP Resume System, first-of-its-kind AI recruitment tool",
-        "Led development teams of 10+ developers on enterprise projects",
-        "Delivered 50+ successful projects with 99.5% client satisfaction rate",
-        "Speaker at international tech conferences on AI and web development",
-        "Contributed to multiple open-source projects with 1000+ GitHub stars"
+        "Founded ONE-FRONT, serving international clients across France, UK, Spain, Netherlands, and Peru",
+        "Architected and led multinational frontend transformation at SanteVet (France/Spain/Italy)",
+        "Developed secure intelligence systems for Interpol supporting European law enforcement",
+        "Founded and directed 'santeJS' JavaScript community for knowledge sharing and innovation",
+        "Pioneered MCP Resume System - first-of-its-kind AI recruitment tool with Model Context Protocol",
+        "Led cross-functional teams across finance, public safety, healthcare, and Web3 sectors",
+        "Delivered scalable solutions for pharma, insurance, and fintech industries",
+        "Established Frontend Security Policy v1 and engineering best practices",
+        "Expert in multilingual platform development with full i18n support"
     ],
     "industries": [
-        "Artificial Intelligence & Machine Learning",
-        "Financial Technology (FinTech)", 
-        "Healthcare Technology",
-        "E-commerce & Retail",
-        "Enterprise Software",
-        "Recruitment & HR Technology"
+        "Artificial Intelligence & MCP Servers",
+        "Insurance Technology (InsurTech)",
+        "Public Safety & Law Enforcement",
+        "Pharmaceutical & Healthcare Technology", 
+        "Financial Technology (FinTech)",
+        "Web3 & Blockchain",
+        "Non-Profit & Social Impact",
+        "Fashion & Retail (Calvin Klein, Tommy Hilfiger)"
     ]
 }
 

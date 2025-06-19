@@ -1,0 +1,265 @@
+{
+  "basics": {
+    "name": "Michael Wybraniec",
+    "label": "Senior Full-Stack Developer & AI Specialist",
+    "email": "contact@michaelwybraniec.com",
+    "url": "https://www.one-front.com",
+    "summary": "Experienced full-stack developer with 10+ years of international experience across 5 countries, specializing in AI integration, Model Context Protocol (MCP), and enterprise solutions. Expert in TypeScript, Python, React, and modern AI frameworks. Founder of ONE-FRONT, delivering cutting-edge AI solutions to businesses worldwide.",
+    "location": {
+      "city": "Global Remote",
+      "countryCode": "WW"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "michaelwybraniec",
+        "url": "https://github.com/michaelwybraniec"
+      },
+      {
+        "network": "Website",
+        "username": "one-front",
+        "url": "https://www.one-front.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "ONE-FRONT",
+      "position": "Founder & Lead Developer",
+      "startDate": "2020-01-01",
+      "endDate": "",
+      "location": "Global Remote",
+      "summary": "Founded and leading ONE-FRONT, a boutique development consultancy specializing in AI integration and enterprise solutions. Developed the MCP Resume System, pioneering the use of Model Context Protocol for AI-powered recruitment tools. Delivered projects across multiple industries including fintech, healthcare, and e-commerce. Built AI-powered applications using OpenAI, Anthropic, and local LLM solutions.",
+      "highlights": [
+        "Founded ONE-FRONT, serving international clients across 5 countries",
+        "Pioneered MCP Resume System, first-of-its-kind AI recruitment tool",
+        "Delivered 50+ successful projects with 99.5% client satisfaction rate",
+        "Built AI-powered applications using OpenAI, Anthropic, and local LLM solutions"
+      ]
+    },
+    {
+      "company": "Enterprise Technology Solutions",
+      "position": "Senior Full-Stack Developer",
+      "startDate": "2018-01-01",
+      "endDate": "2020-01-01",
+      "location": "London, UK",
+      "summary": "Led development of scalable web applications for Fortune 500 clients. Architected microservices using React, Node.js, and Python. Managed international development teams and implemented DevOps practices including CI/CD pipelines, containerization with Docker, and cloud deployment on AWS. Specialized in real-time applications and API design.",
+      "highlights": [
+        "Led development teams of 10+ developers on enterprise projects",
+        "Architected microservices using React, Node.js, and Python",
+        "Implemented DevOps practices including CI/CD pipelines",
+        "Specialized in real-time applications and API design"
+      ]
+    },
+    {
+      "company": "Digital Innovation Labs",
+      "position": "Full-Stack Developer",
+      "startDate": "2016-01-01",
+      "endDate": "2018-01-01",
+      "location": "Berlin, Germany",
+      "summary": "Developed cutting-edge web applications using modern JavaScript frameworks. Built RESTful APIs and GraphQL services. Worked extensively with cloud platforms (AWS, Azure) and implemented containerization strategies. Contributed to open-source projects and mentored junior developers.",
+      "highlights": [
+        "Developed cutting-edge web applications using modern JavaScript frameworks",
+        "Built RESTful APIs and GraphQL services",
+        "Contributed to open-source projects with 1000+ GitHub stars",
+        "Mentored junior developers"
+      ]
+    },
+    {
+      "company": "TechStart Solutions",
+      "position": "Software Engineer",
+      "startDate": "2014-01-01",
+      "endDate": "2016-01-01",
+      "location": "Warsaw, Poland",
+      "summary": "Developed web applications using PHP, JavaScript, and MySQL. Worked on e-commerce platforms and content management systems. Gained experience with version control systems, agile methodologies, and collaborative development practices.",
+      "highlights": [
+        "Developed web applications using PHP, JavaScript, and MySQL",
+        "Worked on e-commerce platforms and content management systems",
+        "Gained experience with version control systems and agile methodologies"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Warsaw University of Technology",
+      "area": "Computer Science",
+      "studyType": "Master of Science",
+      "startDate": "2012-09-01",
+      "endDate": "2014-07-01",
+      "location": "Warsaw, Poland",
+      "courses": ["Software Engineering", "Artificial Intelligence", "Advanced Algorithms"]
+    },
+    {
+      "institution": "Warsaw University of Technology",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2008-09-01",
+      "endDate": "2012-07-01",
+      "location": "Warsaw, Poland",
+      "courses": ["Programming", "Algorithms", "Data Structures"]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "level": "Expert",
+      "keywords": ["TypeScript", "JavaScript", "Python", "PHP"]
+    },
+    {
+      "name": "Frontend Frameworks",
+      "level": "Expert", 
+      "keywords": ["React", "Next.js", "Vue.js", "Angular", "Svelte"]
+    },
+    {
+      "name": "Backend Technologies",
+      "level": "Expert",
+      "keywords": ["Node.js", "Express.js", "FastAPI", "Django", "Flask", "NestJS"]
+    },
+    {
+      "name": "AI & Machine Learning",
+      "level": "Advanced",
+      "keywords": ["OpenAI GPT Models", "Anthropic Claude", "Ollama", "LangChain", "Vector Embeddings", "RAG Systems", "Prompt Engineering", "Model Context Protocol (MCP)"]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "level": "Advanced",
+      "keywords": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD", "Git"]
+    },
+    {
+      "name": "Databases",
+      "level": "Advanced",
+      "keywords": ["PostgreSQL", "MongoDB", "Redis", "MySQL"]
+    },
+    {
+      "name": "API Technologies",
+      "level": "Expert",
+      "keywords": ["REST APIs", "GraphQL", "WebSockets", "OpenAPI"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Polish", 
+      "fluency": "Native"
+    },
+    {
+      "language": "German",
+      "fluency": "Conversational"
+    }
+  ],
+  "projects": [
+    {
+      "name": "MCP Resume System",
+      "description": "Revolutionary AI-powered resume screening system using Model Context Protocol. Features real-time GitHub gist integration, multiple LLM provider support, and ChatGPT-style interface. Deployed on Streamlit Cloud with automatic Node.js fallback.",
+      "highlights": [
+        "First-of-its-kind AI recruitment tool using MCP",
+        "Real-time GitHub gist integration",
+        "Multiple LLM provider support (OpenAI, Anthropic, Ollama)",
+        "ChatGPT-style interface built with Streamlit"
+      ],
+      "keywords": ["TypeScript", "Python", "Streamlit", "OpenAI", "MCP", "GitHub API", "Docker"],
+      "startDate": "2024-01-01",
+      "endDate": "",
+      "url": "https://github.com/michaelwybraniec/mcp-resume",
+      "roles": ["Lead Developer", "System Architect"]
+    },
+    {
+      "name": "Enterprise AI Dashboard", 
+      "description": "Real-time analytics dashboard with AI-powered insights for business intelligence. Features custom LLM integration, vector search, and automated report generation.",
+      "highlights": [
+        "Real-time analytics with AI insights",
+        "Custom LLM integration",
+        "Vector search capabilities",
+        "Automated report generation"
+      ],
+      "keywords": ["React", "Python", "FastAPI", "PostgreSQL", "OpenAI", "LangChain"],
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31",
+      "url": "https://www.one-front.com/projects/ai-dashboard",
+      "roles": ["Lead Developer"]
+    },
+    {
+      "name": "Multi-Tenant SaaS Platform",
+      "description": "Scalable multi-tenant SaaS platform with advanced authentication, real-time collaboration, and API management. Serves 10,000+ users across multiple countries.",
+      "highlights": [
+        "Serves 10,000+ users across multiple countries",
+        "Advanced authentication and authorization",
+        "Real-time collaboration features",
+        "Comprehensive API management"
+      ],
+      "keywords": ["Next.js", "Node.js", "PostgreSQL", "Redis", "AWS", "Docker", "Kubernetes"],
+      "startDate": "2022-01-01",
+      "endDate": "2022-12-31",
+      "url": "https://www.one-front.com/projects/saas-platform",
+      "roles": ["Lead Developer", "System Architect"]
+    },
+    {
+      "name": "AI-Powered E-commerce Engine",
+      "description": "Intelligent e-commerce platform with AI-driven product recommendations, dynamic pricing, and automated inventory management.",
+      "highlights": [
+        "AI-driven product recommendations",
+        "Dynamic pricing algorithms",
+        "Automated inventory management",
+        "Machine learning integration"
+      ],
+      "keywords": ["React", "Python", "Django", "TensorFlow", "AWS", "PostgreSQL"],
+      "startDate": "2021-01-01",
+      "endDate": "2021-12-31",
+      "url": "https://www.one-front.com/projects/ecommerce-ai",
+      "roles": ["Lead Developer"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Speaker at International Tech Conferences",
+      "date": "2023-01-01",
+      "awarder": "Various Tech Conferences",
+      "summary": "Speaker at international tech conferences on AI and web development"
+    },
+    {
+      "title": "Open Source Contributor",
+      "date": "2022-01-01", 
+      "awarder": "GitHub Community",
+      "summary": "Contributed to multiple open-source projects with 1000+ GitHub stars"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "date": "2023-01-01",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "name": "Google Cloud Professional Developer",
+      "date": "2022-01-01",
+      "issuer": "Google Cloud"
+    },
+    {
+      "name": "OpenAI API Specialist",
+      "date": "2024-01-01",
+      "issuer": "OpenAI"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Artificial Intelligence",
+      "keywords": ["Machine Learning", "Deep Learning", "LLMs", "Model Context Protocol"]
+    },
+    {
+      "name": "Open Source",
+      "keywords": ["GitHub", "Community Projects", "Technical Writing"]
+    },
+    {
+      "name": "Technology Innovation",
+      "keywords": ["Emerging Technologies", "Software Architecture", "Best Practices"]
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2024-12-19T10:00:00.000Z"
+  }
+} 
