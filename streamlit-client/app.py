@@ -84,6 +84,7 @@ import datetime
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
 import openai
+from fallback_resume import fallback_service
 
 try:
     import ollama
@@ -135,6 +136,9 @@ class MCPClient:
     def start_server(self):
         """Start the MCP server process"""
         try:
+            # Check if Node.js is available
+            subprocess.run(["node", "--version"], capture_output=True, check=True)
+            
             env = os.environ.copy()
             env["GITHUB_GIST_ID"] = self.gist_id
             
@@ -148,6 +152,10 @@ class MCPClient:
             )
             time.sleep(2)
             return True
+        except FileNotFoundError:
+            st.warning("⚠️ Node.js not found. Using demo mode with sample data.")
+            st.info("💡 For full functionality, install Node.js locally or deploy with proper Node.js support.")
+            return False
         except Exception as e:
             st.error(f"Failed to start MCP server: {e}")
             return False
@@ -288,28 +296,51 @@ def get_resume_context(mcp_client: MCPClient, user_message: str) -> str:
     message_lower = user_message.lower()
     
     try:
-        if any(word in message_lower for word in ["experience", "work", "job", "career"]):
-            response = mcp_client.call_tool("get_experience")
-            if response.success:
-                return f"Work Experience:\n{json.dumps(response.data, indent=2)}"
-        
-        elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
-            response = mcp_client.call_tool("get_skills")
-            if response.success:
-                return f"Skills:\n{json.dumps(response.data, indent=2)}"
-        
-        elif any(word in message_lower for word in ["search", "find"]):
-            words = message_lower.split()
-            search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
-            if search_terms:
-                search_query = " ".join(search_terms[:3])
-                response = mcp_client.call_tool("search_resume", {"query": search_query})
+        # Check if MCP server is available
+        if mcp_client and mcp_client.server_process:
+            # Use MCP server
+            if any(word in message_lower for word in ["experience", "work", "job", "career"]):
+                response = mcp_client.call_tool("get_experience")
                 if response.success:
-                    return f"Search Results:\n{json.dumps(response.data, indent=2)}"
-        
-        response = mcp_client.call_tool("get_resume", {"format": "summary"})
-        if response.success:
-            return f"Resume Summary:\n{response.data}"
+                    return f"Work Experience:\n{json.dumps(response.data, indent=2)}"
+            
+            elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
+                response = mcp_client.call_tool("get_skills")
+                if response.success:
+                    return f"Skills:\n{json.dumps(response.data, indent=2)}"
+            
+            elif any(word in message_lower for word in ["search", "find"]):
+                words = message_lower.split()
+                search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
+                if search_terms:
+                    search_query = " ".join(search_terms[:3])
+                    response = mcp_client.call_tool("search_resume", {"query": search_query})
+                    if response.success:
+                        return f"Search Results:\n{json.dumps(response.data, indent=2)}"
+            
+            response = mcp_client.call_tool("get_resume", {"format": "summary"})
+            if response.success:
+                return f"Resume Summary:\n{response.data}"
+        else:
+            # Use fallback service
+            if any(word in message_lower for word in ["experience", "work", "job", "career"]):
+                data = fallback_service.get_experience()
+                return f"Work Experience:\n{json.dumps(data, indent=2)}"
+            
+            elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
+                data = fallback_service.get_skills()
+                return f"Skills:\n{json.dumps(data, indent=2)}"
+            
+            elif any(word in message_lower for word in ["search", "find"]):
+                words = message_lower.split()
+                search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
+                if search_terms:
+                    search_query = " ".join(search_terms[:3])
+                    data = fallback_service.search_resume(search_query)
+                    return f"Search Results:\n{json.dumps(data, indent=2)}"
+            
+            data = fallback_service.get_full_resume()
+            return f"Resume Summary:\n{json.dumps(data, indent=2)}"
         
     except Exception as e:
         st.error(f"Error getting context: {e}")
@@ -634,35 +665,42 @@ def main():
         with st.spinner("🤖 Processing your question..."):
             user_input = st.session_state.current_processing_message
             
-            if st.session_state.mcp_client:
-                context = get_resume_context(st.session_state.mcp_client, user_input)
+            # Get context - works with both MCP server and fallback
+            context = get_resume_context(st.session_state.mcp_client, user_input)
+            
+            provider = st.session_state.get('current_provider')
+            model = st.session_state.get('current_model')
+            
+            if provider and model:
+                messages = [{"role": "user", "content": user_input}]
                 
-                provider = st.session_state.get('current_provider')
-                model = st.session_state.get('current_model')
-                
-                if provider and model:
-                    messages = [{"role": "user", "content": user_input}]
-                    
-                    if provider == "ollama":
-                        response = LLMProviders.chat_ollama(model, messages, context)
-                    elif provider == "openrouter":
+                if provider == "ollama":
+                    response = LLMProviders.chat_ollama(model, messages, context)
+                elif provider == "openrouter":
+                    if st.session_state.openrouter_api_key:
                         response = LLMProviders.chat_openrouter(model, messages, context, st.session_state.openrouter_api_key)
-                    elif provider == "openai":
+                    else:
+                        # Store the user message for automatic processing after API key is added
+                        st.session_state.pending_user_message = user_input
+                        response = "⚠️ Please add your OpenRouter API key in the sidebar first!"
+                        st.toast(f"💾 Message saved! It will be processed automatically after adding API key.", icon="📝")
+                elif provider == "openai":
+                    if st.session_state.openai_api_key:
                         response = LLMProviders.chat_openai(model, messages, context, st.session_state.openai_api_key)
                     else:
-                        response = "Unknown provider"
+                        # Store the user message for automatic processing after API key is added
+                        st.session_state.pending_user_message = user_input
+                        response = "⚠️ Please add your OpenAI API key in the sidebar first!"
+                        st.toast(f"💾 Message saved! It will be processed automatically after adding API key.", icon="📝")
                 else:
-                    # Store the user message for automatic processing after LLM is configured
-                    st.session_state.pending_user_message = user_input
-                    response = "⚠️ Please configure an LLM provider in the sidebar first!"
-                    st.toast(f"💾 Message saved! It will be processed automatically after configuring LLM.", icon="📝")
-                
-                add_response(response)
+                    response = "Unknown provider"
             else:
-                # Store the user message for automatic processing after server starts
+                # Store the user message for automatic processing after LLM is configured
                 st.session_state.pending_user_message = user_input
-                add_response("Please start the MCP server first!")
-                st.toast(f"💾 Message saved! It will be processed automatically after starting the server.", icon="📝")
+                response = "⚠️ Please configure an LLM provider in the sidebar first!"
+                st.toast(f"💾 Message saved! It will be processed automatically after configuring LLM.", icon="📝")
+            
+            add_response(response)
             
             # Clear processing flag
             st.session_state.processing_message = False
