@@ -676,18 +676,12 @@ Please check:
 # ============================================================================
 
 def quick_start_main():
-    """Auto-setup function that starts MCP server, adds demo API key, and configures LLM provider"""
+    """Auto-setup function that configures LLM provider for cloud deployment"""
     setup_completed = False
     
-    # Try to start MCP server
-    if not st.session_state.mcp_client:
-        mcp_client = MCPClient()
-        if mcp_client.start_server():
-            st.session_state.mcp_client = mcp_client
-            st.toast("✅ Step 1: MCP Server started!")
-            setup_completed = True
-        else:
-            st.toast("⚠️ MCP Server unavailable - using demo mode")
+    # Skip MCP server entirely - always use fallback mode for cloud deployment
+    st.toast("✅ Step 1: Resume data loaded from JSON!")
+    setup_completed = True
     
     # Check OpenRouter API key
     current_key = st.session_state.get("openrouter_api_key", "").strip()
@@ -726,61 +720,30 @@ def quick_start_main():
     
     return setup_completed
 
-def get_resume_context(mcp_client: MCPClient, user_message: str) -> str:
-    """Get relevant resume context based on user message"""
+def get_resume_context(user_message: str) -> str:
+    """Get relevant resume context based on user message using fallback service"""
     message_lower = user_message.lower()
     
     try:
-        # Check if MCP server is available and healthy
-        if mcp_client and mcp_client.server_process:
-            # Health check - if server is dead, restart it
-            if mcp_client.server_process.poll() is not None:
-                st.toast("🔄 Restarting MCP server...")
-                mcp_client.start_server()
-                st.session_state.mcp_client = mcp_client
-            # Use MCP server
-            if any(word in message_lower for word in ["experience", "work", "job", "career"]):
-                response = mcp_client.call_tool("get_experience")
-                if response.success:
-                    return f"Work Experience:\n{json.dumps(response.data, indent=2)}"
-            
-            elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
-                response = mcp_client.call_tool("get_skills")
-                if response.success:
-                    return f"Skills:\n{json.dumps(response.data, indent=2)}"
-            
-            elif any(word in message_lower for word in ["search", "find"]):
-                words = message_lower.split()
-                search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
-                if search_terms:
-                    search_query = " ".join(search_terms[:3])
-                    response = mcp_client.call_tool("search_resume", {"query": search_query})
-                    if response.success:
-                        return f"Search Results:\n{json.dumps(response.data, indent=2)}"
-            
-            response = mcp_client.call_tool("get_resume", {"format": "summary"})
-            if response.success:
-                return f"Resume Summary:\n{response.data}"
-        else:
-            # Use fallback service
-            if any(word in message_lower for word in ["experience", "work", "job", "career"]):
-                data = fallback_service.get_experience()
-                return f"Work Experience:\n{json.dumps(data, indent=2)}"
-            
-            elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
-                data = fallback_service.get_skills()
-                return f"Skills:\n{json.dumps(data, indent=2)}"
-            
-            elif any(word in message_lower for word in ["search", "find"]):
-                words = message_lower.split()
-                search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
-                if search_terms:
-                    search_query = " ".join(search_terms[:3])
-                    data = fallback_service.search_resume(search_query)
-                    return f"Search Results:\n{json.dumps(data, indent=2)}"
-            
-            data = fallback_service.get_full_resume()
-            return f"Resume Summary:\n{json.dumps(data, indent=2)}"
+        # Always use fallback service for cloud deployment compatibility
+        if any(word in message_lower for word in ["experience", "work", "job", "career"]):
+            data = fallback_service.get_experience()
+            return f"Work Experience:\n{json.dumps(data, indent=2)}"
+        
+        elif any(word in message_lower for word in ["skill", "technology", "programming", "tech"]):
+            data = fallback_service.get_skills()
+            return f"Skills:\n{json.dumps(data, indent=2)}"
+        
+        elif any(word in message_lower for word in ["search", "find"]):
+            words = message_lower.split()
+            search_terms = [word for word in words if len(word) > 3 and word not in ["search", "find", "about", "with"]]
+            if search_terms:
+                search_query = " ".join(search_terms[:3])
+                data = fallback_service.search_resume(search_query)
+                return f"Search Results:\n{json.dumps(data, indent=2)}"
+        
+        data = fallback_service.get_full_resume()
+        return f"Resume Summary:\n{json.dumps(data, indent=2)}"
         
     except Exception as e:
         st.error(f"Error getting context: {e}")
@@ -905,10 +868,15 @@ def main():
     
     if 'messages' not in st.session_state:
         st.session_state.messages = []
+    # Remove MCP client for cloud deployment - always use fallback service
     if 'mcp_client' not in st.session_state:
         st.session_state.mcp_client = None
     if 'openrouter_api_key' not in st.session_state:
-        st.session_state.openrouter_api_key = os.getenv("OPENROUTER_API_KEY", "")
+        # Check Streamlit secrets first, then environment variables
+        try:
+            st.session_state.openrouter_api_key = st.secrets.get("OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", ""))
+        except:
+            st.session_state.openrouter_api_key = os.getenv("OPENROUTER_API_KEY", "")
     if 'openai_api_key' not in st.session_state:
         st.session_state.openai_api_key = os.getenv("OPENAI_API_KEY", "")
     if 'current_provider' not in st.session_state:
@@ -919,15 +887,30 @@ def main():
         st.session_state.current_gist_id = "dabf368473d41748e9d6051afb67efcf"
     if 'current_server_path' not in st.session_state:
         st.session_state.current_server_path = "../build/index.js"
+    if 'show_api_key_modal' not in st.session_state:
+        st.session_state.show_api_key_modal = False
+    
+    # Check if API key is needed on first load
+    if not st.session_state.get('openrouter_api_key', '').strip() and not st.session_state.get('api_key_check_done', False):
+        st.session_state.show_api_key_modal = True
+        st.session_state.api_key_check_done = True
     
     # ========================================================================
     # ENHANCED HEADER WITH AUTO STATUS
     # ========================================================================
     
-    # Enhanced Header with Auto Status
-    server_status = 'Server <span class="status-emoji">🟢</span>' if st.session_state.mcp_client else 'Server<span class="status-emoji">🔴</span>'
-    ai_status = 'Client <span class="status-emoji">🟢</span>' if st.session_state.current_provider else 'Setup Needed <span class="status-emoji">🔴</span>'
-    api_key_status = 'API Key <span class="status-emoji">🟢</span>' if st.session_state.get('openrouter_api_key', '').strip() else 'API Key <span class="status-emoji">🔴</span>'
+    # Enhanced Header with Auto Status - Cloud deployment mode
+    # Check if we're using live gist data or local files
+    try:
+        from fallback_resume import REQUESTS_AVAILABLE
+        data_status = 'CV <span class="status-emoji">🟢</span>' if REQUESTS_AVAILABLE else 'Local Data <span class="status-emoji">🟢</span>'
+        requests_available = REQUESTS_AVAILABLE
+    except:
+        data_status = 'CV <span class="status-emoji">🟢</span>'
+        requests_available = True
+    
+    ai_status = 'LLM <span class="status-emoji">🟢</span>' if st.session_state.current_provider else 'LLM required <span class="status-emoji">🔴</span>'
+    api_key_status = 'API <span class="status-emoji">🟢</span>' if st.session_state.get('openrouter_api_key', '').strip() else 'API Key <span class="status-emoji">🔴</span>'
     
     st.markdown(f"""
     <div style='text-align: center;'>
@@ -936,8 +919,10 @@ def main():
             Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience &nbsp;
         </p>
         <p style='font-size: 8px; color: #666; margin: 0;'>
-            <span style='font-size: 12px;'>{server_status} &nbsp;&nbsp; {ai_status} &nbsp;&nbsp; {api_key_status}</span>
+            <span style='font-size: 12px;'>{data_status} &nbsp;&nbsp; {ai_status} &nbsp;&nbsp; {api_key_status}</span>
         </p>
+    
+        
     </div>
     """, unsafe_allow_html=True)
     
@@ -1060,8 +1045,91 @@ def main():
         
         st.rerun()
 
-            # Smart Match Modal
-    if st.session_state.get('show_job_analysis_modal', False):
+    # Modal Management - Only show one modal at a time
+    # Priority: API Key modal > Job Analysis modal
+    if st.session_state.get('show_api_key_modal', False):
+        # Close any other modals
+        st.session_state.show_job_analysis_modal = False
+
+        # Make modal bigger
+        st.markdown("""
+            <style>
+            div[role="dialog"] { width: 30vw !important; }
+            </style>
+        """, unsafe_allow_html=True)
+        
+        @st.dialog("🔑 OpenRouter API Key is Required")
+        def api_key_setup_modal():
+            # Check if key exists in secrets
+            secrets_key = ""
+            try:
+                secrets_key = st.secrets.get("OPENROUTER_API_KEY", "")
+                if secrets_key:
+                    st.success("API key found in Streamlit secrets!")
+                    st.session_state.openrouter_api_key = secrets_key
+                    st.session_state.show_api_key_modal = False
+                    quick_start_main()
+                    st.rerun()
+            except:
+                pass
+            
+            if not secrets_key:
+                # Benefits section
+               
+                
+                # API Key input
+                api_key_input = st.text_input(
+                    "**API Key:**",
+                    type="password",
+                    placeholder="sk-or-v1-...",
+                    key="modal_api_key_input",
+                    help="Must start with 'sk-or-'"
+                )
+                
+                # Action buttons
+                col1, col2 = st.columns([2, 1])
+                
+                with col1:
+                    if st.button("Activate AI Chat", type="primary", use_container_width=True):
+                        if api_key_input and api_key_input.startswith("sk-or-"):
+                            st.session_state.openrouter_api_key = api_key_input
+                            st.session_state.show_api_key_modal = False
+                            st.toast("AI Chat activated! Try asking a question.")
+                            quick_start_main()
+                            st.rerun()
+                        elif api_key_input:
+                            st.error("Invalid key format. Must start with 'sk-or-'")
+                        else:
+                            st.error("Please paste your API key above")
+                
+                with col2:
+                    if st.button("Skip for now", use_container_width=True):
+                        st.session_state.show_api_key_modal = False
+                        st.info("You can still use Quick Access buttons without AI chat!")
+                        st.rerun()
+                
+                # Help section
+                with st.expander("Need help getting an API key?"):
+                    st.markdown("""
+                    **Step-by-step guide:**
+                    
+                    1. **Visit** [OpenRouter.ai](https://openrouter.ai) and click "Sign Up"
+                    2. **Verify** your email (check spam folder)
+                    3. **Go to** "Keys" section in your dashboard
+                    4. **Click** "Create Key" and give it a name
+                    5. **Copy** the key (starts with 'sk-or-v1-')
+                    6. **Paste** it in the field above
+                    
+                    **💰 Cost:** Free tier includes multiple models!
+                    """)
+                
+              
+                st.caption("🔒 **Privacy:** Your key stays in your browser session - never shared or stored.")
+        
+        api_key_setup_modal()
+
+    # Smart Match Modal - Only show if API key modal is not active
+    elif st.session_state.get('show_job_analysis_modal', False):
         # Make modal bigger
         st.markdown("""
             <style>
@@ -1277,25 +1345,17 @@ Nice to have:
     if not st.session_state.messages:
         with st.chat_message("assistant"):
             st.markdown("""
-            **Welcome to Michael Wybraniec's AI Resume**
+            **👋  Welcome to Michael's AI Resume**!
+                        
+            **Quick Actions**
             
-            Get instant access to professional insights and analysis:
+            👤 **Summarize Profile** - Get a comprehensive overview  
+            📅 **Years Experience** - View career timeline and progression  
+            🛠️ **Technical Skills** - Explore technical expertise and specializations  
+            🎯 **Smart Match** - Analyze job descriptions against candidate fit  
+            📄 **Download CV** - Get professional PDF resume  
             
-            **Quick Setup** → 
-            1. Click **🚀 Auto Start** in sidebar (←)
-            2. Add your free OpenRouter API key ([Get one here](https://openrouter.ai))
-            3. Start chatting with AI about the resume!
-            
-            **Quick Access Menu** (works without setup):
-            - 👤 **Summarize Profile** - Get a comprehensive overview
-            - 📅 **Years Experience** - View career timeline and progression  
-            - 🛠️ **Technical Skills** - Explore technical expertise and specializations
-            - 🎯 **Smart Match** - Analyze job descriptions against candidate fit
-            - 📄 **Download CV** - Get professional PDF resume
-            
-            **Or just chat** → Ask anything about Michael's experience, projects, or skills!
-            
-            💡 **Tip**: The Quick Access buttons work immediately, but for AI chat you'll need a free OpenRouter API key.
+            Or just ask anything! 💬
             """)
 
     # ========================================================================
@@ -1310,8 +1370,8 @@ Nice to have:
         with st.spinner("Processing your question..."):
             user_input = st.session_state.current_processing_message
             
-            # Get context - works with both MCP server and fallback
-            context = get_resume_context(st.session_state.mcp_client, user_input)
+            # Get context using fallback service (cloud-compatible)
+            context = get_resume_context(user_input)
             
             provider = st.session_state.get('current_provider')
             model = st.session_state.get('current_model')
@@ -1455,65 +1515,36 @@ To chat with AI, you need a free OpenRouter API key:
     with st.sidebar:
         # Quick Setup - Always visible for easy access at top of sidebar
         if st.button("🚀 Auto Start", type="primary", use_container_width=True, key="quick_start_main"):
-            quick_start_main()
+            # Check if API key exists, if not show modal
+            if not st.session_state.get('openrouter_api_key', '').strip():
+                st.session_state.show_api_key_modal = True
+                st.rerun()
+            else:
+                quick_start_main()
         # Help & Tips - Main collapsible section at top
         with st.expander("Help & Tips", expanded=False):
             st.markdown("""
-            **About This Interface:**
-            This is an AI-powered chat interface for exploring Michael Wybraniec's resume and experience.
-            
-            **How to Use:**
-            1. **Auto Start**: Click "🚀 Auto Start" below for instant configuration
-            2. **Chat**: Ask any questions about Michael's experience in the chat input
-            3. **Instant Menu**: Use buttons at bottom for common questions (Profile, Experience, Skills, etc.)
-            4. **Smart Match**: Paste job descriptions to analyze candidate fit
-            5. **Download CV**: Get Michael's professional CV in PDF format
-            
-            **Key Features:**
-            - **AI Chat**: Powered by multiple LLM providers (OpenRouter, OpenAI, Ollama)
-            - **MCP Integration**: Uses Model Context Protocol for intelligent resume data retrieval
-            - **Smart Analysis**: AI analyzes job descriptions against candidate profile
-            - **Free Models**: Works with free AI models via OpenRouter
+            **Quick Start:**
+            1. Click "🚀 Auto Start" below for instant setup
+            2. Ask questions or use Quick Access buttons at bottom
+            3. Use "🎯 Smart Match" to analyze job descriptions
             
             **For Recruiters:**
-            - Get instant candidate summaries and skill assessments
-            - Analyze job fit with detailed match scores and recommendations
-            - Access 10+ years of professional experience data
+            - Instant candidate summaries and skill assessments
+            - Job fit analysis with match scores
+            - 10+ years of professional experience data
             
-            **Technical Stack:**
-            - Frontend: Streamlit
-            - AI: Multiple LLM providers with free tier support
-            - Data: MCP server with GitHub Gist integration
-            - Resume: JSON format following industry standards
+            **Get API Key:** [OpenRouter.ai](https://openrouter.ai) (free tier available)
             
-            **Useful Links:**
-            - [OpenRouter.ai](https://openrouter.ai) - Free API keys for AI models
-            - [One-Front.com](https://www.one-front.com/en/contact) - Get your own AI resume interface
+            **Custom AI Resume:** [One-Front.com](https://www.one-front.com/en/contact)
             """)
         
         # st.markdown("---")
         
         # System Configuration - Collapsible
         with st.expander("System Setup", expanded=False):
-            # MCP Server Control
-            if not st.session_state.mcp_client:
-                if st.button("Start MCP Server", use_container_width=True, key="sidebar_start_server"):
-                    with st.spinner("Starting MCP server..."):
-                        gist_id = st.session_state.get('current_gist_id', "dabf368473d41748e9d6051afb67efcf")
-                        server_path = st.session_state.get('current_server_path', "../build/index.js")
-                        mcp_client = MCPClient(server_path, gist_id)
-                        if mcp_client.start_server():
-                            st.session_state.mcp_client = mcp_client
-                            st.toast("MCP Server started successfully!")
-                            st.rerun()
-                        else:
-                            st.toast("❌ Failed to start MCP server", icon="🚨")
-            else:
-                if st.button("🛑 Stop MCP Server", use_container_width=True, key="sidebar_stop_server"):
-                    st.session_state.mcp_client.stop_server()
-                    st.session_state.mcp_client = None
-                    st.toast("✅ MCP Server stopped", icon="🛑")
-                    st.rerun()
+            # Cloud deployment mode - fetches from public gist
+            st.info("🌟 **Live Data**: Resume fetched from public GitHub Gist. Always up-to-date, no setup required!")
             
             st.markdown("**OpenRouter API Key**")
             if st.session_state.openrouter_api_key:
@@ -1591,7 +1622,7 @@ To chat with AI, you need a free OpenRouter API key:
         #             st.error("Start MCP server first!")
         
         # Quick Questions Categories
-        with st.expander("Questions for AI", expanded=False):
+        with st.expander("Example Questions", expanded=False):
             
             # Main Questions
             st.markdown("**🎯 Essential Questions**")
@@ -1650,57 +1681,7 @@ To chat with AI, you need a free OpenRouter API key:
                     st.toast(f"🚀 Processing: {question}", icon="⚡")
                     st.rerun()
         
-            # Resume Source Configuration
-        with st.expander("Resume Source", expanded=False):
-            gist_id = st.text_input(
-                "GitHub Gist ID", 
-                value="dabf368473d41748e9d6051afb67efcf",
-                help="Enter your GitHub gist ID containing resume.json"
-            )
-            st.session_state.current_gist_id = gist_id
-            
-            if st.button("📋 Copy Example Gist URL"):
-                st.code("https://gist.github.com/michaelwybraniec/dabf368473d41748e9d6051afb67efcf")
-                st.caption("👆 This is an example gist. Create your own with resume.json!")
-            
-            # Gist Creation Section
-            st.markdown("---")
-            st.markdown("**🚀 Create New Gist with Real Data**")
-            
-            if REQUESTS_AVAILABLE:
-                github_token = st.text_input(
-                    "GitHub Personal Access Token",
-                    type="password",
-                    help="Get one at: https://github.com/settings/tokens (requires 'gist' scope)",
-                    key="github_token"
-                )
-                
-                if github_token and st.button("📤 Create Gist with Resume Data", use_container_width=True):
-                    try:
-                        with st.spinner("Creating GitHub gist..."):
-                            resume_data = generate_json_resume()
-                            result = create_gist_with_token(github_token, resume_data)
-                            
-                            st.success("✅ Gist created successfully!")
-                            st.info(f"🔗 **Gist ID:** `{result['id']}`")
-                            st.info(f"📄 **URL:** {result['html_url']}")
-                            
-                            # Auto-update the gist ID field
-                            st.session_state.current_gist_id = result['id']
-                            st.success(f"🔄 Gist ID updated in configuration!")
-                            
-                            st.balloons()
-                            
-                    except Exception as e:
-                        st.error(f"❌ Failed to create gist: {str(e)}")
-                        if "401" in str(e):
-                            st.error("🔑 Invalid GitHub token. Make sure it has 'gist' scope.")
-                
-                if not github_token:
-                    st.info("💡 Add your GitHub token above to create a gist with your real resume data")
-            else:
-                st.warning("⚠️ `requests` library not available. Cannot create gists.")
-                st.caption("💡 Use the command line script: `python create_gist.py`")
+
                 
         # Job Description Analysis
         # with st.expander("📋 Job Description Analysis", expanded=False):
@@ -1737,85 +1718,7 @@ To chat with AI, you need a free OpenRouter API key:
         #     if not job_description.strip():
         #         st.caption("💡 Paste a job description above, then click the button to analyze candidate fit")
         
-        # Advanced Settings
-        with st.expander("Advanced Settings", expanded=False):
-            
-            # Server Settings
-            st.markdown("**Server Settings**")
-            server_path = st.text_input(
-                "Server Path", 
-                value=st.session_state.current_server_path,
-                help="Path to the MCP server build file"
-            )
-            st.session_state.current_server_path = server_path
-            st.caption("Default path should work for most setups")
-            
-            st.markdown("---")
-            
-            # LLM Provider Configuration
-            st.markdown("**LLM Provider**")
-            available_providers = LLMProviders.get_available_providers()
-            
-            if not available_providers:
-                st.write("No LLM providers available. Install Ollama or add API keys.")
-                provider = None
-            else:
-                provider_index = 0
-                if st.session_state.current_provider in available_providers:
-                    provider_index = available_providers.index(st.session_state.current_provider)
-                
-                provider = st.selectbox(
-                    "Provider", 
-                    available_providers,
-                    index=provider_index,
-                    key="provider_select"
-                )
-            
-            st.session_state.current_provider = provider
-            
-            model = None
-            
-            if provider == "ollama":
-                if OLLAMA_AVAILABLE:
-                    try:
-                        models = ollama.list()
-                        model_names = [model['name'] for model in models['models']]
-                        if model_names:
-                            model_index = 0
-                            if st.session_state.current_model in model_names:
-                                model_index = model_names.index(st.session_state.current_model)
-                            model = st.selectbox("Model", model_names, index=model_index)
-                        else:
-                            st.caption("No Ollama models found. Run: `ollama pull llama3.2`")
-                    except:
-                        st.caption("Ollama not running. Start with: `ollama serve`")
-            
-            elif provider == "openrouter":
-                openrouter_models = [
-                    "meta-llama/llama-3.1-8b-instruct:free",
-                    "meta-llama/llama-3.2-3b-instruct:free",
-                    "microsoft/phi-3-mini-128k-instruct:free",
-                    "huggingfaceh4/zephyr-7b-beta:free"
-                ]
-                model_index = 0
-                if st.session_state.current_model in openrouter_models:
-                    model_index = openrouter_models.index(st.session_state.current_model)
-                model = st.selectbox("Model", openrouter_models, index=model_index)
-                st.caption("Free models available with OpenRouter API key")
-            
-            elif provider == "openai":
-                openai_models = [
-                    "gpt-3.5-turbo",
-                    "gpt-4",
-                    "gpt-4-turbo-preview"
-                ]
-                model_index = 0
-                if st.session_state.current_model in openai_models:
-                    model_index = openai_models.index(st.session_state.current_model)
-                model = st.selectbox("Model", openai_models, index=model_index)
-                st.caption("Requires OpenAI API key (paid service)")
-            
-            st.session_state.current_model = model
+
     
     # ========================================================================
     # INSTANT MENU - BOTTOM OF PAGE
@@ -1823,7 +1726,7 @@ To chat with AI, you need a free OpenRouter API key:
     
   
    
-    st.caption("Quick access to common questions and actions")
+    st.caption("Quick Actions:")
     
     quick_col1, quick_col2, quick_col3, quick_col4, quick_col5 = st.columns(5)
     

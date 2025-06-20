@@ -9,6 +9,13 @@ import json
 import os
 from typing import Dict, Any
 
+# Optional requests import for gist functionality
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+
 class FallbackResumeService:
     """Provides resume data from local JSON file"""
     
@@ -16,9 +23,24 @@ class FallbackResumeService:
         self.data = self._load_resume_data()
     
     def _load_resume_data(self) -> Dict[str, Any]:
-        """Load resume data from the root JSON file"""
+        """Load resume data from public GitHub Gist or local JSON files"""
         try:
-            # Get the path to the root directory (one level up from streamlit-client)
+            # First try to fetch from public GitHub Gist (no auth needed) if requests is available
+            if REQUESTS_AVAILABLE:
+                gist_url = "https://gist.githubusercontent.com/michaelwybraniec/dabf368473d41748e9d6051afb67efcf/raw/resume.json"
+                
+                try:
+                    response = requests.get(gist_url, timeout=10)
+                    if response.status_code == 200:
+                        json_data = response.json()
+                        print("✅ Resume data loaded from public GitHub Gist")
+                        return self._convert_json_resume_format(json_data)
+                except Exception as e:
+                    print(f"⚠️ Could not fetch from Gist: {e}")
+            else:
+                print("⚠️ Requests module not available, using local files")
+            
+            # Fallback to local JSON files
             current_dir = os.path.dirname(os.path.abspath(__file__))
             root_dir = os.path.dirname(current_dir)
             
@@ -31,13 +53,15 @@ class FallbackResumeService:
                     with open(json_path, 'r', encoding='utf-8') as f:
                         json_data = json.load(f)
                     
+                    print(f"✅ Resume data loaded from local file: {json_file}")
                     # Convert JSON Resume format to our expected format
                     return self._convert_json_resume_format(json_data)
             
             raise FileNotFoundError("No resume JSON file found")
         
         except Exception as e:
-            # Fallback to minimal data if file not found
+            print(f"⚠️ Error loading resume data: {e}")
+            # Fallback to minimal data if all else fails
             return {
                 "personal": {
                     "name": "Michael Wybraniec",
