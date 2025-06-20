@@ -1382,6 +1382,8 @@ To chat with AI, you need a free OpenRouter API key:
         padding: 10px 0;
     }
     
+
+    
     @media (max-width: 768px) {
         [data-testid="column"] {
             width: 100% !important;
@@ -1430,16 +1432,11 @@ To chat with AI, you need a free OpenRouter API key:
         with st.expander("Help & Tips", expanded=False):
             st.markdown("""
             **Quick Start:**
-            1. Get a free API key from [OpenRouter.ai](https://openrouter.ai)
-            2. Add your API key in "System Setup" below
-            3. Start chatting or use Quick Action buttons
-            
-            **For Recruiters & HR:**
-            - 👤 **Summarize Profile** - Get comprehensive candidate overview
-            - 📅 **Years Experience** - View career progression timeline  
-            - 🛠️ **Technical Skills** - Analyze technical competencies
-            - 🎯 **Smart Match** - Job fit analysis with match scores
-            - 📄 **Download CV** - Professional PDF resume
+                        
+            If you hit the limits:
+            1. Get free API key at [OpenRouter.ai](https://openrouter.ai)
+            2. Add key in "System Setup" below
+            3. Ask questions or try quick actions
             
             **Sample Questions:**
             - "What are their strongest technical skills?"
@@ -1463,17 +1460,16 @@ To chat with AI, you need a free OpenRouter API key:
                 masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
                 st.write(f"✅ `{masked_key}`")
                 
-                col1, col2 = st.columns([1, 1])
-                with col1:
-                    if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("🔑 API key cleared", icon="🔄")
-                        st.rerun()
-                with col2:
-                    if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("🗑️ API key removed", icon="🗑️")
-                        st.rerun()
+                # Check if we should stack buttons (when sidebar is narrow)
+                # In narrow mode, create single column layout
+                if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
+                    st.session_state.openrouter_api_key = ""
+                    st.toast("🔑 API key cleared", icon="🔄")
+                    st.rerun()
+                if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
+                    st.session_state.openrouter_api_key = ""
+                    st.toast("🗑️ API key removed", icon="🗑️")
+                    st.rerun()
             else:
                 api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
                 if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
@@ -1492,13 +1488,10 @@ To chat with AI, you need a free OpenRouter API key:
         
 
         with st.expander("Quick Actions", expanded=True):
-
-            action_col1, action_col2 = st.columns(2)
-            
-            with action_col1:
-                if st.button("🔄 Clear", key="sidebar_clear_chat", use_container_width=True):
-                    st.session_state.messages = []
-                    st.rerun()
+            # Stack buttons vertically in sidebar for better mobile experience
+            if st.button("🔄 Clear", key="sidebar_clear_chat", use_container_width=True):
+                st.session_state.messages = []
+                st.rerun()
             
 
 if __name__ == "__main__":
