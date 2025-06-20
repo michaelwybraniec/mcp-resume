@@ -978,7 +978,7 @@ def main():
             st.rerun()
 
     # Chat Input
-    if user_input := st.chat_input("Ask here..."):
+    if user_input := st.chat_input("💬 Ask MikeGPT here..."):
         timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
         st.session_state.messages.append({"role": "user", "content": user_input, "timestamp": timestamp})
         
@@ -1228,9 +1228,12 @@ Nice to have:
     if not st.session_state.messages:
         with st.chat_message("assistant"):
             st.markdown("""
-            ##### 👋  Welcome to Michael's AI Resume!
+            ##### Welcome to Michael's AI Resume!
                         
-            **Quick Actions**
+            ###### Language supported:
+            🇺🇸 🇪🇸 🇫🇷 🇩🇪 🇮🇹 🇵🇹 🇳🇱 🇷🇺 🇨🇳 🇯🇵 🇰🇷
+                        
+            ###### Quick Actions:
             
             👤 **Summarize Profile** - Get a comprehensive overview  
             📅 **Years Experience** - View career timeline and progression  
@@ -1238,7 +1241,8 @@ Nice to have:
             🎯 **Smart Match** - Analyze job descriptions against candidate fit  
             📄 **Download CV** - Get professional PDF resume  
             
-            Or just ask anything! 💬
+                  
+            Just ask anything!
             """)
 
     # ========================================================================
