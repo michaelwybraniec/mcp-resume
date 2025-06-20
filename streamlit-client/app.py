@@ -488,11 +488,10 @@ class MCPClient:
             time.sleep(2)
             return True
         except FileNotFoundError:
-            st.warning("Node.js not found. Using demo mode with sample data.")
-            st.info("For full functionality, install Node.js locally or deploy with proper Node.js support.")
+            # Silently fall back to JSON mode - no warnings needed
             return False
         except Exception as e:
-            st.error(f"Failed to start MCP server: {e}")
+            # Silently fall back to JSON mode - no error messages needed
             return False
     
     def send_request(self, method: str, params: Dict = None) -> MCPResponse:
@@ -581,32 +580,74 @@ class LLMProviders:
     
     @staticmethod
     def chat_openrouter(model: str, messages: List[Dict], context: str = "", api_key: str = "") -> str:
-        """Chat with OpenRouter model"""
+        """Chat with OpenRouter model using direct HTTP requests"""
+        # Trim whitespace from API key
+        api_key = api_key.strip() if api_key else ""
+        
         if not api_key:
             return "OpenRouter API key required"
         
+        # Debug info - check API key format
+        if not api_key.startswith("sk-or-"):
+            return f"Invalid API key format. Expected format: sk-or-... but got: {api_key[:10]}..."
+        
         try:
-            client = openai.OpenAI(
-                base_url="https://openrouter.ai/api/v1",
-                api_key=api_key,
-                default_headers={
-                    "HTTP-Referer": "https://ai-resume.streamlit.app", 
-                    "X-Title": "AI Resume Chat Interface"
-                }
-            )
+            # Use direct HTTP request instead of OpenAI client
+            url = "https://openrouter.ai/api/v1/chat/completions"
+            
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://ai-resume.streamlit.app",
+                "X-Title": "AI Resume Chat Interface"
+            }
             
             system_message = {"role": "system", "content": f"Use this context about the user's resume: {context}"}
             full_messages = [system_message] + messages
             
-            response = client.chat.completions.create(
-                model=model,
-                messages=full_messages,
-                extra_headers={
-                    "HTTP-Referer": "https://ai-resume.streamlit.app",
-                    "X-Title": "AI Resume Chat Interface"
-                }
-            )
-            return response.choices[0].message.content
+            payload = {
+                "model": model,
+                "messages": full_messages
+            }
+            
+            # Debug: Log request details (without full API key)
+            debug_key = f"{api_key[:10]}..." if len(api_key) > 10 else api_key
+            print(f"DEBUG: Making request to OpenRouter with key: {debug_key}")
+            print(f"DEBUG: Model: {model}")
+            
+            response = requests.post(url, headers=headers, json=payload)
+            
+            if response.status_code == 401:
+                return f"""🔑 **Authentication Failed (401)**
+
+Your API key is not being accepted by OpenRouter. Please:
+
+1. **Double-check Key**: Make sure you copied the complete API key from OpenRouter.ai
+2. **Key Format**: Should start with 'sk-or-v1-' and be about 70+ characters long
+3. **Account Status**: Ensure your OpenRouter account is active and verified
+4. **Generate New Key**: Try creating a fresh API key at [OpenRouter.ai](https://openrouter.ai)
+
+**Current key format**: {api_key[:15]}...{api_key[-4:] if len(api_key) > 20 else ''}"""
+            
+            elif response.status_code != 200:
+                return f"""❌ **OpenRouter API Error ({response.status_code})**
+
+{response.text}
+
+Please check:
+1. Your API key is valid and active
+2. You have credits/quota remaining
+3. The model '{model}' is available"""
+            
+            result = response.json()
+            
+            if 'choices' in result and len(result['choices']) > 0:
+                return result['choices'][0]['message']['content']
+            else:
+                return f"Unexpected response format: {result}"
+                
+        except requests.exceptions.RequestException as e:
+            return f"Network error: {str(e)}"
         except Exception as e:
             return f"OpenRouter error: {str(e)}"
     
@@ -648,12 +689,13 @@ def quick_start_main():
         else:
             st.toast("⚠️ MCP Server unavailable - using demo mode")
     
-    # Add OpenRouter API key
+    # Check OpenRouter API key
     current_key = st.session_state.get("openrouter_api_key", "").strip()
     if not current_key:
-        # Set the API key
-        st.session_state.openrouter_api_key = "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"
-        st.toast("✅ Step 2: OpenRouter API key added!")
+        st.toast("⚠️ Step 2: Please add your OpenRouter API key in the sidebar!")
+        st.toast("💡 Get a free API key at OpenRouter.ai", icon="🔑")
+    else:
+        st.toast("✅ Step 2: OpenRouter API key configured!")
         setup_completed = True
     
     # Set LLM provider
@@ -754,7 +796,7 @@ def main():
         page_title="AI Resume - Intelligent CV Chat Interface",
         page_icon="📄",
         layout="wide",
-        initial_sidebar_state="expanded"
+        initial_sidebar_state="collapsed"
     )
     
     # Custom CSS and Header
@@ -865,12 +907,8 @@ def main():
         st.session_state.messages = []
     if 'mcp_client' not in st.session_state:
         st.session_state.mcp_client = None
-        # Auto-start MCP server on initialization
-        mcp_client = MCPClient()
-        if mcp_client.start_server():
-            st.session_state.mcp_client = mcp_client
     if 'openrouter_api_key' not in st.session_state:
-        st.session_state.openrouter_api_key = os.getenv("OPENROUTER_API_KEY", "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")
+        st.session_state.openrouter_api_key = os.getenv("OPENROUTER_API_KEY", "")
     if 'openai_api_key' not in st.session_state:
         st.session_state.openai_api_key = os.getenv("OPENAI_API_KEY", "")
     if 'current_provider' not in st.session_state:
@@ -1243,9 +1281,12 @@ Nice to have:
             
             Get instant access to professional insights and analysis:
             
-            **Auto Start** → Click in sidebar for instant setup (one-click configuration)
+            **Quick Setup** → 
+            1. Click **🚀 Auto Start** in sidebar (←)
+            2. Add your free OpenRouter API key ([Get one here](https://openrouter.ai))
+            3. Start chatting with AI about the resume!
             
-            Use the buttons below for common questions:
+            **Quick Access Menu** (works without setup):
             - 👤 **Summarize Profile** - Get a comprehensive overview
             - 📅 **Years Experience** - View career timeline and progression  
             - 🛠️ **Technical Skills** - Explore technical expertise and specializations
@@ -1254,7 +1295,7 @@ Nice to have:
             
             **Or just chat** → Ask anything about Michael's experience, projects, or skills!
             
-            Tip: The quick action buttons below provide instant answers without any setup needed.
+            💡 **Tip**: The Quick Access buttons work immediately, but for AI chat you'll need a free OpenRouter API key.
             """)
 
     # ========================================================================
@@ -1282,10 +1323,22 @@ Nice to have:
                     response = LLMProviders.chat_ollama(model, messages, context)
                 elif provider == "openrouter":
                     api_key = st.session_state.get('openrouter_api_key', '')
+                    # Debug: Check what we're getting from session state
+                    debug_key = f"{api_key[:10]}..." if api_key and len(api_key) > 10 else f"'{api_key}'"
+                    print(f"DEBUG: Session state API key: {debug_key}")
+                    
                     if api_key and api_key.strip():
-                        response = LLMProviders.chat_openrouter(model, messages, context, api_key)
+                        response = LLMProviders.chat_openrouter(model, messages, context, api_key.strip())
                     else:
-                        response = "Please add your OpenRouter API key in the sidebar first!"
+                        response = """🔑 **OpenRouter API Key Required**
+
+To chat with AI, you need a free OpenRouter API key:
+
+1. **Get Free Key**: Visit [OpenRouter.ai](https://openrouter.ai) and sign up
+2. **Add Key**: Open sidebar (←) → System Setup → Enter your API key  
+3. **Start Chatting**: Ask any questions about the resume!
+
+💡 **Alternative**: Use the Quick Access buttons below - they work without any setup and provide instant resume insights!"""
                 elif provider == "openai":
                     openai_key = st.session_state.get("openai_api_key", "")
                     if openai_key:
@@ -1398,12 +1451,11 @@ Nice to have:
     # ========================================================================
     # SIDEBAR CONFIGURATION
     # ========================================================================
-         # Quick Setup - Always visible for easy access
-    if st.button("🚀 Auto Start", type="primary", use_container_width=True, key="quick_start_main"):
-            quick_start_main()
-        
 
     with st.sidebar:
+        # Quick Setup - Always visible for easy access at top of sidebar
+        if st.button("🚀 Auto Start", type="primary", use_container_width=True, key="quick_start_main"):
+            quick_start_main()
         # Help & Tips - Main collapsible section at top
         with st.expander("Help & Tips", expanded=False):
             st.markdown("""
