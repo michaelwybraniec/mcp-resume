@@ -62,3 +62,6 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity 
 project.md
+
+# Streamlit secrets (contains API keys)
+.streamlit/secrets.toml

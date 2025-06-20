@@ -1,191 +1,259 @@
-# MCP Resume Server
+# 🤖 AI Resume - Interactive Chat Interface
 
-A Model Context Protocol (MCP) server that fetches your CV/Resume from a GitHub gist and provides it to LLMs for enhanced conversations about your professional background.
+**Chat with Michael Wybraniec's AI-powered resume using open-source LLMs - Deploy for FREE!**
 
-## Features
+## 🚀 Features
 
-- ✅ Fetches CV data from GitHub gist automatically
-- ✅ Provides multiple tools for querying resume data
-- ✅ Supports both JSON and text output formats
-- ✅ Includes search functionality across all resume sections
-- ✅ Caches data to reduce API calls
-- ✅ Supports both public and private gists (with token)
+- **📄 Interactive Resume Chat** - Ask any question about Michael's background and experience
+- **🆓 Free Deployment** - Deploy on Streamlit Cloud for free
+- **🤖 Multiple LLM Providers** - OpenRouter (free models), OpenAI, Ollama (local)
+- **💬 Modern Chat UI** - Beautiful Streamlit interface with quick action buttons
+- **📱 Mobile Responsive** - Works perfectly on all devices
+- **⚡ Real-time** - Instant responses with intelligent context retrieval
+- **📄 PDF Download** - Generate and download professional CV
+- **🎯 Smart Matching** - Job description analysis for recruiter insights
+- **✅ System Status** - Real-time status indicator shows when all systems are ready
+- **🔧 Auto-Configuration** - Smart setup flow with contextual help
 
-## Installation
+## 🎯 Quick Start (Local)
 
-1. Clone this repository:
 ```bash
-git clone <repository-url>
+# 1. Clone the repository
+git clone <your-repo-url>
 cd mcp-resume
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run the application
+streamlit run app.py
+
+# 4. Open http://localhost:8501
+# 5. Get a free API key from OpenRouter.ai
+# 6. Add your API key in the sidebar and start chatting!
 ```
 
-2. Install dependencies:
+## 🌟 Deploy to Streamlit Cloud (FREE!)
+
+### 1. **Push to GitHub**
 ```bash
-npm install
+git add .
+git commit -m "Deploy AI Resume to Streamlit Cloud"
+git push origin main
 ```
 
-3. Set up environment variables (optional):
+### 2. **Deploy on Streamlit Cloud**
+1. Go to [share.streamlit.io](https://share.streamlit.io)
+2. Connect your GitHub account
+3. Select your repository
+4. Set main file path: `app.py`
+5. Click "Deploy"!
+
+### 3. **Configure Secrets (Optional)**
+For enhanced LLM providers, add secrets in Streamlit Cloud dashboard:
+
+```toml
+[secrets]
+OPENROUTER_API_KEY = "your_openrouter_api_key_here"
+OPENAI_API_KEY = "your_openai_api_key_here"
+```
+
+### 4. **Your app is live!** 🎉
+You'll get a URL like: `https://your-username-mcp-resume-app-xyz.streamlit.app`
+
+## 🤖 LLM Provider Setup
+
+### Option 1: OpenRouter (Recommended)
+- **Free models available!**
+- Sign up at [OpenRouter](https://openrouter.ai)
+- Get API key and add via the sidebar or Streamlit secrets
+- Use free models like `meta-llama/llama-3.1-8b-instruct:free`
+
+### Option 2: Ollama (Local Development)
 ```bash
-cp .env.example .env
-# Edit .env with your GitHub gist ID and token (if needed)
+# Install Ollama
+brew install ollama  # macOS
+# or visit https://ollama.ai for other platforms
+
+# Start Ollama
+ollama serve
+
+# Install models
+ollama pull llama3.2
+ollama pull llama3.1
 ```
 
-4. Build the project:
+### Option 3: OpenAI (Paid)
+- Get API key from [OpenAI](https://platform.openai.com)
+- Add to Streamlit secrets or enter in the app
+
+## 🏗️ Architecture
+
+### **Application Flow:**
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│ Streamlit UI    │◄──►│ Fallback Resume  │◄──►│ JSON Resume     │
+│ (Chat Interface)│    │ Service (Python) │    │ Data            │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│ LLM Providers   │
+│ • OpenRouter    │
+│ • Ollama        │
+│ • OpenAI        │
+└─────────────────┘
+```
+
+### **Key Components:**
+- **`app.py`** - Main Streamlit application with chat interface
+- **`fallback_resume.py`** - Resume data service and context management
+- **`michael_wybraniec_resume.json`** - Complete resume data in JSON format
+- **`requirements.txt`** - Python dependencies
+
+## 💡 Usage Examples
+
+### 💬 Chat Examples:
+- **"Tell me about Michael's work experience"**
+- **"What are his technical skills?"**
+- **"Summarize his background for a recruiter"**
+- **"Find projects involving JavaScript"**
+- **"What's his experience with AI and machine learning?"**
+- **"How many years of Python experience does he have?"**
+- **"Has he worked with AI/ML technologies?"**
+- **"What industries has he worked in?"**
+
+### ⚡ Quick Actions:
+- **👤 Summarize Profile** - Get comprehensive candidate overview
+- **📅 Years Experience** - View career progression timeline  
+- **🛠️ Technical Skills** - Analyze technical competencies
+- **🎯 Smart Match** - Job fit analysis with match scores
+- **📄 Download CV** - Professional PDF resume
+
+### 🎯 For Recruiters & HR:
+- **"Is this candidate suitable for a senior developer role?"**
+- **"What's their leadership experience?"**
+- **"Do they have experience with cloud platforms?"**
+- **"Rate their frontend vs backend skills"**
+- **"Analyze fit for this job description..."** (paste job description)
+
+## 🔧 Features & Functionality
+
+### 📱 **Modern Chat Interface**
+- Clean, professional design with expanded sidebar
+- Quick action buttons for instant insights
+- Real-time system status indicator
+- Message timestamps and processing indicators
+- Mobile-responsive design
+
+### 🎯 **Smart Context Retrieval**
+- Intelligent context selection based on user questions
+- Focused responses with relevant resume sections
+- Experience, skills, projects, and achievements matching
+- Job description analysis capabilities
+
+### 📄 **Professional CV Generation**
+- Generate PDF CV on demand
+- Clean, professional formatting
+- Download directly from the interface
+
+### 🔧 **Enhanced User Experience**
+- **System Status**: Real-time indicator showing "All Systems Ready!" when configured
+- **Help & Tips**: Comprehensive setup guide and sample questions
+- **Quick Actions**: Organized, expandable panel for common tasks
+- **Auto-Setup**: Smart configuration flow with contextual guidance
+
+## 🌐 Deployment Options
+
+### 1. **Streamlit Cloud (Recommended - Free)** ⭐
+- Free hosting for public repositories
+- Automatic deployments from GitHub
+- Built-in secrets management
+- Perfect for demos and portfolios
+
+### 2. **Local Development**
 ```bash
-npm run build
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
-## Configuration
+### 3. **Other Cloud Platforms**
+- Railway, Render, Heroku
+- Use provided `requirements.txt` and `runtime.txt`
+- Set startup command: `streamlit run app.py --server.port $PORT`
 
-### Environment Variables
+## 📁 Project Structure
 
-Create a `.env` file in the root directory:
-
-```env
-# GitHub Gist Configuration
-GITHUB_GIST_ID=dabf368473d41748e9d6051afb67efcf
-GITHUB_TOKEN=your_github_token_here_optional
-CACHE_TIMEOUT=300000
+```
+mcp-resume/
+├── app.py                          # Main Streamlit application
+├── fallback_resume.py              # Resume data service
+├── michael_wybraniec_resume.json   # Resume data
+├── CV_Michael_Wybraniec_15_Jun_2025.pdf  # Professional CV
+├── requirements.txt                # Python dependencies
+├── runtime.txt                     # Python version for deployment
+├── packages.txt                    # System packages for deployment
+├── secrets.toml.example            # Example secrets configuration
+├── README.md                       # This file
+├── DEPLOYMENT.md                   # Deployment guide
+└── CLEANUP_SUMMARY.md              # Project cleanup notes
 ```
 
-- `GITHUB_GIST_ID`: Your gist ID (defaults to Michael's public gist)
-- `GITHUB_TOKEN`: Optional GitHub token for private gists or higher rate limits
-- `CACHE_TIMEOUT`: Cache timeout in milliseconds (default: 5 minutes)
+## 🚀 Getting Started
 
-### Gist Structure
+1. **Clone and Install**
+   ```bash
+   git clone <your-repo>
+   cd mcp-resume
+   pip install -r requirements.txt
+   ```
 
-Your gist should contain a file named `resume.json` following the [JSON Resume](https://jsonresume.org/) schema format.
+2. **Run Locally**
+   ```bash
+   streamlit run app.py
+   ```
 
-## Usage
+3. **Configure & Chat**
+   - Navigate to `http://localhost:8501`
+   - Get a free API key from [OpenRouter.ai](https://openrouter.ai)
+   - Add your API key in the sidebar
+   - When you see "✅ All Systems Ready!" you're good to go!
+   - Start chatting with the AI resume!
 
-### Running the Server
+## 🎨 Customization
 
-```bash
-npm run dev
-```
+### **Adding Your Own Resume**
+1. Replace `michael_wybraniec_resume.json` with your resume data
+2. Update the fallback_resume.py service if needed
+3. Modify branding in app.py header section
+4. Replace the CV PDF file with your own
 
-Or for production:
+### **LLM Configuration**
+- Add your preferred LLM providers in the LLMProviders class
+- Configure API keys via sidebar or Streamlit secrets
+- Customize system prompts in the chat functions
 
-```bash
-npm start
-```
+### **UI Customization**
+- Modify the header branding and colors
+- Update Quick Action buttons
+- Customize the Help & Tips content
+- Adjust the responsive CSS styling
 
-### MCP Tools
+## 📞 Contact & Support
 
-The server provides the following tools:
+- **Developer**: Michael Wybraniec
+- **Website**: [One-Front.com](https://www.one-front.com/en/contact)
+- **LinkedIn**: [Connect with Michael](https://www.linkedin.com/in/michaelwybraniec/)
+- **Custom AI Solutions**: Contact through One-Front for enterprise implementations
 
-1. **get_resume** - Get the complete CV/Resume data
-   - Parameters: `format` (json|text)
+## 🛠️ Recent Updates
 
-2. **get_experience** - Get work experience details
-   - Parameters: `company` (optional filter)
+- ✅ **System Status Indicator**: Real-time status showing when all systems are ready
+- 🎯 **Enhanced Quick Actions**: Organized expandable panel with clear descriptions
+- 📚 **Improved Help & Tips**: Step-by-step setup guide with sample questions
+- 🔧 **Smart Setup Flow**: Automatic configuration detection and guidance
+- 📱 **Better Mobile Experience**: Expanded sidebar by default for easier access
 
-3. **get_skills** - Get technical and professional skills
-   - Parameters: `category` (optional filter)
+---
 
-4. **search_resume** - Search for specific content in the resume
-   - Parameters: `query` (required)
-
-### MCP Resources
-
-The server provides these resources:
-
-- `resume://cv` - Complete CV data (JSON)
-- `resume://summary` - Professional summary (text)
-- `resume://experience` - Work experience (JSON)
-- `resume://skills` - Skills list (JSON)
-
-## Integration with LLM Clients
-
-### Claude Desktop
-
-Add to your Claude Desktop configuration:
-
-```json
-{
-  "mcpServers": {
-    "mcp-resume": {
-      "command": "node",
-      "args": ["/path/to/mcp-resume/build/index.js"],
-      "env": {
-        "GITHUB_GIST_ID": "your-gist-id-here"
-      }
-    }
-  }
-}
-```
-
-### Other MCP Clients
-
-The server communicates via stdio and follows the MCP specification, making it compatible with any MCP-compliant client.
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Run in development mode
-npm run dev
-
-# Build for production
-npm run build
-
-# Run tests
-npm test
-```
-
-## GitHub Gist Setup
-
-1. Create a new gist on GitHub
-2. Add a file named `resume.json`
-3. Use the JSON Resume schema format
-4. Get the gist ID from the URL (e.g., `dabf368473d41748e9d6051afb67efcf`)
-
-## Example Resume Data
-
-Your `resume.json` should follow this structure:
-
-```json
-{
-  "basics": {
-    "name": "Your Name",
-    "label": "Your Professional Title",
-    "email": "your.email@example.com",
-    "phone": "Your Phone Number",
-    "url": "https://your-website.com",
-    "summary": "Your professional summary here..."
-  },
-  "work": [
-    {
-      "company": "Company Name",
-      "position": "Your Position",
-      "startDate": "2020-01-01",
-      "endDate": "2023-12-31",
-      "summary": "Job description...",
-      "highlights": ["Achievement 1", "Achievement 2"]
-    }
-  ],
-  "education": [...],
-  "skills": [...],
-  "languages": [...],
-  "interests": [...],
-  "references": [...]
-}
-```
-
-## License
-
-MIT License - see LICENSE file for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## Support
-
-If you encounter any issues or have questions, please open an issue on GitHub. 
+**Ready to revolutionize resume interactions? Deploy your AI-powered resume today!** 🚀 

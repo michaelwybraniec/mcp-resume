@@ -6,8 +6,6 @@ This guide covers how to deploy the AI Resume application both locally and on St
 
 ### Prerequisites
 - Python 3.11+
-- Node.js 18+
-- npm or yarn
 
 ### Quick Start
 
@@ -17,71 +15,51 @@ This guide covers how to deploy the AI Resume application both locally and on St
    cd mcp-resume
    ```
 
-2. **Build the MCP Server:**
+2. **Set up Python environment:**
    ```bash
-   npm install
-   npm run build
-   ```
-
-3. **Set up Python environment:**
-   ```bash
-   cd streamlit-client
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-4. **Run the application:**
+3. **Run the application:**
    ```bash
    streamlit run app.py
    ```
 
-5. **Configure your setup:**
+4. **Configure your setup:**
    - Add an OpenRouter API key (free models available)
-   - Start the MCP server from the sidebar
+   - Use the Auto Start button for quick setup
    - Start chatting!
 
 ## ☁️ Streamlit Cloud Deployment
 
 ### Automatic Deployment
 
-The app is configured to work on Streamlit Cloud with automatic Node.js setup:
+The app is optimized for Streamlit Cloud with a pure Python stack:
 
 1. **Fork the repository** on GitHub
 2. **Connect to Streamlit Cloud:**
    - Go to [share.streamlit.io](https://share.streamlit.io)
    - Connect your GitHub account
-   - Deploy from `streamlit-client/app.py`
+   - Deploy from `app.py` (in the root directory)
 
 3. **The deployment will automatically:**
-   - Install Node.js via `packages.txt`
    - Install Python dependencies via `requirements.txt`
-   - Use fallback demo data if MCP server fails to start
-
-### Manual Build (if needed)
-
-If you need to manually build the server:
-
-```bash
-cd streamlit-client
-./build_server.sh
-```
+   - Use the fallback resume service with demo/live data
+   - Work immediately without any additional setup
 
 ## 🎯 Features Available
 
-### ✅ Always Available (Demo Mode)
+### ✅ Core Features
 - **AI Chat Interface** - ChatGPT-style conversation
-- **Sample Resume Data** - Professional developer profile
+- **Resume Data** - Professional developer profile
 - **Multiple LLM Providers** - OpenRouter, Ollama, OpenAI
-- **Quick Questions** - Pre-built resume queries
-- **Job Analysis** - Candidate-job matching
-- **Conversion Funnel** - Business development flow
-
-### 🔧 Full Features (with MCP Server)
-- **Live GitHub Gist Integration** - Your actual resume data
-- **Real-time Updates** - Changes reflect immediately
-- **Custom Resume Sources** - Any GitHub gist
-- **Advanced Search** - Semantic resume search
+- **Quick Access Menu** - Pre-built resume queries
+- **Smart Match** - Job description analysis and candidate matching
+- **Auto Start** - One-click setup and configuration
+- **GitHub Gist Integration** - Live resume data from public gists
+- **PDF Download** - Professional resume download
 
 ## 🔑 API Keys & Configuration
 
@@ -159,20 +137,20 @@ cd streamlit-client
 
 ### Common Issues
 
-**"Node.js not found" on Streamlit Cloud:**
-- The app automatically falls back to demo mode
-- All features work except live gist integration
-- This is normal and expected
-
 **"Please configure LLM provider":**
 - Add an API key in the sidebar
 - OpenRouter offers free models
 - Ollama works for local development
 
-**"Failed to start MCP server" locally:**
-- Run `npm run build` in the project root
-- Check that Node.js is installed: `node --version`
-- Verify the build folder exists: `ls build/`
+**API Key not working:**
+- Ensure you copied the full key including prefixes (sk-or-...)
+- Check that you have credits/usage available
+- Verify the key is valid at the provider's website
+
+**App loading slowly:**
+- First load may take time as dependencies install
+- Subsequent loads will be faster
+- Use Auto Start for quicker setup
 
 ### Performance Tips
 
@@ -188,17 +166,11 @@ cd streamlit-client
 │  ┌─────────────────────────────────────┐ │
 │  │        Python App (app.py)         │ │
 │  │  ┌─────────────────────────────────┐ │ │
-│  │  │     Fallback Service           │ │ │
-│  │  │   (Demo Resume Data)           │ │ │
+│  │  │     Fallback Resume Service    │ │ │
+│  │  │   • Local JSON Resume Data     │ │ │
+│  │  │   • GitHub Gist Integration    │ │ │
+│  │  │   • PDF Generation             │ │ │
 │  │  └─────────────────────────────────┘ │ │
-│  │  ┌─────────────────────────────────┐ │ │
-│  │  │      MCP Client                │ │ │
-│  │  │   (Node.js Server Bridge)     │ │ │
-│  │  └─────────────────────────────────┘ │ │
-│  └─────────────────────────────────────┘ │
-│  ┌─────────────────────────────────────┐ │
-│  │       Node.js MCP Server            │ │
-│  │    (GitHub Gist Integration)       │ │
 │  └─────────────────────────────────────┘ │
 └─────────────────────────────────────────┘
           │

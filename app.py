@@ -69,8 +69,6 @@ KEY FEATURES:
 
 import streamlit as st
 import json
-import subprocess
-import time
 import os
 import datetime
 from typing import Dict, Any, List, Optional
@@ -456,87 +454,7 @@ def generate_cv_pdf() -> bytes:
     buffer.seek(0)
     return buffer.getvalue()
 
-# ============================================================================
-# MCP CLIENT
-# ============================================================================
 
-class MCPClient:
-    """Client to communicate with MCP Resume Server"""
-    
-    def __init__(self, server_path: str = "../build/index.js", gist_id: str = "dabf368473d41748e9d6051afb67efcf"):
-        self.server_path = server_path
-        self.gist_id = gist_id
-        self.server_process = None
-        
-    def start_server(self):
-        """Start the MCP server process"""
-        try:
-            # Check if Node.js is available
-            subprocess.run(["node", "--version"], capture_output=True, check=True)
-            
-            env = os.environ.copy()
-            env["GITHUB_GIST_ID"] = self.gist_id
-            
-            self.server_process = subprocess.Popen(
-                ["node", self.server_path],
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                env=env
-            )
-            time.sleep(2)
-            return True
-        except FileNotFoundError:
-            # Silently fall back to JSON mode - no warnings needed
-            return False
-        except Exception as e:
-            # Silently fall back to JSON mode - no error messages needed
-            return False
-    
-    def send_request(self, method: str, params: Dict = None) -> MCPResponse:
-        """Send a request to the MCP server"""
-        if not self.server_process:
-            return MCPResponse(False, None, "Server not started")
-        
-        request = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": method,
-            "params": params or {}
-        }
-        
-        try:
-            self.server_process.stdin.write(json.dumps(request) + "\n")
-            self.server_process.stdin.flush()
-            
-            response_line = self.server_process.stdout.readline()
-            response = json.loads(response_line)
-            
-            if "error" in response:
-                return MCPResponse(False, None, response["error"])
-            
-            return MCPResponse(True, response.get("result"))
-            
-        except Exception as e:
-            return MCPResponse(False, None, str(e))
-    
-    def call_tool(self, tool_name: str, args: Dict = None) -> MCPResponse:
-        """Call an MCP tool"""
-        return self.send_request("tools/call", {
-            "name": tool_name,
-            "arguments": args or {}
-        })
-    
-    def list_tools(self) -> MCPResponse:
-        """List available MCP tools"""
-        return self.send_request("tools/list")
-    
-    def stop_server(self):
-        """Stop the MCP server"""
-        if self.server_process:
-            self.server_process.terminate()
-            self.server_process = None
 
 # ============================================================================
 # LLM PROVIDERS
@@ -569,10 +487,25 @@ class LLMProviders:
             return "Ollama not available"
         
         try:
-            prompt = f"Context: {context}\n\n" + messages[-1]["content"]
+            formatted_prompt = f"""You are an AI assistant helping users explore Michael Wybraniec's professional resume. 
+
+CONTEXT: {context}
+
+FORMATTING GUIDELINES:
+- Use proper Markdown formatting in all responses
+- Use **bold** for important terms, names, and key points
+- Use ##### for headers and section titles
+- Use - for bullet points in lists and achievements
+- Use `code blocks` for technical skills and technologies
+- Keep responses well-structured and easy to scan
+- Be professional but conversational
+- Focus on relevant details from the provided context
+
+USER QUESTION: {messages[-1]["content"]}"""
+            
             response = ollama.chat(
                 model=model,
-                messages=[{"role": "user", "content": prompt}]
+                messages=[{"role": "user", "content": formatted_prompt}]
             )
             return response['message']['content']
         except Exception as e:
@@ -602,7 +535,19 @@ class LLMProviders:
                 "X-Title": "AI Resume Chat Interface"
             }
             
-            system_message = {"role": "system", "content": f"Use this context about the user's resume: {context}"}
+            system_message = {"role": "system", "content": f"""You are an AI assistant helping users explore Michael Wybraniec's professional resume. 
+
+CONTEXT: {context}
+
+FORMATTING GUIDELINES:
+- Use proper Markdown formatting in all responses
+- Use **bold** for important terms, names, and key points
+- Use ##### for headers and section titles
+- Use - for bullet points in lists and achievements
+- Use `code blocks` for technical skills and technologies
+- Keep responses well-structured and easy to scan
+- Be professional but conversational
+- Focus on relevant details from the provided context"""}
             full_messages = [system_message] + messages
             
             payload = {
@@ -660,7 +605,19 @@ Please check:
         try:
             client = openai.OpenAI(api_key=api_key)
             
-            system_message = {"role": "system", "content": f"Use this context about the user's resume: {context}"}
+            system_message = {"role": "system", "content": f"""You are an AI assistant helping users explore Michael Wybraniec's professional resume. 
+
+CONTEXT: {context}
+
+FORMATTING GUIDELINES:
+- Use proper Markdown formatting in all responses
+- Use **bold** for important terms, names, and key points
+- Use ##### for headers and section titles
+- Use - for bullet points in lists and achievements
+- Use `code blocks` for technical skills and technologies
+- Keep responses well-structured and easy to scan
+- Be professional but conversational
+- Focus on relevant details from the provided context"""}
             full_messages = [system_message] + messages
             
             response = client.chat.completions.create(
@@ -680,23 +637,17 @@ def quick_start_main():
     setup_completed = False
     
     # Skip MCP server entirely - always use fallback mode for cloud deployment
-    st.toast("✅ Step 1: Resume data loaded from JSON!")
     setup_completed = True
     
     # Check OpenRouter API key
     current_key = st.session_state.get("openrouter_api_key", "").strip()
-    if not current_key:
-        st.toast("⚠️ Step 2: Please add your OpenRouter API key in the sidebar!")
-        st.toast("💡 Get a free API key at OpenRouter.ai", icon="🔑")
-    else:
-        st.toast("✅ Step 2: OpenRouter API key configured!")
+    if current_key:
         setup_completed = True
     
     # Set LLM provider
     if not st.session_state.current_provider:
         st.session_state.current_provider = "openrouter"
         st.session_state.current_model = "meta-llama/llama-3.1-8b-instruct:free"
-        st.toast("✅ Step 3: LLM provider configured!")
         setup_completed = True
     
     # Process any pending user message after setup is complete
@@ -716,7 +667,7 @@ def quick_start_main():
         # Set up for processing
         st.session_state.processing_message = True
         st.session_state.current_processing_message = pending_msg
-        st.toast("🚀 Setup complete! Processing your message...")
+
     
     return setup_completed
 
@@ -759,7 +710,7 @@ def main():
         page_title="AI Resume - Intelligent CV Chat Interface",
         page_icon="📄",
         layout="wide",
-        initial_sidebar_state="collapsed"
+        initial_sidebar_state="expanded"
     )
     
     # Custom CSS and Header
@@ -868,9 +819,6 @@ def main():
     
     if 'messages' not in st.session_state:
         st.session_state.messages = []
-    # Remove MCP client for cloud deployment - always use fallback service
-    if 'mcp_client' not in st.session_state:
-        st.session_state.mcp_client = None
     if 'openrouter_api_key' not in st.session_state:
         # Check Streamlit secrets first, then environment variables
         try:
@@ -912,109 +860,27 @@ def main():
     ai_status = 'LLM <span class="status-emoji">🟢</span>' if st.session_state.current_provider else 'LLM required <span class="status-emoji">🔴</span>'
     api_key_status = 'API <span class="status-emoji">🟢</span>' if st.session_state.get('openrouter_api_key', '').strip() else 'API Key <span class="status-emoji">🔴</span>'
     
+    # Initialize funnel step and path
+    if 'quote_funnel_step' not in st.session_state:
+        st.session_state.quote_funnel_step = "start"
+    if 'quote_funnel_path' not in st.session_state:
+        st.session_state.quote_funnel_path = []
+    
     st.markdown(f"""
     <div style='text-align: center;'>
         <h1 style='margin: 0; font-size: 68px; font-weight: 800;'>🤖 AI Resume</h1>
         <p style='font-size: 18px; color: #666; margin: 0 0 0.5rem 0; font-weight: 500;'>
-            Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience &nbsp;
+            Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience 
         </p>
         <p style='font-size: 8px; color: #666; margin: 0;'>
-            <span style='font-size: 12px;'>{data_status} &nbsp;&nbsp; {ai_status} &nbsp;&nbsp; {api_key_status}</span>
+            <span style='font-size: 12px;'>Systems:&nbsp;&nbsp;{data_status}&nbsp;{ai_status}&nbsp;{api_key_status}&nbsp;&nbsp;&nbsp;&nbsp;
+            Need custom AI solutions?&nbsp;&nbsp;<a href="https://www.linkedin.com/in/michaelwybraniec/" target="_blank" style="color: #0077b5; text-decoration: none; font-weight: 600;">Let's connect on LinkedIn</a>
+            </span> 
         </p>
-    
-        
     </div>
     """, unsafe_allow_html=True)
     
-    # ========================================================================
-    # HEADER SECTION WITH CONVERSION FUNNEL
-    # ========================================================================
-    
-    # header_placeholder = st.empty()
-    
-    # with header_placeholder.container():
-    
-        
-    #     # Header columns
-    #     header_col1, header_col2 = st.columns([3, 1])
-        
-    #     with header_col1:
-    #         # Branding section
-    #         st.markdown("""
-    #         <div class="header-branding">
-    #             <div class="flex-content" style='display: flex; align-items: center; justify-content: center; text-align: center;'>
-    #                 <div>
-    #                     <h1 style='margin: 0; font-size: 68px; font-weight: 800; text-align: center;'>🤖 AI Resume</h1>
-    #                     <p style='margin: 0; font-size: 20px; font-style: italic; text-align: center;'>Redefining resumes beyond one page. Transforming hiring process with AI.</p>
-    #                     <p style='margin: 0; font-size: 12px; text-align: center;'>Powered with #MCP. Made by <a href="https://www.one-front.com" target="_blank" style="color: #3b82f6; text-decoration: none;">ONE-FRONT</a></p>
-    #                 </div>
-    #             </div>
-    #         </div>
-    #         """, unsafe_allow_html=True)
-        
-    #     with header_col2:
-    #         # Conversion funnel section
-    #         st.markdown('<div class="header-funnel">', unsafe_allow_html=True)
-            
-    #         if 'cta_step' not in st.session_state:
-    #             st.session_state.cta_step = 0
-            
-    #         with st.container():
-    #             if st.session_state.cta_step > 0:
-    #                 dots = "●" * st.session_state.cta_step + "○" * (4 - st.session_state.cta_step)
-    #                 st.markdown(f"<div style='color:#888;font-size:12px;height:20px;line-height:20px;text-align:center'>{dots}</div>", unsafe_allow_html=True)
-    #             else:
-    #                 st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-                
-    #             content_container = st.container()
-    #             with content_container:
-    #                 if st.session_state.cta_step == 0:
-    #                     st.markdown("<div style='height:40px;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center'><div>Spending hours screening resumes?</div><small style='color:#888'>Most HR teams waste 60% of their time on this</small></div>", unsafe_allow_html=True)
-    #                     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-    #                     _, btn_col, _ = st.columns([1, 2, 1])
-    #                     with btn_col:
-    #                         if st.button("Yes!", type="primary", use_container_width=True, key="header_yes"):
-    #                             st.session_state.cta_step = 1
-    #                             st.rerun()
-                    
-    #                 elif st.session_state.cta_step == 1:
-    #                     st.markdown("<div style='height:40px;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center'><div>What if AI did it in minutes?</div><small style='color:#888'>Smart screening • Perfect matches • Zero bias</small></div>", unsafe_allow_html=True)
-    #                     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-    #                     _, btn_col, _ = st.columns([1, 2, 1])
-    #                     with btn_col:
-    #                         if st.button("Interested", type="primary", use_container_width=True, key="header_interested"):
-    #                             st.session_state.cta_step = 2
-    #                             st.rerun()
-                    
-    #                 elif st.session_state.cta_step == 2:
-    #                     st.markdown("<div style='height:40px;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center'><div>Built by Enterprise Developer</div><small style='color:#888'>10+ years • 5 countries • MCP & AI specialist</small></div>", unsafe_allow_html=True)
-    #                     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-    #                     _, btn_col, _ = st.columns([1, 2, 1])
-    #                     with btn_col:
-    #                         if st.button("Credible", type="primary", use_container_width=True, key="header_credible"):
-    #                             st.session_state.cta_step = 3
-    #                             st.rerun()
-                    
-    #                 elif st.session_state.cta_step == 3:
-    #                     st.markdown("<div style='height:40px;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center'><div>Ready to transform hiring?</div><small style='color:#888'>Custom build • Full integration • 90-day delivery</small></div>", unsafe_allow_html=True)
-    #                     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-    #                     _, btn_col, _ = st.columns([1, 2, 1])
-    #                     with btn_col:
-    #                         sub_col1, sub_col2 = st.columns([3, 1])
-    #                         with sub_col1:
-    #                             st.button("Get Quote", "https://www.one-front.com/en/contact", type="primary", use_container_width=True)
-    #                         with sub_col2:
-    #                             if st.button("↺", help="Start over", key="header_reset", use_container_width=True):
-    #                                 st.session_state.cta_step = 0
-    #                                 st.rerun()
-            
-    #         st.markdown('</div>', unsafe_allow_html=True)
-        
-    #     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # ========================================================================
-    # MAIN LAYOUT: FULL WIDTH CHAT
-    # ========================================================================
+
     
     
     # Handle Pending Questions from action panel FIRST
@@ -1032,10 +898,87 @@ def main():
         
         st.rerun()
     
-    # Chat Interface - Input at top, newest messages at bottom
+    # Chat Interface
     
-    # Chat Input at TOP
-    if user_input := st.chat_input("Ask about the resume..."):
+    # ========================================================================
+    # QUICK ACTIONS - RIGHT BEFORE CHAT INPUT
+    # ========================================================================
+    
+    st.caption("Quick Actions:")
+    quick_col1, quick_col2, quick_col3, quick_col4, quick_col5 = st.columns(5)
+    
+    with quick_col1:
+        if st.button("👤 Summarize Profile", key="top_quick_summary", use_container_width=True, help="Get a comprehensive overview of this candidate"):
+            # Clear any modal flags
+            st.session_state.show_job_analysis_modal = False
+            # Run quick start setup first
+            quick_start_main()
+            question = "Summarize this candidate's profile"
+            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
+            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
+            st.session_state.processing_message = True
+            st.session_state.current_processing_message = question
+            st.toast(f"Processing: {question[:50]}...")
+            st.rerun()
+    
+    with quick_col2:
+        if st.button("📅 Years Experience", key="top_quick_experience", use_container_width=True, help="Find out total years of experience"):
+            # Clear any modal flags
+            st.session_state.show_job_analysis_modal = False
+            # Run quick start setup first
+            quick_start_main()
+            question = "How many years of experience does this candidate have?"
+            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
+            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
+            st.session_state.processing_message = True
+            st.session_state.current_processing_message = question
+            st.toast(f"Processing: {question[:50]}...")
+            st.rerun()
+    
+    with quick_col3:
+        if st.button("🛠️ Technical Skills", key="top_quick_tech_skills", use_container_width=True, help="Analyze technical competencies"):
+            # Clear any modal flags
+            st.session_state.show_job_analysis_modal = False
+            # Run quick start setup first
+            quick_start_main()
+            question = "What are their strongest technical skills?"
+            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
+            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
+            st.session_state.processing_message = True
+            st.session_state.current_processing_message = question
+            st.toast(f"Processing: {question[:50]}...")
+            st.rerun()
+    
+    with quick_col4:
+        # Download CV functionality
+        try:
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            pdf_path = os.path.join(current_dir, "CV_Michael_Wybraniec_15_Jun_2025.pdf")
+            
+            if os.path.exists(pdf_path):
+                with open(pdf_path, "rb") as pdf_file:
+                    cv_pdf_data = pdf_file.read()
+                
+                st.download_button(
+                    label="📄 Download CV",
+                    data=cv_pdf_data,
+                    file_name="CV_Michael_Wybraniec_15_Jun_2025.pdf",
+                    mime="application/pdf",
+                    use_container_width=True,
+                    help="Download Michael's professional CV in PDF format"
+                )
+            else:
+                st.button("📄 Download CV", disabled=True, use_container_width=True, help="CV PDF file not found")
+        except Exception as e:
+            st.button("📄 Download CV", disabled=True, use_container_width=True, help=f"Error loading CV: {str(e)}")
+    
+    with quick_col5:
+        if st.button("🎯 Smart Match", key="top_quick_job_analysis", use_container_width=True, help="Analyze candidate fit for a specific job"):
+            st.session_state.show_job_analysis_modal = True
+            st.rerun()
+
+    # Chat Input
+    if user_input := st.chat_input("Ask here..."):
         timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
         st.session_state.messages.append({"role": "user", "content": user_input, "timestamp": timestamp})
         
@@ -1210,86 +1153,26 @@ Nice to have:
         
         job_analysis_modal()
     
-    st.markdown("---")
+    # st.markdown("---")
 
     # Chat Messages Display - NORMAL ORDER (newest last)
-    # Auto-scroll to bottom functionality
-    st.markdown("""
-        <script>
-        function scrollToBottom() {
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-        setTimeout(scrollToBottom, 100);
-        </script>
-    """, unsafe_allow_html=True)
+
     
     # Display messages in NORMAL order (newest at bottom)
     for idx, message in enumerate(st.session_state.messages):
             
+            # Custom names for chat messages
+            display_name = "MikeGPT" if message["role"] == "assistant" else "User"
             with st.chat_message(message["role"]):
-                # Display timestamp if available
+                # Display custom name and timestamp
+                name_and_time = f"**{display_name}**"
                 if "timestamp" in message:
-                    st.caption(f"{message['timestamp']}")
+                    name_and_time += f" • {message['timestamp']}"
+                st.caption(name_and_time)
                 st.markdown(message["content"])
                 
-                # Start Server button for MCP server messages
-                if (message["role"] == "assistant" and 
-                    "Please start the MCP server first!" in message["content"] and
-                    not st.session_state.mcp_client):
-                    
-                    st.markdown("**Quick Action:**")
-                    if st.button("Start MCP Server", type="secondary", key=f"start_server_msg_{idx}"):
-                        with st.spinner("Starting MCP server..."):
-                            gist_id = st.session_state.get('current_gist_id', "dabf368473d41748e9d6051afb67efcf")
-                            server_path = st.session_state.get('current_server_path', "../build/index.js")
-                            mcp_client = MCPClient(server_path, gist_id)
-                            if mcp_client.start_server():
-                                st.session_state.mcp_client = mcp_client
-                                st.toast("MCP Server started successfully!")
-                                
-                                # Process the pending user message
-                                user_msg = user_input.strip()
-                                timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
-                                st.session_state.messages.append({"role": "user", "content": user_msg, "timestamp": timestamp})
-                                st.session_state.processing_message = True
-                                st.session_state.current_processing_message = user_msg
-                                st.toast(f"Now processing your message: {user_msg[:50]}...")
-                                st.rerun()
-                                
-                                if st.session_state.mcp_client and st.session_state.mcp_client.server_process:
-                                    context = get_resume_context(st.session_state.mcp_client, user_msg)
-                                    
-                                    if st.session_state.current_provider == "openrouter":
-                                        openrouter_key = st.session_state.get("openrouter_api_key", "")
-                                        if openrouter_key:
-                                            messages = [{"role": "user", "content": user_msg}]
-                                            model = st.session_state.get("current_model", "meta-llama/llama-3.1-8b-instruct:free")
-                                            response = LLMProviders.chat_openrouter(model, messages, context, openrouter_key)
-                                        else:
-                                            response = "Please add your OpenRouter API key in the sidebar first!"
-                                    elif st.session_state.current_provider == "ollama":
-                                        messages = [{"role": "user", "content": user_msg}]
-                                        model = st.session_state.get("current_model", "llama3.2")
-                                        response = LLMProviders.chat_ollama(model, messages, context)
-                                    elif st.session_state.current_provider == "openai":
-                                        openai_key = st.session_state.get("openai_api_key", "")
-                                        if openai_key:
-                                            messages = [{"role": "user", "content": user_msg}]
-                                            model = st.session_state.get("current_model", "gpt-3.5-turbo")
-                                            response = LLMProviders.chat_openai(model, messages, context, openai_key)
-                                        else:
-                                            response = "Please add your OpenAI API key in the sidebar first!"
-                                    else:
-                                        response = "Please configure an LLM provider in the sidebar first!"
-                                    
-                                    add_response(response)
-                                    st.session_state.processing_message = False
-                                    st.rerun()
-                                else:
-                                    st.write("Failed to start MCP server")
-                
                 # API Key input for OpenRouter messages
-                elif (message["role"] == "assistant" and 
+                if (message["role"] == "assistant" and 
                     "OpenRouter API key required" in message["content"] and
                     not st.session_state.openrouter_api_key):
                     
@@ -1325,7 +1208,7 @@ Nice to have:
                     st.write("💡 Get your free API key at [OpenRouter.ai](https://openrouter.ai)")
                 
                 # LLM Provider configuration for provider messages
-                elif (message["role"] == "assistant" and 
+                if (message["role"] == "assistant" and 
                     "Please configure an LLM provider" in message["content"]):
                     
                     st.markdown("**🤖 Quick Setup:**")
@@ -1345,7 +1228,7 @@ Nice to have:
     if not st.session_state.messages:
         with st.chat_message("assistant"):
             st.markdown("""
-            **👋  Welcome to Michael's AI Resume**!
+            ##### 👋  Welcome to Michael's AI Resume!
                         
             **Quick Actions**
             
@@ -1415,10 +1298,12 @@ To chat with AI, you need a free OpenRouter API key:
             
             add_response(response)
             
-            # Clear processing flag
+            # Clear processing flag and trigger scroll for Quick Actions
             st.session_state.processing_message = False
             if 'current_processing_message' in st.session_state:
                 del st.session_state.current_processing_message
+            
+
             
             st.rerun()
     
@@ -1513,36 +1398,59 @@ To chat with AI, you need a free OpenRouter API key:
     # ========================================================================
 
     with st.sidebar:
-        # Quick Setup - Always visible for easy access at top of sidebar
-        if st.button("🚀 Auto Start", type="primary", use_container_width=True, key="quick_start_main"):
-            # Check if API key exists, if not show modal
-            if not st.session_state.get('openrouter_api_key', '').strip():
-                st.session_state.show_api_key_modal = True
-                st.rerun()
-            else:
-                quick_start_main()
+        # Quick Setup - Show status or start button based on setup completion
+        try:
+            from fallback_resume import REQUESTS_AVAILABLE
+            requests_available = REQUESTS_AVAILABLE
+        except:
+            requests_available = True
+        
+        # Check if all systems are active
+        setup_complete = (
+            requests_available and 
+            st.session_state.current_provider and 
+            st.session_state.get('openrouter_api_key', '').strip()
+        )
+        
+        if setup_complete:
+            st.info("✅ All Systems Ready!")
+        else:
+            if st.button("🚀 Start", type="primary", use_container_width=True, key="quick_start_main"):
+                # Check if API key exists, if not show modal
+                if not st.session_state.get('openrouter_api_key', '').strip():
+                    st.session_state.show_api_key_modal = True
+                    st.rerun()
+                else:
+                    quick_start_main()
         # Help & Tips - Main collapsible section at top
         with st.expander("Help & Tips", expanded=False):
             st.markdown("""
             **Quick Start:**
-            1. Click "🚀 Auto Start" below for instant setup
-            2. Ask questions or use Quick Access buttons at bottom
-            3. Use "🎯 Smart Match" to analyze job descriptions
+            1. Get a free API key from [OpenRouter.ai](https://openrouter.ai)
+            2. Add your API key in "System Setup" below
+            3. Start chatting or use Quick Action buttons
             
-            **For Recruiters:**
-            - Instant candidate summaries and skill assessments
-            - Job fit analysis with match scores
-            - 10+ years of professional experience data
+            **For Recruiters & HR:**
+            - 👤 **Summarize Profile** - Get comprehensive candidate overview
+            - 📅 **Years Experience** - View career progression timeline  
+            - 🛠️ **Technical Skills** - Analyze technical competencies
+            - 🎯 **Smart Match** - Job fit analysis with match scores
+            - 📄 **Download CV** - Professional PDF resume
             
-            **Get API Key:** [OpenRouter.ai](https://openrouter.ai) (free tier available)
+            **Sample Questions:**
+            - "What are their strongest technical skills?"
+            - "How many years of Python experience?"
+            - "Have they worked with AI/ML technologies?"
+            - "What industries have they worked in?"
             
-            **Custom AI Resume:** [One-Front.com](https://www.one-front.com/en/contact)
+            **Need Custom AI Resume Solutions?**
+            - Contact [Michael](https://www.one-front.com/en/contact) for enterprise solutions
             """)
         
         # st.markdown("---")
         
         # System Configuration - Collapsible
-        with st.expander("System Setup", expanded=False):
+        with st.expander("System Setup", expanded=True):
             # Cloud deployment mode - fetches from public gist
             st.info("🌟 **Live Data**: Resume fetched from public GitHub Gist. Always up-to-date, no setup required!")
             
@@ -1578,229 +1486,16 @@ To chat with AI, you need a free OpenRouter API key:
         # QUICK ACTIONS PANEL
         # ========================================================================
         
-        # st.markdown("### 🎯 Quick Actions")
-        
-        # action_col1, action_col2 = st.columns(2)
-        
-        # with action_col1:
-        #     if st.button("🔄 Clear Chat", key="sidebar_clear_chat", use_container_width=True):
-        #         st.session_state.messages = []
-        #         st.rerun()
-            
-        #     if st.button("📄 Full Resume", key="sidebar_get_resume", use_container_width=True):
-        #         if st.session_state.mcp_client:
-        #             response = st.session_state.mcp_client.call_tool("get_resume", {"format": "text"})
-        #             if response.success:
-        #                 add_response(f"**Complete Resume:**\n\n{response.data}")
-        #                 st.rerun()
-        #             else:
-        #                 st.error(f"Error: {response.error}")
-        #         else:
-        #             st.error("Start MCP server first!")
-        
-        # with action_col2:
-        #     if st.button("💼 Experience", key="sidebar_get_experience", use_container_width=True):
-        #         if st.session_state.mcp_client:
-        #             response = st.session_state.mcp_client.call_tool("get_experience")
-        #             if response.success:
-        #                 add_response(f"**Work Experience:**\n\n```json\n{json.dumps(response.data, indent=2)}\n```")
-        #                 st.rerun()
-        #             else:
-        #                 st.error(f"Error: {response.error}")
-        #         else:
-        #             st.error("Start MCP server first!")
-            
-        #     if st.button("🛠️ Skills", key="sidebar_get_skills", use_container_width=True):
-        #         if st.session_state.mcp_client:
-        #             response = st.session_state.mcp_client.call_tool("get_skills")
-        #             if response.success:
-        #                 add_response(f"**Skills:**\n\n```json\n{json.dumps(response.data, indent=2)}\n```")
-        #                 st.rerun()
-        #             else:
-        #                 st.error(f"Error: {response.error}")
-        #         else:
-        #             st.error("Start MCP server first!")
-        
-        # Quick Questions Categories
-        with st.expander("Example Questions", expanded=False):
-            
-            # Main Questions
-            st.markdown("**🎯 Essential Questions**")
-            main_questions = [
-                "Summarize this candidate's profile",
-                "What are their strongest technical skills?", 
-                "How many years of experience do they have?",
-                "What industries have they worked in?"
-            ]
-            
-            for i, question in enumerate(main_questions):
-                if st.button(question, key=f"main_q_{i}", use_container_width=True):
-                    st.session_state.pending_question = question
-                    st.toast(f"🚀 Processing: {question}", icon="⚡")
-                    st.rerun()
-            
-            # Recruiter Questions
-            st.markdown("**💼 For Recruiters**")
-            recruiter_questions = [
-                "Is this candidate suitable for a senior role?",
-                "What's their leadership experience?",
-                "Do they have remote work experience?"
-            ]
-            
-            for i, question in enumerate(recruiter_questions):
-                if st.button(question, key=f"recruiter_q_{i}", use_container_width=True):
-                    st.session_state.pending_question = question
-                    st.toast(f"🚀 Processing: {question}", icon="⚡")
-                    st.rerun()
-            
-            # Technical Questions
-            st.markdown("**🔍 Technical Deep Dive**")
-            technical_questions = [
-                "What programming languages are they expert in?",
-                "Do they have cloud platform experience?",
-                "What's their experience with databases?"
-            ]
-            
-            for i, question in enumerate(technical_questions):
-                if st.button(question, key=f"tech_q_{i}", use_container_width=True):
-                    st.session_state.pending_question = question
-                    st.toast(f"🚀 Processing: {question}", icon="⚡")
-                    st.rerun()
-            
-            # Role-Specific Questions
-            st.markdown("**🎯 Role-Specific**")
-            role_questions = [
-                "Are they suitable for a frontend role?",
-                "Do they have backend development skills?",
-                "Can they work as a full-stack developer?"
-            ]
-            
-            for i, question in enumerate(role_questions):
-                if st.button(question, key=f"role_q_{i}", use_container_width=True):
-                    st.session_state.pending_question = question
-                    st.toast(f"🚀 Processing: {question}", icon="⚡")
-                    st.rerun()
-        
 
-                
-        # Job Description Analysis
-        # with st.expander("📋 Job Description Analysis", expanded=False):
-        #     job_description = st.text_area(
-        #         "Paste Job Description",
-        #         height=120,
-        #         placeholder="Paste job description for candidate analysis...",
-        #         key="sidebar_job_desc"
-        #     )
-            
-        #     if st.button("🔍 Analyze Candidate Fit", key="sidebar_analyze", use_container_width=True):
-        #         if job_description.strip():
-        #             analysis_prompt = f"""
-        #             Based on this job description:
-                    
-        #             {job_description}
-                    
-        #             Please provide a comprehensive analysis of this candidate including:
-        #             1. **Match Score** (1-10): How well does the candidate fit this role?
-        #             2. **Key Strengths**: What makes them a good fit?
-        #             3. **Potential Gaps**: What skills or experience might they be missing?
-        #             4. **Recommendations**: Should we proceed with this candidate?
-        #             5. **Interview Focus**: What areas should we focus on during interviews?
-                    
-        #             Be specific and reference their actual experience and skills.
-        #             """
-                    
-        #             st.session_state.pending_question = analysis_prompt
-        #             st.toast("Analyzing candidate fit...")
-        #             st.rerun()
-        #         else:
-        #             st.toast("Please paste a job description first!")
-            
-        #     if not job_description.strip():
-        #         st.caption("💡 Paste a job description above, then click the button to analyze candidate fit")
-        
+        with st.expander("Quick Actions", expanded=True):
 
-    
-    # ========================================================================
-    # INSTANT MENU - BOTTOM OF PAGE
-    # ========================================================================
-    
-  
-   
-    st.caption("Quick Actions:")
-    
-    quick_col1, quick_col2, quick_col3, quick_col4, quick_col5 = st.columns(5)
-    
-    with quick_col1:
-        if st.button("👤 Summarize Profile", key="bottom_quick_summary", use_container_width=True, help="Get a comprehensive overview of this candidate"):
-            # Clear any modal flags
-            st.session_state.show_job_analysis_modal = False
-            # Run quick start setup first
-            quick_start_main()
-            question = "Please provide a comprehensive summary of this candidate's profile, including their experience, key skills, and what makes them a strong hire for a senior developer role."
-            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
-            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
-            st.session_state.processing_message = True
-            st.session_state.current_processing_message = question
-            st.toast(f"Processing: {question[:50]}...")
-            st.rerun()
-    
-    with quick_col2:
-        if st.button("📅 Years Experience", key="bottom_quick_experience", use_container_width=True, help="Find out total years of experience"):
-            # Clear any modal flags
-            st.session_state.show_job_analysis_modal = False
-            # Run quick start setup first
-            quick_start_main()
-            question = "How many years of total professional experience does this candidate have? Break it down by different roles and highlight their progression."
-            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
-            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
-            st.session_state.processing_message = True
-            st.session_state.current_processing_message = question
-            st.toast(f"Processing: {question[:50]}...")
-            st.rerun()
-    
-    with quick_col3:
-        if st.button("🛠️ Technical Skills", key="bottom_quick_tech_skills", use_container_width=True, help="Analyze technical competencies"):
-            # Clear any modal flags
-            st.session_state.show_job_analysis_modal = False
-            # Run quick start setup first
-            quick_start_main()
-            question = "What are this candidate's strongest technical skills? List their expertise in programming languages, frameworks, AI/ML technologies, and cloud platforms. Rate their proficiency level."
-            timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
-            st.session_state.messages.append({"role": "user", "content": question, "timestamp": timestamp})
-            st.session_state.processing_message = True
-            st.session_state.current_processing_message = question
-            st.toast(f"Processing: {question[:50]}...")
-            st.rerun()
-    
-    with quick_col4:
-        # Download CV functionality
-        try:
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            root_dir = os.path.dirname(current_dir)
-            pdf_path = os.path.join(root_dir, "CV_Michael_Wybraniec_15_Jun_2025.pdf")
+            action_col1, action_col2 = st.columns(2)
             
-            if os.path.exists(pdf_path):
-                with open(pdf_path, "rb") as pdf_file:
-                    cv_pdf_data = pdf_file.read()
-                
-                st.download_button(
-                    label="📄 Download CV",
-                    data=cv_pdf_data,
-                    file_name="CV_Michael_Wybraniec_15_Jun_2025.pdf",
-                    mime="application/pdf",
-                    use_container_width=True,
-                    help="Download Michael's professional CV in PDF format"
-                )
-            else:
-                st.button("📄 Download CV", disabled=True, use_container_width=True, help="CV PDF file not found")
-        except Exception as e:
-            st.button("📄 Download CV", disabled=True, use_container_width=True, help=f"Error loading CV: {str(e)}")
-    
-    with quick_col5:
-        if st.button("🎯 Smart Match", key="bottom_quick_job_analysis", use_container_width=True, help="Analyze candidate fit for a specific job"):
-            st.session_state.show_job_analysis_modal = True
-            st.rerun()
-
+            with action_col1:
+                if st.button("🔄 Clear", key="sidebar_clear_chat", use_container_width=True):
+                    st.session_state.messages = []
+                    st.rerun()
+            
 
 if __name__ == "__main__":
     main() 
