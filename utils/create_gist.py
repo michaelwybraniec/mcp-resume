@@ -19,9 +19,9 @@ def create_or_update_gist(github_token: str, gist_id: str = None):
     """Create a new gist or update an existing one with resume data"""
     
     # Read the resume JSON file
-    resume_file = Path("michael_wybraniec_resume.json")
+    resume_file = Path("data/michael_wybraniec_resume.json")
     if not resume_file.exists():
-        print("❌ Resume file not found: michael_wybraniec_resume.json")
+        print("❌ Resume file not found: data/michael_wybraniec_resume.json")
         return None
     
     with open(resume_file, 'r') as f:

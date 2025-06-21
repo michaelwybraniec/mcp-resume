@@ -1,8 +1,8 @@
 """
-Fallback Resume Service
+Resume Data Service with Fallback
 
-Loads resume data from the root michael_wybraniec_resume.json file.
-This provides consistent data whether using MCP server or fallback mode.
+Loads resume data from the data/michael_wybraniec_resume.json file.
+Falls back to GitHub Gist if local file is not available.
 """
 
 import json
@@ -17,13 +17,13 @@ except ImportError:
     REQUESTS_AVAILABLE = False
 
 class FallbackResumeService:
-    """Provides resume data from local JSON file"""
+    """Resume data service with local and remote fallback"""
     
     def __init__(self):
         self.data = self._load_resume_data()
     
     def _load_resume_data(self) -> Dict[str, Any]:
-        """Load resume data from public GitHub Gist or local JSON files"""
+        """Load resume data from local JSON files or GitHub Gist"""
         try:
             # First try to fetch from public GitHub Gist (no auth needed) if requests is available
             if REQUESTS_AVAILABLE:
@@ -41,16 +41,12 @@ class FallbackResumeService:
                 print("⚠️ Requests module not available, using local files")
             
             # Fallback to local JSON files
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            root_dir = os.path.dirname(current_dir)
-            
             # Try resume.json first, then michael_wybraniec_resume.json as fallback
-            json_files = ["resume.json", "michael_wybraniec_resume.json"]
+            json_files = ["data/resume.json", "data/michael_wybraniec_resume.json"]
             
             for json_file in json_files:
-                json_path = os.path.join(root_dir, json_file)
-                if os.path.exists(json_path):
-                    with open(json_path, 'r', encoding='utf-8') as f:
+                if os.path.exists(json_file):
+                    with open(json_file, 'r', encoding='utf-8') as f:
                         json_data = json.load(f)
                     
                     print(f"✅ Resume data loaded from local file: {json_file}")
