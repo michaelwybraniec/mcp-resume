@@ -32,6 +32,42 @@ class ResumeService:
                     data = fallback_service.search_resume(search_query)
                     return f"Search Results:\n{json.dumps(data, indent=2)}"
             
+            if any(word in message_lower for word in ["recommendation", "reference", "endorsement", "testimonial"]):
+                data = fallback_service.get_recommendations()
+                recs = data.get("recommendations", [])
+                if recs:
+                    formatted = []
+                    for rec in recs:
+                        if isinstance(rec, dict):
+                            text = rec.get("reference") or rec.get("text") or rec.get("content") or ""
+                            name = rec.get("name")
+                            if text and name:
+                                formatted.append(f'- "{text.strip()}" — {name}')
+                            elif text:
+                                formatted.append(f'- "{text.strip()}"')
+                        elif isinstance(rec, str):
+                            # Try to extract a name if the string contains a separator (e.g., " — Name")
+                            if '—' in rec:
+                                formatted.append(f'- {rec.strip()}')
+                            else:
+                                formatted.append(f'- "{rec.strip()}"')
+                    return "Recommendations and References:\n" + "\n".join(formatted)
+                else:
+                    return "No recommendations or references found in the resume."
+            
+            # Special case: user asks for names of recommenders
+            if any(phrase in message_lower for phrase in ["who recommended", "list names", "who gave references", "who endorsed", "who wrote recommendations", "who are the referees", "who provided references", "who provided recommendations", "who are the recommenders", "who are the references", "who are the referees"]):
+                data = fallback_service.get_recommendations()
+                recs = data.get("recommendations", [])
+                names = []
+                for rec in recs:
+                    if isinstance(rec, dict) and rec.get("name"):
+                        names.append(rec["name"])
+                if names:
+                    return "Names of people who recommended Michael Wybraniec:\n" + "\n".join(f"- {name}" for name in names)
+                else:
+                    return "No names found in the recommendations or references."
+            
             data = fallback_service.get_full_resume()
             return f"Resume Summary:\n{json.dumps(data, indent=2)}"
             
@@ -56,4 +92,9 @@ class ResumeService:
     @staticmethod
     def search_resume_data(query: str) -> Dict[str, Any]:
         """Search resume data"""
-        return fallback_service.search_resume(query) 
+        return fallback_service.search_resume(query)
+    
+    @staticmethod
+    def get_recommendations_data() -> Dict[str, Any]:
+        """Get recommendations data"""
+        return fallback_service.get_recommendations() 

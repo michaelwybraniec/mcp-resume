@@ -8,6 +8,7 @@ Falls back to GitHub Gist if local file is not available.
 import json
 import os
 from typing import Dict, Any
+import streamlit as st
 
 # Optional requests import for gist functionality
 try:
@@ -23,40 +24,22 @@ class FallbackResumeService:
         self.data = self._load_resume_data()
     
     def _load_resume_data(self) -> Dict[str, Any]:
-        """Load resume data from local JSON files or GitHub Gist"""
+        """Load resume data from local JSON file only, never from Gist"""
         try:
-            # First try to fetch from public GitHub Gist (no auth needed) if requests is available
-            if REQUESTS_AVAILABLE:
-                gist_url = "https://gist.githubusercontent.com/michaelwybraniec/dabf368473d41748e9d6051afb67efcf/raw/resume.json"
-                
-                try:
-                    response = requests.get(gist_url, timeout=10)
-                    if response.status_code == 200:
-                        json_data = response.json()
-                        print("✅ Resume data loaded from public GitHub Gist")
-                        return self._convert_json_resume_format(json_data)
-                except Exception as e:
-                    print(f"⚠️ Could not fetch from Gist: {e}")
+            json_file = "data/resume.json"
+            if os.path.exists(json_file):
+                with open(json_file, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                print(f"✅ Resume data loaded from local file: {json_file}")
+                return self._convert_json_resume_format(json_data)
             else:
-                print("⚠️ Requests module not available, using local files")
-            
-            # Fallback to local JSON files
-            # Try resume.json first, then michael_wybraniec_resume.json as fallback
-            json_files = ["data/resume.json", "data/michael_wybraniec_resume.json"]
-            
-            for json_file in json_files:
-                if os.path.exists(json_file):
-                    with open(json_file, 'r', encoding='utf-8') as f:
-                        json_data = json.load(f)
-                    
-                    print(f"✅ Resume data loaded from local file: {json_file}")
-                    # Convert JSON Resume format to our expected format
-                    return self._convert_json_resume_format(json_data)
-            
-            raise FileNotFoundError("No resume JSON file found")
-        
+                raise FileNotFoundError(f"Local resume file not found: {json_file}")
         except Exception as e:
-            print(f"⚠️ Error loading resume data: {e}")
+            msg = f"⚠️ Error loading resume data: {e}"
+            try:
+                st.error(msg)
+            except Exception:
+                print(msg)
             # Fallback to minimal data if all else fails
             return {
                 "personal": {
@@ -73,7 +56,7 @@ class FallbackResumeService:
             }
     
     def _convert_json_resume_format(self, json_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Convert JSON Resume format to our internal format"""
+        """Convert JSON Resume format to our internal format, supporting both 'recommendations' and 'references' fields"""
         
         # Extract personal information
         basics = json_data.get("basics", {})
@@ -161,6 +144,41 @@ class FallbackResumeService:
             if "e-commerce" in desc.lower():
                 industries.add("E-commerce & Retail")
         
+        # Extract recommendations (support both 'recommendations' and 'references')
+        recommendations = []
+        # 1. 'recommendations' field (array of strings or objects)
+        if "recommendations" in json_data:
+            recs = json_data["recommendations"]
+            if isinstance(recs, list):
+                for rec in recs:
+                    if isinstance(rec, str):
+                        recommendations.append({"reference": rec})
+                    elif isinstance(rec, dict):
+                        text = rec.get("reference") or rec.get("text") or rec.get("content")
+                        name = rec.get("name")
+                        if text or name:
+                            entry = {}
+                            if text:
+                                entry["reference"] = text
+                            if name:
+                                entry["name"] = name
+                            recommendations.append(entry)
+        # 2. 'references' field (array of objects with 'reference' key)
+        if "references" in json_data:
+            refs = json_data["references"]
+            if isinstance(refs, list):
+                for ref in refs:
+                    if isinstance(ref, dict):
+                        text = ref.get("reference") or ref.get("text") or ref.get("content")
+                        name = ref.get("name")
+                        if text or name:
+                            entry = {}
+                            if text:
+                                entry["reference"] = text
+                            if name:
+                                entry["name"] = name
+                            recommendations.append(entry)
+        
         return {
             "personal": personal,
             "experience": experience,
@@ -168,7 +186,8 @@ class FallbackResumeService:
             "education": education,
             "projects": projects,
             "achievements": achievements[:15],  # Limit to top 15
-            "industries": list(industries)
+            "industries": list(industries),
+            "recommendations": recommendations
         }
     
     def get_full_resume(self) -> Dict[str, Any]:
@@ -202,6 +221,10 @@ class FallbackResumeService:
     def get_industries(self) -> Dict[str, Any]:
         """Get industry experience"""
         return {"industries": self.data["industries"]}
+    
+    def get_recommendations(self) -> Dict[str, Any]:
+        """Get recommendations (from both 'recommendations' and 'references')"""
+        return {"recommendations": self.data.get("recommendations", [])}
     
     def search_resume(self, query: str) -> Dict[str, Any]:
         """Search through resume data"""

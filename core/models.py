@@ -45,7 +45,7 @@ LLM_PROVIDERS = {
     "openrouter": LLMProvider(
         name="OpenRouter",
         models=[
-            "meta-llama/llama-3.1-8b-instruct:free",
+            "mistralai/mistral-7b-instruct:free",
             "microsoft/phi-3-mini-128k-instruct:free",
             "google/gemma-2-9b-it:free"
         ],

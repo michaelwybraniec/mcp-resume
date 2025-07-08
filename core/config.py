@@ -18,7 +18,12 @@ def get_openai_api_key():
     return os.getenv("OPENAI_API_KEY", "")
 
 # Default Models
-DEFAULT_OPENROUTER_MODEL = "meta-llama/llama-3.1-8b-instruct:free"
+DEFAULT_OPENROUTER_MODEL = "mistralai/mistral-7b-instruct:free"
+AVAILABLE_OPENROUTER_MODELS = [
+    "mistralai/mistral-7b-instruct:free",
+    "microsoft/phi-3-mini-128k-instruct:free",
+    "google/gemma-2-9b-it:free"
+]
 DEFAULT_GIST_ID = "dabf368473d41748e9d6051afb67efcf"
 DEFAULT_SERVER_PATH = "../build/index.js"
 

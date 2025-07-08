@@ -19,7 +19,7 @@ import streamlit as st
 from typing import Dict, Any
 
 # Import our modules
-from core.config import APP_TITLE, APP_ICON
+from core.config import APP_TITLE, APP_ICON, DEFAULT_OPENROUTER_MODEL, AVAILABLE_OPENROUTER_MODELS
 from ui.session_manager import SessionManager
 from ui.ui_components import UIComponents
 from services.llm_providers import LLMProviders
@@ -150,6 +150,21 @@ def render_sidebar():
                         st.toast("⚠️ Please enter an API key", icon="⚠️")
             
             st.caption("💡 Get free key at [OpenRouter.ai](https://openrouter.ai)")
+        
+        # Model selection for OpenRouter
+        if 'current_provider' not in st.session_state:
+            st.session_state['current_provider'] = 'openrouter'
+        if 'current_model' not in st.session_state:
+            st.session_state['current_model'] = DEFAULT_OPENROUTER_MODEL
+        if st.session_state.get('current_provider') == 'openrouter':
+            st.markdown("**OpenRouter Model**")
+            selected_model = st.selectbox(
+                "Choose a model:",
+                AVAILABLE_OPENROUTER_MODELS,
+                index=AVAILABLE_OPENROUTER_MODELS.index(DEFAULT_OPENROUTER_MODEL),
+                key="sidebar_openrouter_model_select"
+            )
+            st.session_state['current_model'] = selected_model
         
         # Quick Actions Panel
         with st.expander("Quick Actions", expanded=True):
