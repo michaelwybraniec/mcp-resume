@@ -16,6 +16,7 @@ MODULAR ARCHITECTURE:
 """
 
 import streamlit as st
+import os
 from typing import Dict, Any
 
 # Import our modules
@@ -31,8 +32,8 @@ def process_user_message(user_message: str) -> str:
     # Get context from resume service
     context = ResumeService.get_resume_context(user_message)
     
-    provider = st.session_state.get('current_provider')
-    model = st.session_state.get('current_model')
+    provider = st.session_state.get('current_provider', 'ollama')
+    model = st.session_state.get('current_model', 'llama3.2')
     
     if not provider or not model:
         return "⚠️ Please configure an LLM provider in the sidebar first!"
@@ -57,6 +58,9 @@ To chat with AI, you need a free OpenRouter API key:
         api_key = st.session_state.get("openai_api_key", "")
         if not api_key:
             return "Please add your OpenAI API key in the sidebar first!"
+    elif provider == "ollama":
+        # Ollama doesn't need an API key
+        api_key = ""
     
     # Use the unified chat interface
     return LLMProviders.chat(provider, model, messages, context, api_key)
@@ -124,39 +128,66 @@ def render_sidebar():
         
         # System Configuration
         with st.expander("System Setup", expanded=True):
-            st.info("🌟 **Live Data**: Resume fetched from public GitHub Gist. Always up-to-date, no setup required!")
+            st.info("🌟 **Live Data**: Resume loaded from local file. Always up-to-date!")
             
-            st.markdown("**OpenRouter API Key**")
-            if st.session_state.openrouter_api_key:
-                masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
-                st.write(f"✅ `{masked_key}`")
-                
-                if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
-                    st.session_state.openrouter_api_key = ""
-                    st.toast("🔑 API key cleared", icon="🔄")
-                    st.rerun()
-                if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
-                    st.session_state.openrouter_api_key = ""
-                    st.toast("🗑️ API key removed", icon="🗑️")
-                    st.rerun()
+            # Manual AI Provider Switch
+            st.markdown("**AI Provider Mode**")
+            provider_mode = st.radio(
+                "Choose AI provider:",
+                ["💻 Local (Ollama)", "🌐 Production (OpenRouter)"],
+                index=0 if st.session_state.get('current_provider', 'ollama') == 'ollama' else 1,
+                key="provider_mode_switch"
+            )
+            
+            # Update provider based on selection
+            if provider_mode == "💻 Local (Ollama)":
+                st.session_state.current_provider = "ollama"
+                st.session_state.current_model = "llama3.2"
             else:
-                api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
-                if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
-                    if api_key_input:
-                        st.session_state.openrouter_api_key = api_key_input
-                        st.toast("✅ OpenRouter API key added!", icon="🔑")
-                        st.rerun()
-                    else:
-                        st.toast("⚠️ Please enter an API key", icon="⚠️")
+                st.session_state.current_provider = "openrouter"
+                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
             
-            st.caption("💡 Get free key at [OpenRouter.ai](https://openrouter.ai)")
+            # Show current AI provider
+            current_provider = st.session_state.get('current_provider', 'ollama')
+            current_model = st.session_state.get('current_model', 'llama3.2')
+            
+            st.markdown("**AI Provider**")
+            if current_provider == 'ollama':
+                st.success(f"🤖 **{current_provider.upper()}** - {current_model}")
+                st.info("✅ **Local AI**: Using Ollama with Llama 3.2 - No API key needed!")
+                st.caption("💡 Running locally on your Apple M1 Max GPU")
+            else:
+                st.success(f"🌐 **{current_provider.upper()}** - {current_model}")
+                st.info("✅ **Cloud AI**: Using OpenRouter - API key configured!")
+                st.caption("💡 Running on OpenRouter's cloud infrastructure")
+                
+                st.markdown("**API Key Configuration**")
+                if st.session_state.openrouter_api_key:
+                    masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
+                    st.write(f"✅ `{masked_key}`")
+                    
+                    if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
+                        st.session_state.openrouter_api_key = ""
+                        st.toast("🔑 API key cleared", icon="🔄")
+                        st.rerun()
+                    if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
+                        st.session_state.openrouter_api_key = ""
+                        st.toast("🗑️ API key removed", icon="🗑️")
+                        st.rerun()
+                else:
+                    api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
+                    if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
+                        if api_key_input:
+                            st.session_state.openrouter_api_key = api_key_input
+                            st.toast("✅ OpenRouter API key added!", icon="🔑")
+                            st.rerun()
+                        else:
+                            st.toast("⚠️ Please enter an API key", icon="⚠️")
+                
+                st.caption("💡 Get free key at [OpenRouter.ai](https://openrouter.ai)")
         
-        # Model selection for OpenRouter
-        if 'current_provider' not in st.session_state:
-            st.session_state['current_provider'] = 'openrouter'
-        if 'current_model' not in st.session_state:
-            st.session_state['current_model'] = DEFAULT_OPENROUTER_MODEL
-        if st.session_state.get('current_provider') == 'openrouter':
+        # Model selection
+        if current_provider == 'openrouter':
             st.markdown("**OpenRouter Model**")
             selected_model = st.selectbox(
                 "Choose a model:",
@@ -165,6 +196,9 @@ def render_sidebar():
                 key="sidebar_openrouter_model_select"
             )
             st.session_state['current_model'] = selected_model
+        elif current_provider == 'ollama':
+            st.markdown("**Ollama Model**")
+            st.info(f"📦 **{current_model}** - 3.2B parameters, optimized for Apple Silicon")
         
         # Quick Actions Panel
         with st.expander("Quick Actions", expanded=True):

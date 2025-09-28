@@ -3,6 +3,7 @@ Session state management for the Streamlit application
 """
 
 import streamlit as st
+import os
 from typing import Dict, Any, List
 from core.config import get_openrouter_api_key, get_openai_api_key, DEFAULT_OPENROUTER_MODEL, DEFAULT_GIST_ID, DEFAULT_SERVER_PATH
 
@@ -23,12 +24,16 @@ class SessionManager:
         if 'openai_api_key' not in st.session_state:
             st.session_state.openai_api_key = get_openai_api_key()
         
-        # LLM Configuration
+        # LLM Configuration - Default to Ollama (can be changed via manual switch)
         if 'current_provider' not in st.session_state:
-            st.session_state.current_provider = "openrouter"
+            st.session_state.current_provider = "ollama"
+            st.session_state.current_model = "llama3.2"
         
         if 'current_model' not in st.session_state:
-            st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
+            if st.session_state.current_provider == "openrouter":
+                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
+            else:
+                st.session_state.current_model = "llama3.2"
         
         # Server Configuration
         if 'current_gist_id' not in st.session_state:
@@ -107,11 +112,18 @@ class SessionManager:
         except:
             requests_available = True
         
-        return (
-            requests_available and 
-            st.session_state.current_provider and 
-            st.session_state.get('openrouter_api_key', '').strip()
-        )
+        current_provider = st.session_state.get('current_provider', 'ollama')
+        
+        # For Ollama, we don't need an API key
+        if current_provider == 'ollama':
+            return requests_available and current_provider
+        else:
+            # For other providers, we need an API key
+            return (
+                requests_available and 
+                current_provider and 
+                st.session_state.get('openrouter_api_key', '').strip()
+            )
     
     @staticmethod
     def get_system_status() -> Dict[str, str]:
