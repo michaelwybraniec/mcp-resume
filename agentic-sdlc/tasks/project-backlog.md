@@ -3,7 +3,7 @@
 ## Planned Tasks
 
 - [x] [Task 1: Phase 1: Immediate compliance measures (transparency, basic oversight)](tasks/planned/task-1.md) ✅ **COMPLETED**
-- [ ] [Task 2: Phase 2: Core compliance implementation (risk management, documentation)](tasks/planned/task-2.md)
+- [x] [Task 2: Phase 2: Core compliance implementation (risk management, documentation)](tasks/planned/task-2.md) ✅ **COMPLETED**
 - [ ] [Task 3: Phase 3: Advanced compliance (monitoring, audit procedures)](tasks/planned/task-3.md)
 - [ ] [Task 4: Phase 4: Conformity assessment preparation and certification](tasks/planned/task-4.md)
 - [ ] [Task 5: Phase 5: Ongoing compliance maintenance and monitoring](tasks/planned/task-5.md)
@@ -15,6 +15,7 @@
 ## Completed Tasks
 
 - [x] [Task 1: Phase 1: Immediate compliance measures (transparency, basic oversight)](tasks/planned/task-1.md) ✅ **COMPLETED** - 2025-01-30
+- [x] [Task 2: Phase 2: Core compliance implementation (risk management, documentation)](tasks/planned/task-2.md) ✅ **COMPLETED** - 2025-01-30
 
 ---
 
