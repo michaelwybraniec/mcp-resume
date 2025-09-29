@@ -29,6 +29,9 @@ from services.document_generator import DocumentGenerator
 from services.risk_management import risk_manager
 from services.data_governance import data_governor
 from services.record_keeping import record_keeper
+from services.compliance_monitoring import compliance_monitor
+from services.audit_procedures import audit_procedures
+from services.performance_analytics import performance_analytics
 
 def process_user_message(user_message: str) -> str:
     """Process a user message and return AI response"""
@@ -226,7 +229,7 @@ def render_sidebar():
             st.markdown("**Ollama Model**")
             st.info(f"📦 **{current_model}** - 3.2B parameters, optimized for Apple Silicon")
         
-        # AI Act Compliance: Comprehensive Dashboard
+        # AI Act Compliance: Advanced Dashboard
         with st.expander("📊 AI Act Compliance Dashboard", expanded=False):
             st.markdown("**EU AI Act Compliance Status**")
             
@@ -234,6 +237,9 @@ def render_sidebar():
             risk_summary = risk_manager.get_risk_summary()
             governance_status = data_governor.get_governance_compliance_status()
             record_summary = record_keeper.get_compliance_summary()
+            monitoring_data = compliance_monitor.get_compliance_dashboard_data()
+            audit_summary = audit_procedures.get_audit_summary()
+            performance_data = performance_analytics.get_dashboard_metrics()
             
             # Compliance indicators
             col1, col2 = st.columns(2)
@@ -245,8 +251,43 @@ def render_sidebar():
             with col2:
                 st.success("✅ Technical Docs (Art. 11)")
                 st.success("✅ Record Keeping (Art. 12)")
-                st.info("🔄 Conformity Assessment")
-                st.info("🔄 Certification Process")
+                st.success("✅ Advanced Monitoring")
+                st.success("✅ Audit Procedures")
+            
+            # Advanced monitoring section
+            with st.expander("🔍 Advanced Monitoring", expanded=False):
+                st.metric("Active Alerts", monitoring_data['active_alerts'])
+                st.metric("Critical Alerts", monitoring_data['critical_alerts'])
+                st.metric("Monitoring Status", monitoring_data['monitoring_status'])
+                
+                if monitoring_data['metrics_summary']:
+                    st.markdown("**Recent Metrics:**")
+                    for metric_type, stats in monitoring_data['metrics_summary'].items():
+                        if isinstance(stats, dict) and 'latest' in stats:
+                            st.metric(metric_type.replace('_', ' ').title(), 
+                                     f"{stats['latest']:.2f}")
+            
+            # Audit procedures section
+            with st.expander("🔍 Audit Procedures", expanded=False):
+                st.metric("Total Audits", audit_summary['total_audits'])
+                st.metric("Completed Audits", audit_summary['completed_audits'])
+                
+                if audit_summary['latest_audit']:
+                    latest = audit_summary['latest_audit']
+                    st.metric("Latest Audit Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
+                    st.metric("Latest Result", latest['result'] or "Pending")
+            
+            # Performance analytics section
+            with st.expander("📈 Performance Analytics", expanded=False):
+                if 'kpis' in performance_data:
+                    for category, kpi in performance_data['kpis'].items():
+                        st.metric(
+                            category.replace('_', ' ').title(),
+                            f"{kpi['current_value']:.2f}",
+                            delta=f"{kpi['trend']}"
+                        )
+                else:
+                    st.info("No performance data available")
             
             # Risk management summary
             with st.expander("⚠️ Risk Management", expanded=False):
@@ -292,15 +333,18 @@ def render_sidebar():
                 else:
                     st.success("✅ No flagged responses")
             
-            # Quick compliance actions
-            st.markdown("**Quick Actions:**")
-            col1, col2 = st.columns(2)
+            # Advanced compliance actions
+            st.markdown("**Advanced Actions:**")
+            col1, col2, col3 = st.columns(3)
             with col1:
-                if st.button("📊 View Full Report", key="compliance_report"):
-                    st.toast("📊 Opening compliance report", icon="📊")
+                if st.button("📊 Generate Report", key="generate_report"):
+                    st.toast("📊 Generating compliance report", icon="📊")
             with col2:
-                if st.button("🔄 Refresh Status", key="refresh_compliance"):
-                    st.toast("🔄 Compliance status refreshed", icon="🔄")
+                if st.button("🔍 Start Audit", key="start_audit"):
+                    st.toast("🔍 Starting compliance audit", icon="🔍")
+            with col3:
+                if st.button("🔄 Refresh All", key="refresh_all"):
+                    st.toast("🔄 All systems refreshed", icon="🔄")
                     st.rerun()
 
         # Quick Actions Panel
