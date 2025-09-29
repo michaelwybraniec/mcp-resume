@@ -1,0 +1,12 @@
+{
+  "total_analyses": 1,
+  "risk_level_distribution": {
+    "high_risk": 1
+  },
+  "average_confidence": 1.0,
+  "average_quality_score": 0.9285714285714286,
+  "tool_usage": {
+    "check_compliance": 1
+  },
+  "last_updated": "2025-09-30T01:36:47.390666"
+}

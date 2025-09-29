@@ -1,0 +1,143 @@
+{
+  "risk_level": "high_risk",
+  "risk_breakdown": {
+    "prohibited": 0,
+    "high_risk": 80,
+    "limited_risk": 0,
+    "minimal_risk": 0
+  },
+  "applicable_articles": [
+    "Article 5",
+    "Article 10",
+    "Article 12",
+    "Article 8",
+    "Article 6",
+    "Article 13",
+    "Article 6(2)(a)",
+    "Article 9",
+    "Annex III",
+    "Article 11",
+    "Article 14",
+    "Article 15"
+  ],
+  "compliance_categories": {
+    "high_risk_systems": {
+      "applicable": true,
+      "requirements": [
+        "Risk management system implementation",
+        "Data governance and quality management",
+        "Technical documentation",
+        "Record keeping",
+        "Transparency and provision of information to users",
+        "Human oversight",
+        "Accuracy, robustness and cybersecurity"
+      ]
+    },
+    "data_governance": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "technical_documentation": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "record_keeping": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "transparency_information": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "human_oversight": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "accuracy_robustness": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    },
+    "cybersecurity": {
+      "applicable": true,
+      "requirements": [
+        "Compliance with applicable requirements"
+      ]
+    }
+  },
+  "requirements": [
+    "Risk management system implementation",
+    "Record keeping",
+    "Compliance with applicable requirements",
+    "Technical documentation",
+    "Data governance and quality management",
+    "Human oversight",
+    "Transparency and provision of information to users",
+    "Accuracy, robustness and cybersecurity"
+  ],
+  "recommendations": [
+    "🔴 HIGH RISK: Implement comprehensive compliance framework",
+    "Develop risk management system per Article 9",
+    "Create technical documentation per Article 11",
+    "Establish data governance procedures per Article 10",
+    "Implement human oversight mechanisms per Article 14",
+    "Ensure accuracy and robustness per Article 15",
+    "Prepare for conformity assessment procedures",
+    "Establish record keeping systems per Article 12"
+  ],
+  "compliance_score": 0.33,
+  "detailed_analysis": "Comprehensive AI Act Compliance Analysis:\n\nRisk Level: HIGH_RISK\nUse Case Category: employment_performance_monitoring\nApplicable Articles: Article 5, Article 10, Article 12, Article 8, Article 6, Article 13, Article 6(2)(a), Article 9, Annex III, Article 11, Article 14, Article 15\n\n🔴 This system is classified as high-risk and requires comprehensive compliance measures including conformity assessment.",
+  "assessment_metadata": {
+    "total_articles_analyzed": 167,
+    "total_categories_checked": 10,
+    "analysis_timestamp": "2025-09-30T01:36:47.387203",
+    "data_version": "2025-09-28T12:11:20.168336"
+  },
+  "intelligent_resolution": {
+    "original_description": "AI-powered resume chat interface that allows users to interact with Michael Wybraniec's professional resume data. The system uses multiple LLM providers (OpenRouter, OpenAI, Ollama) to answer questions about work experience, skills, projects, and career background. It provides intelligent context retrieval, generates professional CVs, and offers job matching analysis. The system processes personal data including work history, skills, references, and professional achievements to provide conversational responses about the candidate's qualifications and experience.",
+    "resolved_parameters": {
+      "system_description": "AI-powered resume chat interface that allows users to interact with Michael Wybraniec's professional resume data. The system uses multiple LLM providers (OpenRouter, OpenAI, Ollama) to answer questions about work experience, skills, projects, and career background. It provides intelligent context retrieval, generates professional CVs, and offers job matching analysis. The system processes personal data including work history, skills, references, and professional achievements to provide conversational responses about the candidate's qualifications and experience.",
+      "intended_purpose": "interact with michael wybraniec's professional resume data",
+      "use_case_category": "employment_performance_monitoring",
+      "deployment_context": "private_enterprise",
+      "data_types_processed": [
+        "personal_data"
+      ],
+      "decision_making_influence": "advisory_only",
+      "human_oversight_level": "supervision",
+      "safety_component_status": false,
+      "compliance_categories": [
+        "high_risk_systems",
+        "data_governance",
+        "technical_documentation",
+        "record_keeping",
+        "transparency_information",
+        "human_oversight",
+        "accuracy_robustness",
+        "cybersecurity"
+      ],
+      "confidence_score": 1.0
+    },
+    "confidence_score": 1.0,
+    "resolution_notes": [
+      "🔍 Detected high-risk use case: employment_performance_monitoring",
+      "📊 Detected data types: personal_data",
+      "⚖️ Decision influence level: advisory_only",
+      "👥 Human oversight level: supervision"
+    ]
+  },
+  "simple_summary": "🔴 **HIGH RISK - Requires comprehensive compliance measures**\n\n📋 **Applicable Articles:** Article 5, Article 10, Article 12, Article 8, Article 6 (and 7 more)\n\n📝 **Key Requirements:**\n• Risk management system implementation\n• Record keeping\n• Compliance with applicable requirements\n• ... and 5 more requirements\n\n💡 **Key Recommendations:**\n• 🔴 HIGH RISK: Implement comprehensive compliance framework\n• Develop risk management system per Article 9\n• Create technical documentation per Article 11\n• ... and 5 more recommendations\n\n",
+  "project_analysis": "📁 **Project Directory Analysis:** /Users/michaelwybraniec/Documents/GitHub/mcp-resume\n📄 **Key Files Found:** README.md, requirements.txt, app.py\n🤖 **AI/ML Related Files:** core/models.py, venv/lib/python3.13/site-packages/httpcore/_models.py, venv/lib/python3.13/site-packages/streamlit/__main__.py, venv/lib/python3.13/site-packages/dotenv/main.py, venv/lib/python3.13/site-packages/dotenv/__main__.py\n📊 **Data Files:** venv/lib/python3.13/site-packages/tornado/test/csv_translations/fr_FR.csv, venv/lib/python3.13/site-packages/numpy/random/tests/data/philox-testset-1.csv, venv/lib/python3.13/site-packages/numpy/random/tests/data/philox-testset-2.csv, venv/lib/python3.13/site-packages/numpy/random/tests/data/sfc64-testset-1.csv, venv/lib/python3.13/site-packages/numpy/random/tests/data/sfc64-testset-2.csv\n📚 **Documentation:** DEPLOYMENT.md, venv/lib/python3.13/site-packages/idna-3.10.dist-info/LICENSE.md, venv/lib/python3.13/site-packages/narwhals-1.43.1.dist-info/licenses/LICENSE.md, venv/lib/python3.13/site-packages/httpx-0.28.1.dist-info/licenses/LICENSE.md, venv/lib/python3.13/site-packages/numpy/random/LICENSE.md",
+  "enhanced_analysis": true
+}

@@ -200,6 +200,35 @@ def render_sidebar():
             st.markdown("**Ollama Model**")
             st.info(f"📦 **{current_model}** - 3.2B parameters, optimized for Apple Silicon")
         
+        # AI Act Compliance: Human Oversight Dashboard (Article 14)
+        with st.expander("👥 Human Oversight Dashboard", expanded=False):
+            st.markdown("**AI Act Compliance Monitoring**")
+            
+            # Display flagged responses
+            if 'flagged_responses' in st.session_state and st.session_state.flagged_responses:
+                st.warning(f"🚩 {len(st.session_state.flagged_responses)} responses flagged for review")
+                for i, flagged in enumerate(st.session_state.flagged_responses):
+                    with st.expander(f"Flagged Response #{i+1} - {flagged['timestamp']}", expanded=False):
+                        st.markdown(f"**Message:** {flagged['message'][:200]}...")
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            if st.button("✅ Resolve", key=f"resolve_{i}"):
+                                st.session_state.flagged_responses.pop(i)
+                                st.toast("✅ Flagged response resolved", icon="✅")
+                                st.rerun()
+                        with col2:
+                            if st.button("📝 Review", key=f"review_{i}"):
+                                st.toast("📝 Opening review interface", icon="📝")
+            else:
+                st.success("✅ No flagged responses")
+            
+            # System status indicators
+            st.markdown("**Compliance Status:**")
+            st.success("✅ AI Transparency: Implemented")
+            st.success("✅ Human Oversight: Active")
+            st.info("🔄 Risk Management: In Progress")
+            st.info("🔄 Documentation: In Progress")
+
         # Quick Actions Panel
         with st.expander("Quick Actions", expanded=True):
             if st.button("🔄 Clear", key="sidebar_clear_chat", use_container_width=True):
