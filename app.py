@@ -134,7 +134,10 @@ def render_sidebar():
         # Quick Setup Status
         if SessionManager.is_setup_complete():
             st.write("✅ All Systems Ready!")
+            st.caption("Application is fully configured and ready to use")
         else:
+            st.write("⚠️ Setup Required")
+            st.caption("Configure your AI provider to get started")
             if st.button("Start Application", type="primary", use_container_width=True, key="quick_start_main"):
                 if not st.session_state.get('openrouter_api_key', '').strip():
                     st.session_state.show_api_key_modal = True
@@ -149,10 +152,11 @@ def render_sidebar():
         
         # System Configuration
         with st.expander("AI Provider Setup", expanded=True):
-            st.write("Live Data: Resume loaded from local file. Always up-to-date!")
+            st.write("📄 Live Data: Resume loaded from local file. Always up-to-date!")
             
             # Manual AI Provider Switch
             st.markdown("**Provider Selection**")
+            st.caption("Choose between local or cloud AI processing")
             provider_mode = st.radio(
                 "Choose AI provider:",
                 ["Local (Ollama)", "Production (OpenRouter)"],
@@ -174,33 +178,35 @@ def render_sidebar():
             
             st.markdown("**Current Configuration**")
             if current_provider == 'ollama':
-                st.write(f"Provider: {current_provider.upper()} - {current_model}")
-                st.write("Local AI: Using Ollama with Llama 3.2 - No API key needed!")
-                st.caption("Running locally on your Apple M1 Max GPU")
+                st.write(f"🤖 Provider: {current_provider.upper()} - {current_model}")
+                st.write("✅ Local AI: Using Ollama with Llama 3.2 - No API key needed!")
+                st.caption("💻 Running locally on your Apple M1 Max GPU")
             else:
-                st.write(f"Provider: {current_provider.upper()} - {current_model}")
-                st.write("Cloud AI: Using OpenRouter - API key configured!")
-                st.caption("Running on OpenRouter's cloud infrastructure")
+                st.write(f"🌐 Provider: {current_provider.upper()} - {current_model}")
+                st.write("✅ Cloud AI: Using OpenRouter - API key configured!")
+                st.caption("☁️ Running on OpenRouter's cloud infrastructure")
                 
                 st.markdown("**API Key Management**")
+                st.caption("Manage your OpenRouter API key for cloud AI access")
                 if st.session_state.openrouter_api_key:
                     masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
-                    st.write(f"API Key: {masked_key}")
+                    st.write(f"🔑 API Key: {masked_key}")
                     
                     col1, col2 = st.columns(2)
                     with col1:
-                        if st.button("Change", use_container_width=True, key="sidebar_change_key"):
+                        if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
                             st.session_state.openrouter_api_key = ""
                             st.toast("API key cleared")
                             st.rerun()
                     with col2:
-                        if st.button("Remove", use_container_width=True, key="sidebar_remove_key"):
+                        if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
                             st.session_state.openrouter_api_key = ""
                             st.toast("API key removed")
                             st.rerun()
                 else:
+                    st.write("⚠️ No API key configured")
                     api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
-                    if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
+                    if st.button("➕ Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
                         if api_key_input:
                             st.session_state.openrouter_api_key = api_key_input
                             st.toast("OpenRouter API key added!")
@@ -208,11 +214,12 @@ def render_sidebar():
                         else:
                             st.toast("Please enter an API key")
                 
-                st.caption("Get free key at [OpenRouter.ai](https://openrouter.ai)")
+                st.caption("🔗 Get free key at [OpenRouter.ai](https://openrouter.ai)")
         
         # Model selection
         if current_provider == 'openrouter':
             st.markdown("**Model Selection**")
+            st.caption("Choose from available OpenRouter models")
             selected_model = st.selectbox(
                 "Choose a model:",
                 AVAILABLE_OPENROUTER_MODELS,
@@ -220,9 +227,11 @@ def render_sidebar():
                 key="sidebar_openrouter_model_select"
             )
             st.session_state['current_model'] = selected_model
+            st.write(f"✅ Selected: {selected_model}")
         elif current_provider == 'ollama':
             st.markdown("**Model Selection**")
-            st.write(f"Model: {current_model} - 3.2B parameters, optimized for Apple Silicon")
+            st.caption("Local model optimized for your hardware")
+            st.write(f"🤖 Model: {current_model} - 3.2B parameters, optimized for Apple Silicon")
         
         st.markdown("---")
         
@@ -230,21 +239,34 @@ def render_sidebar():
         st.markdown("## Help & Guidance")
         
         # Help & Tips
-        with st.expander("Quick Start Guide", expanded=False):
+        with st.expander("📚 Quick Start Guide", expanded=False):
             st.markdown("""
-            **Getting Started:**
+            **🚀 Getting Started:**
             1. Choose your AI provider above
             2. Ask questions about Michael's experience
             3. Try quick actions in the main interface
             
-            **Sample Questions:**
+            **💬 Sample Questions:**
             - "What are their strongest technical skills?"
             - "How many years of Python experience?"
             - "Have they worked with AI/ML technologies?"
             - "What industries have they worked in?"
             
-            **Enterprise Solutions:**
+            **🏢 Enterprise Solutions:**
             - Contact [Michael](https://www.one-front.com/en/contact) for custom AI solutions
+            """)
+        
+        # Add a quick tips section
+        with st.expander("💡 Quick Tips", expanded=False):
+            st.markdown("""
+            **💻 Local vs Cloud:**
+            - **Local (Ollama)**: Free, private, runs on your device
+            - **Cloud (OpenRouter)**: More powerful models, requires API key
+            
+            **🔧 Troubleshooting:**
+            - If local AI is slow, try cloud provider
+            - If you hit rate limits, get a free OpenRouter key
+            - Check the compliance dashboard for system status
             """)
         
         st.markdown("---")
@@ -253,14 +275,17 @@ def render_sidebar():
         st.markdown("## Compliance & Transparency")
         
         # MCP-AI-ACT Compliance Notice
-        st.write("**MCP-AI-ACT Verified**: This tool has been scanned and verified for EU AI Act compliance using the MCP-AI-ACT framework.")
+        st.write("🛡️ **MCP-AI-ACT Verified**: This tool has been scanned and verified for EU AI Act compliance using the MCP-AI-ACT framework.")
+        st.caption("Compliance verified through automated scanning and assessment")
         
         # AI Act Compliance: AI Transparency Notice (Article 13)
-        st.write("**AI-Powered System Notice**: This application uses artificial intelligence to analyze and present resume information. All responses are generated by AI systems and should be verified for accuracy. This system is classified as a high-risk AI system under EU AI Act regulations.")
+        st.write("🤖 **AI-Powered System Notice**: This application uses artificial intelligence to analyze and present resume information. All responses are generated by AI systems and should be verified for accuracy. This system is classified as a high-risk AI system under EU AI Act regulations.")
+        st.caption("High-risk classification due to employment-related decision support")
         
         # AI Act Compliance: Advanced Dashboard
-        with st.expander("AI Act Compliance Dashboard", expanded=False):
+        with st.expander("📊 AI Act Compliance Dashboard", expanded=False):
             st.markdown("**EU AI Act Compliance Status**")
+            st.caption("Detailed compliance metrics and monitoring data")
             
             # Overall compliance status
             risk_summary = risk_manager.get_risk_summary()
