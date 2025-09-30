@@ -76,8 +76,15 @@ To chat with AI, you need a free OpenRouter API key:
         # Ollama doesn't need an API key
         api_key = ""
     
-    # Use the unified chat interface
-    response = LLMProviders.chat(provider, model, messages, context, api_key)
+    # Use the appropriate chat method based on provider
+    if provider == "openrouter":
+        response = LLMProviders.chat_openrouter(model, messages, context, api_key)
+    elif provider == "ollama":
+        response = LLMProviders.chat_ollama(model, messages, context)
+    elif provider == "openai":
+        response = LLMProviders.chat_openai(model, messages, context, api_key)
+    else:
+        response = f"Unsupported provider: {provider}"
     
     # Record keeping for AI Act compliance (Article 12)
     processing_time_ms = int((time.time() - start_time) * 1000)

@@ -144,8 +144,15 @@ Please check:
             
             result = response.json()
             
+            # Debug: Print the response structure
+            print(f"OpenRouter response: {result}")
+            
             if 'choices' in result and len(result['choices']) > 0:
-                return result['choices'][0]['message']['content']
+                content = result['choices'][0]['message']['content']
+                if content and content.strip():
+                    return content
+                else:
+                    return f"Empty response from OpenRouter. Full response: {result}"
             else:
                 return f"Unexpected response format: {result}"
                 
