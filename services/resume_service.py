@@ -68,8 +68,27 @@ class ResumeService:
                 else:
                     return "No names found in the recommendations or references."
             
+            # For general questions, provide a concise summary instead of full JSON
             data = fallback_service.get_full_resume()
-            return f"Resume Summary:\n{json.dumps(data, indent=2)}"
+            
+            # Create a concise summary instead of full JSON dump
+            summary = f"""Michael Wybraniec - Senior Full-Stack Developer & AI Specialist
+
+EXPERIENCE SUMMARY:
+- {len(data.get('work', []))} years of professional experience
+- Recent roles: {', '.join([job.get('title', '') for job in data.get('work', [])[:3]])}
+- Industries: {', '.join(data.get('industries', [])[:5])}
+
+KEY SKILLS:
+- Programming: {', '.join(data.get('skills', {}).get('programming', [])[:8])}
+- Technologies: {', '.join(data.get('skills', {}).get('technologies', [])[:8])}
+- AI/ML: {', '.join(data.get('skills', {}).get('ai_ml', [])[:5])}
+
+EDUCATION: {data.get('education', [{}])[0].get('degree', 'Not specified') if data.get('education') else 'Not specified'}
+
+For specific details, ask about particular areas like "work experience", "skills", "projects", etc."""
+            
+            return summary
             
         except Exception as e:
             return f"Error retrieving context: {str(e)}"

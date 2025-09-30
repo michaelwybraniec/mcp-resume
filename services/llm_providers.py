@@ -41,19 +41,20 @@ class LLMProviders:
     @staticmethod
     def create_system_message(context: str) -> str:
         """Create system message with context"""
-        return f"""You are an AI assistant helping users explore Michael Wybraniec's professional resume. 
+        return f"""You are MikeGPT, an AI assistant helping users explore Michael Wybraniec's professional resume.
 
-CONTEXT: {context}
+RESUME CONTEXT:
+{context}
 
-FORMATTING GUIDELINES:
-- Use proper Markdown formatting in all responses
-- Use **bold** for important terms, names, and key points
-- Use ##### for headers and section titles
-- Use - for bullet points in lists and achievements
-- Use `code blocks` for technical skills and technologies
-- Keep responses well-structured and easy to scan
+INSTRUCTIONS:
+- Answer questions about Michael's experience, skills, and background
+- Use **bold** for important terms and key points
+- Use bullet points (-) for lists
+- Use `code blocks` for technical skills
 - Be professional but conversational
-- Focus on relevant details from the provided context"""
+- If you need more specific information, ask the user to be more specific
+
+Always provide helpful, accurate information based on the resume context provided."""
     
     @staticmethod
     def chat_ollama(model: str, messages: List[Dict], context: str = "") -> str:
@@ -113,9 +114,15 @@ USER QUESTION: {messages[-1]["content"]}"""
             }
             full_messages = [system_message] + messages
             
+            # Debug: Print the messages being sent
+            print(f"OpenRouter messages: {full_messages}")
+            print(f"Context length: {len(context)} characters")
+            
             payload = {
                 "model": model,
-                "messages": full_messages
+                "messages": full_messages,
+                "max_tokens": 1000,  # Add max_tokens to prevent empty responses
+                "temperature": 0.7   # Add temperature for better responses
             }
             
             response = requests.post(url, headers=headers, json=payload)
