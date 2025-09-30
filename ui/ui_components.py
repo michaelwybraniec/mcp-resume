@@ -189,16 +189,14 @@ class UIComponents:
         <div style='text-align: center;'>
             <h1 style='margin: 0; font-size: 68px; font-weight: 800;'>🤖 AI Resume</h1>
             <p style='font-size: 18px; color: #666; margin: 0 0 0.5rem 0; font-weight: 500;'>
-                Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience 
-            </p>
-            <div style='margin: 0.5rem 0;'>
+                Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience &nbsp;|&nbsp; 
                 <span style='background: linear-gradient(135deg, #00C851, #00A041); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 5px; display: inline-block;'>
                     🛡️ MCP-AI-ACT Compliant
                 </span>
                 <span style='background: linear-gradient(135deg, #0077b5, #005885); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 5px; display: inline-block;'>
                     ⚖️ EU AI Act Ready
                 </span>
-            </div>
+            </p>
             <p style='font-size: 8px; color: #666; margin: 0;'>
                 <span style='font-size: 12px;'>Systems:&nbsp;&nbsp;{data_status}&nbsp;{ai_status}&nbsp;{api_key_status}&nbsp;&nbsp;&nbsp;&nbsp;
                 Need custom AI solutions?&nbsp;&nbsp;<a href="https://www.linkedin.com/in/michaelwybraniec/" target="_blank" style="color: #0077b5; text-decoration: none; font-weight: 600;">Let's connect on LinkedIn</a>
