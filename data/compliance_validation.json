@@ -1,0 +1,160 @@
+{
+  "validations": [],
+  "rules": [
+    {
+      "id": "VAL-ART9-001",
+      "name": "Risk Management System Exists",
+      "description": "Verify that a risk management system is implemented and operational",
+      "article": "Article 9",
+      "requirement": "Risk Management System",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "critical",
+      "weight": 1.0
+    },
+    {
+      "id": "VAL-ART9-002",
+      "name": "Risk Assessment Procedures",
+      "description": "Verify that risk assessment procedures are documented and followed",
+      "article": "Article 9",
+      "requirement": "Risk Assessment Procedures",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART10-001",
+      "name": "Data Quality Management",
+      "description": "Verify that data quality management procedures are implemented",
+      "article": "Article 10",
+      "requirement": "Data Governance and Quality Management",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART10-002",
+      "name": "Data Processing Records",
+      "description": "Verify that data processing activities are properly recorded",
+      "article": "Article 10",
+      "requirement": "Data Processing Records",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "medium",
+      "weight": 0.7
+    },
+    {
+      "id": "VAL-ART11-001",
+      "name": "Technical Documentation Completeness",
+      "description": "Verify that technical documentation is complete and up-to-date",
+      "article": "Article 11",
+      "requirement": "Technical Documentation",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "critical",
+      "weight": 1.0
+    },
+    {
+      "id": "VAL-ART11-002",
+      "name": "Algorithm Documentation",
+      "description": "Verify that algorithm documentation is comprehensive",
+      "article": "Article 11",
+      "requirement": "Algorithm Documentation",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART12-001",
+      "name": "System Operation Logs",
+      "description": "Verify that system operation logs are maintained",
+      "article": "Article 12",
+      "requirement": "Record Keeping",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART12-002",
+      "name": "Audit Trail Integrity",
+      "description": "Verify that audit trails are complete and tamper-proof",
+      "article": "Article 12",
+      "requirement": "Audit Trail Integrity",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "medium",
+      "weight": 0.7
+    },
+    {
+      "id": "VAL-ART13-001",
+      "name": "AI Transparency Notices",
+      "description": "Verify that AI transparency notices are displayed to users",
+      "article": "Article 13",
+      "requirement": "Transparency and Provision of Information",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "critical",
+      "weight": 1.0
+    },
+    {
+      "id": "VAL-ART13-002",
+      "name": "User Information Provision",
+      "description": "Verify that users are provided with adequate information about AI system",
+      "article": "Article 13",
+      "requirement": "User Information Provision",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART14-001",
+      "name": "Human Oversight Mechanisms",
+      "description": "Verify that human oversight mechanisms are implemented",
+      "article": "Article 14",
+      "requirement": "Human Oversight",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "critical",
+      "weight": 1.0
+    },
+    {
+      "id": "VAL-ART14-002",
+      "name": "Override Capabilities",
+      "description": "Verify that human override capabilities are functional",
+      "article": "Article 14",
+      "requirement": "Override Capabilities",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART15-001",
+      "name": "System Accuracy",
+      "description": "Verify that system accuracy meets requirements",
+      "article": "Article 15",
+      "requirement": "Accuracy, Robustness and Cybersecurity",
+      "validation_type": "automated_validation",
+      "automated": true,
+      "severity": "high",
+      "weight": 0.9
+    },
+    {
+      "id": "VAL-ART15-002",
+      "name": "Cybersecurity Measures",
+      "description": "Verify that cybersecurity measures are implemented",
+      "article": "Article 15",
+      "requirement": "Cybersecurity Measures",
+      "validation_type": "manual_validation",
+      "automated": false,
+      "severity": "critical",
+      "weight": 1.0
+    }
+  ],
+  "last_updated": "2025-09-30T02:05:51.332253"
+}

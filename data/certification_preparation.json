@@ -1,0 +1,90 @@
+{
+  "applications": [],
+  "documents": [
+    {
+      "id": "DOC-001",
+      "document_type": "technical_documentation",
+      "title": "Technical Documentation",
+      "description": "Complete technical documentation of the AI system including architecture, algorithms, and training data",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328200",
+      "last_updated": "2025-09-30T02:05:51.328204",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "technical_specification"
+    },
+    {
+      "id": "DOC-002",
+      "document_type": "conformity_assessment",
+      "title": "Conformity Assessment Report",
+      "description": "Comprehensive conformity assessment report demonstrating compliance with AI Act requirements",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328208",
+      "last_updated": "2025-09-30T02:05:51.328208",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "assessment_report"
+    },
+    {
+      "id": "DOC-003",
+      "document_type": "risk_assessment",
+      "title": "Risk Assessment Report",
+      "description": "Detailed risk assessment report including identified risks and mitigation measures",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328211",
+      "last_updated": "2025-09-30T02:05:51.328212",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "risk_analysis"
+    },
+    {
+      "id": "DOC-004",
+      "document_type": "data_governance",
+      "title": "Data Governance Documentation",
+      "description": "Data governance procedures and quality management documentation",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328213",
+      "last_updated": "2025-09-30T02:05:51.328214",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "governance_procedures"
+    },
+    {
+      "id": "DOC-005",
+      "document_type": "audit_reports",
+      "title": "Audit Reports",
+      "description": "Comprehensive audit reports demonstrating ongoing compliance monitoring",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328216",
+      "last_updated": "2025-09-30T02:05:51.328217",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "audit_evidence"
+    },
+    {
+      "id": "DOC-006",
+      "document_type": "declaration_of_conformity",
+      "title": "Declaration of Conformity",
+      "description": "Official declaration of conformity with EU AI Act requirements",
+      "file_path": null,
+      "content": null,
+      "version": "1.0",
+      "created_date": "2025-09-30T02:05:51.328218",
+      "last_updated": "2025-09-30T02:05:51.328219",
+      "status": "draft",
+      "required": true,
+      "evidence_type": "legal_declaration"
+    }
+  ],
+  "last_updated": "2025-09-30T02:05:51.328262"
+}

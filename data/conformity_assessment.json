@@ -1,0 +1,76 @@
+{
+  "assessments": [],
+  "criteria": [
+    {
+      "id": "ART9-001",
+      "article": "Article 9",
+      "requirement": "Risk Management System",
+      "description": "Establishment and maintenance of a risk management system",
+      "evidence_required": "Risk management procedures, risk register, mitigation plans",
+      "assessment_method": "Document review, system testing, risk assessment validation",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART10-001",
+      "article": "Article 10",
+      "requirement": "Data Governance and Quality Management",
+      "description": "Data governance and quality management procedures",
+      "evidence_required": "Data quality procedures, processing records, quality assessments",
+      "assessment_method": "Data quality review, governance documentation analysis",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART11-001",
+      "article": "Article 11",
+      "requirement": "Technical Documentation",
+      "description": "Technical documentation of the AI system",
+      "evidence_required": "System architecture, algorithm documentation, training data info",
+      "assessment_method": "Documentation review, technical validation",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART12-001",
+      "article": "Article 12",
+      "requirement": "Record Keeping",
+      "description": "Record keeping of the AI system",
+      "evidence_required": "System operation logs, audit trails, decision records",
+      "assessment_method": "Log analysis, record validation, audit trail review",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART13-001",
+      "article": "Article 13",
+      "requirement": "Transparency and Provision of Information",
+      "description": "Transparency and provision of information to users",
+      "evidence_required": "User notices, transparency documentation, user interface",
+      "assessment_method": "User interface review, transparency notice validation",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART14-001",
+      "article": "Article 14",
+      "requirement": "Human Oversight",
+      "description": "Human oversight of the AI system",
+      "evidence_required": "Oversight procedures, human review mechanisms, override capabilities",
+      "assessment_method": "Oversight mechanism testing, procedure validation",
+      "weight": 1.0,
+      "mandatory": true
+    },
+    {
+      "id": "ART15-001",
+      "article": "Article 15",
+      "requirement": "Accuracy, Robustness and Cybersecurity",
+      "description": "Accuracy, robustness and cybersecurity measures",
+      "evidence_required": "Performance testing, security measures, robustness validation",
+      "assessment_method": "Performance testing, security assessment, robustness validation",
+      "weight": 1.0,
+      "mandatory": true
+    }
+  ],
+  "last_updated": "2025-09-30T02:05:51.324617"
+}

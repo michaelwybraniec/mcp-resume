@@ -32,6 +32,9 @@ from services.record_keeping import record_keeper
 from services.compliance_monitoring import compliance_monitor
 from services.audit_procedures import audit_procedures
 from services.performance_analytics import performance_analytics
+from services.conformity_assessment import conformity_assessor
+from services.certification_preparation import certification_preparer
+from services.compliance_validation import compliance_validator
 
 def process_user_message(user_message: str) -> str:
     """Process a user message and return AI response"""
@@ -240,6 +243,9 @@ def render_sidebar():
             monitoring_data = compliance_monitor.get_compliance_dashboard_data()
             audit_summary = audit_procedures.get_audit_summary()
             performance_data = performance_analytics.get_dashboard_metrics()
+            assessment_summary = conformity_assessor.get_assessment_summary()
+            certification_readiness = certification_preparer.get_certification_readiness()
+            validation_status = compliance_validator.get_compliance_validation_status()
             
             # Compliance indicators
             col1, col2 = st.columns(2)
@@ -251,8 +257,8 @@ def render_sidebar():
             with col2:
                 st.success("✅ Technical Docs (Art. 11)")
                 st.success("✅ Record Keeping (Art. 12)")
-                st.success("✅ Advanced Monitoring")
-                st.success("✅ Audit Procedures")
+                st.success("✅ Conformity Assessment")
+                st.success("✅ Certification Preparation")
             
             # Advanced monitoring section
             with st.expander("🔍 Advanced Monitoring", expanded=False):
@@ -288,6 +294,31 @@ def render_sidebar():
                         )
                 else:
                     st.info("No performance data available")
+            
+            # Conformity assessment section
+            with st.expander("🔍 Conformity Assessment", expanded=False):
+                st.metric("Total Assessments", assessment_summary['total_assessments'])
+                st.metric("Completed Assessments", assessment_summary['completed_assessments'])
+                
+                if assessment_summary['latest_assessment']:
+                    latest = assessment_summary['latest_assessment']
+                    st.metric("Latest Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
+                    st.metric("Certification Ready", "✅ Yes" if latest['certification_ready'] else "❌ No")
+            
+            # Certification preparation section
+            with st.expander("📋 Certification Preparation", expanded=False):
+                st.metric("Readiness", f"{certification_readiness['readiness_percentage']:.1f}%")
+                st.metric("Ready for Submission", "✅ Yes" if certification_readiness['ready_for_submission'] else "❌ No")
+                st.metric("Approved Documents", f"{certification_readiness['approved_documents']}/{certification_readiness['total_required_documents']}")
+            
+            # Compliance validation section
+            with st.expander("✅ Compliance Validation", expanded=False):
+                if 'overall_status' in validation_status:
+                    st.metric("Validation Status", validation_status['overall_status'].replace('_', ' ').title())
+                    st.metric("Overall Score", f"{validation_status['overall_score']:.1f}" if validation_status['overall_score'] else "N/A")
+                    st.metric("Certification Ready", "✅ Yes" if validation_status['certification_ready'] else "❌ No")
+                else:
+                    st.info("No validation data available")
             
             # Risk management summary
             with st.expander("⚠️ Risk Management", expanded=False):
