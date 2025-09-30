@@ -322,7 +322,7 @@ class UIComponents:
             - **AI Models**: Multiple LLM providers (OpenRouter, OpenAI, Ollama)
             - **Data Processing**: Personal and professional information analysis
             - **Decision Influence**: Advisory only - no automated decision making
-            - **Compliance Status**: ✅ **AWP Verified** - Scanned and verified for EU AI Act compliance using Agentic Workflow Protocol
+            - **Compliance Status**: ✅ **AWP Verified** - Scanned and verified for EU AI Act compliance using Agentic Workflow Protocol (Context Engineering & Migration Strategy Backlog Generation)
             
             **📋 Your Rights:**
             - Right to human oversight and review

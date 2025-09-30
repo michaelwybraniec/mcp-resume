@@ -282,7 +282,7 @@ def render_sidebar():
         st.markdown("## Compliance & Transparency")
         
         # MCP-AI-ACT Compliance Notice
-        st.write("🛡️ **Powered by Agentic Workflow Protocol**: This tool has been scanned and verified for EU AI Act compliance using the Agentic Workflow Protocol (Context Engineering & Migration Backlog Strategy).")
+        st.write("🛡️ **Powered by Agentic Workflow Protocol**: This tool has been scanned and verified for EU AI Act compliance using the Agentic Workflow Protocol (Context Engineering & Migration Strategy Backlog Generation).")
         st.caption("Compliance verified through automated scanning and assessment")
         
         # AI Act Compliance: AI Transparency Notice (Article 13)
