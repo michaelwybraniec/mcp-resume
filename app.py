@@ -194,15 +194,15 @@ def render_sidebar():
                     
                     col1, col2 = st.columns(2)
                     with col1:
-                        if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
-                            st.session_state.openrouter_api_key = ""
+                    if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
+                        st.session_state.openrouter_api_key = ""
                             st.toast("API key cleared")
-                            st.rerun()
+                        st.rerun()
                     with col2:
-                        if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
-                            st.session_state.openrouter_api_key = ""
+                    if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
+                        st.session_state.openrouter_api_key = ""
                             st.toast("API key removed")
-                            st.rerun()
+                        st.rerun()
                 else:
                     st.write("⚠️ No API key configured")
                     api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
@@ -275,7 +275,7 @@ def render_sidebar():
         st.markdown("## Compliance & Transparency")
         
         # MCP-AI-ACT Compliance Notice
-        st.write("🛡️ **MCP-AI-ACT Verified**: This tool has been scanned and verified for EU AI Act compliance using the MCP-AI-ACT framework.")
+        st.write("🛡️ **Powered by Agentic Workflow Protocol**: This tool has been scanned and verified for EU AI Act compliance using the Agentic Workflow Protocol (Context Engineering & Migration Backlog Strategy).")
         st.caption("Compliance verified through automated scanning and assessment")
         
         # AI Act Compliance: AI Transparency Notice (Article 13)

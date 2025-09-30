@@ -191,7 +191,7 @@ class UIComponents:
             <p style='font-size: 18px; color: #666; margin: 0 0 0.5rem 0; font-weight: 500;'>
                 Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience &nbsp;|&nbsp; 
                 <span style='background: linear-gradient(135deg, #00C851, #00A041); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 5px; display: inline-block;'>
-                    🛡️ MCP-AI-ACT Compliant
+                    🛡️ AWP Compliant
                 </span>
                 <span style='background: linear-gradient(135deg, #0077b5, #005885); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 5px; display: inline-block;'>
                     ⚖️ EU AI Act Ready
@@ -322,7 +322,7 @@ class UIComponents:
             - **AI Models**: Multiple LLM providers (OpenRouter, OpenAI, Ollama)
             - **Data Processing**: Personal and professional information analysis
             - **Decision Influence**: Advisory only - no automated decision making
-            - **Compliance Status**: ✅ **MCP-AI-ACT Verified** - Scanned and verified for EU AI Act compliance
+            - **Compliance Status**: ✅ **AWP Verified** - Scanned and verified for EU AI Act compliance using Agentic Workflow Protocol
             
             **📋 Your Rights:**
             - Right to human oversight and review
