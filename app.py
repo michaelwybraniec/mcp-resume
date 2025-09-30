@@ -128,28 +128,31 @@ def render_sidebar():
     """Render the sidebar with configuration options"""
     with st.sidebar:
         # ===== SYSTEM STATUS SECTION =====
-        st.markdown("### 🚀 System Status")
+        st.markdown("---")
+        st.markdown("## 🚀 System Status")
         
         # Quick Setup Status
         if SessionManager.is_setup_complete():
-            st.success("✅ All Systems Ready!")
+            st.success("✅ **All Systems Ready!**")
         else:
-            if st.button("🚀 Start", type="primary", use_container_width=True, key="quick_start_main"):
+            if st.button("🚀 **Start Application**", type="primary", use_container_width=True, key="quick_start_main"):
                 if not st.session_state.get('openrouter_api_key', '').strip():
                     st.session_state.show_api_key_modal = True
                     st.rerun()
                 else:
                     SessionManager.quick_start_setup()
         
+        st.markdown("---")
+        
         # ===== AI CONFIGURATION SECTION =====
-        st.markdown("### ⚙️ AI Configuration")
+        st.markdown("## ⚙️ AI Configuration")
         
         # System Configuration
-        with st.expander("🤖 AI Provider Setup", expanded=True):
+        with st.expander("🤖 **AI Provider Setup**", expanded=True):
             st.info("🌟 **Live Data**: Resume loaded from local file. Always up-to-date!")
             
             # Manual AI Provider Switch
-            st.markdown("**AI Provider Mode**")
+            st.markdown("### 📡 Provider Selection")
             provider_mode = st.radio(
                 "Choose AI provider:",
                 ["💻 Local (Ollama)", "🌐 Production (OpenRouter)"],
@@ -169,7 +172,7 @@ def render_sidebar():
             current_provider = st.session_state.get('current_provider', 'ollama')
             current_model = st.session_state.get('current_model', 'llama3.2')
             
-            st.markdown("**AI Provider**")
+            st.markdown("### 🔧 Current Configuration")
             if current_provider == 'ollama':
                 st.success(f"🤖 **{current_provider.upper()}** - {current_model}")
                 st.info("✅ **Local AI**: Using Ollama with Llama 3.2 - No API key needed!")
@@ -179,19 +182,22 @@ def render_sidebar():
                 st.info("✅ **Cloud AI**: Using OpenRouter - API key configured!")
                 st.caption("💡 Running on OpenRouter's cloud infrastructure")
                 
-                st.markdown("**API Key Configuration**")
+                st.markdown("### 🔑 API Key Management")
                 if st.session_state.openrouter_api_key:
                     masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
                     st.write(f"✅ `{masked_key}`")
                     
-                    if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("🔑 API key cleared", icon="🔄")
-                        st.rerun()
-                    if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("🗑️ API key removed", icon="🗑️")
-                        st.rerun()
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
+                            st.session_state.openrouter_api_key = ""
+                            st.toast("🔑 API key cleared", icon="🔄")
+                            st.rerun()
+                    with col2:
+                        if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
+                            st.session_state.openrouter_api_key = ""
+                            st.toast("🗑️ API key removed", icon="🗑️")
+                            st.rerun()
                 else:
                     api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
                     if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
@@ -206,7 +212,7 @@ def render_sidebar():
         
         # Model selection
         if current_provider == 'openrouter':
-            st.markdown("**OpenRouter Model**")
+            st.markdown("### 🎯 Model Selection")
             selected_model = st.selectbox(
                 "Choose a model:",
                 AVAILABLE_OPENROUTER_MODELS,
@@ -215,32 +221,36 @@ def render_sidebar():
             )
             st.session_state['current_model'] = selected_model
         elif current_provider == 'ollama':
-            st.markdown("**Ollama Model**")
+            st.markdown("### 🎯 Model Selection")
             st.info(f"📦 **{current_model}** - 3.2B parameters, optimized for Apple Silicon")
         
+        st.markdown("---")
+        
         # ===== HELP & GUIDANCE SECTION =====
-        st.markdown("### 💡 Help & Guidance")
+        st.markdown("## 💡 Help & Guidance")
         
         # Help & Tips
-        with st.expander("📚 Quick Start Guide", expanded=False):
+        with st.expander("📚 **Quick Start Guide**", expanded=False):
             st.markdown("""
-            **Getting Started:**
-            1. Choose your AI provider above
-            2. Ask questions about Michael's experience
-            3. Try the quick actions in the main interface
+            ### 🚀 Getting Started
+            1. **Choose your AI provider** above
+            2. **Ask questions** about Michael's experience
+            3. **Try quick actions** in the main interface
             
-            **Sample Questions:**
+            ### 💬 Sample Questions
             - "What are their strongest technical skills?"
             - "How many years of Python experience?"
             - "Have they worked with AI/ML technologies?"
             - "What industries have they worked in?"
             
-            **Need Custom AI Solutions?**
-            - Contact [Michael](https://www.one-front.com/en/contact) for enterprise solutions
+            ### 🏢 Enterprise Solutions
+            - Contact [Michael](https://www.one-front.com/en/contact) for custom AI solutions
             """)
         
+        st.markdown("---")
+        
         # ===== COMPLIANCE & TRANSPARENCY SECTION =====
-        st.markdown("### ⚖️ Compliance & Transparency")
+        st.markdown("## ⚖️ Compliance & Transparency")
         
         # MCP-AI-ACT Compliance Notice
         st.success("""
@@ -255,8 +265,8 @@ def render_sidebar():
         """, icon="ℹ️")
         
         # AI Act Compliance: Advanced Dashboard
-        with st.expander("📊 AI Act Compliance Dashboard", expanded=False):
-            st.markdown("**EU AI Act Compliance Status**")
+        with st.expander("📊 **AI Act Compliance Dashboard**", expanded=False):
+            st.markdown("### 📋 EU AI Act Compliance Status")
             
             # Overall compliance status
             risk_summary = risk_manager.get_risk_summary()
@@ -270,6 +280,7 @@ def render_sidebar():
             validation_status = compliance_validator.get_compliance_validation_status()
             
             # Compliance indicators
+            st.markdown("#### ✅ Compliance Articles")
             col1, col2 = st.columns(2)
             with col1:
                 st.success("✅ AI Transparency (Art. 13)")
@@ -283,31 +294,45 @@ def render_sidebar():
                 st.success("✅ Certification Preparation")
             
             # Advanced monitoring section
-            with st.expander("🔍 Advanced Monitoring", expanded=False):
-                st.metric("Active Alerts", monitoring_data['active_alerts'])
-                st.metric("Critical Alerts", monitoring_data['critical_alerts'])
-                st.metric("Monitoring Status", monitoring_data['monitoring_status'])
+            with st.expander("🔍 **Advanced Monitoring**", expanded=False):
+                st.markdown("#### 📊 Monitoring Metrics")
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("Active Alerts", monitoring_data['active_alerts'])
+                with col2:
+                    st.metric("Critical Alerts", monitoring_data['critical_alerts'])
+                with col3:
+                    st.metric("Status", monitoring_data['monitoring_status'])
                 
                 if monitoring_data['metrics_summary']:
-                    st.markdown("**Recent Metrics:**")
+                    st.markdown("#### 📈 Recent Metrics")
                     for metric_type, stats in monitoring_data['metrics_summary'].items():
                         if isinstance(stats, dict) and 'latest' in stats:
                             st.metric(metric_type.replace('_', ' ').title(), 
                                      f"{stats['latest']:.2f}")
             
             # Audit procedures section
-            with st.expander("🔍 Audit Procedures", expanded=False):
-                st.metric("Total Audits", audit_summary['total_audits'])
-                st.metric("Completed Audits", audit_summary['completed_audits'])
+            with st.expander("🔍 **Audit Procedures**", expanded=False):
+                st.markdown("#### 📋 Audit Status")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Total Audits", audit_summary['total_audits'])
+                with col2:
+                    st.metric("Completed", audit_summary['completed_audits'])
                 
                 if audit_summary['latest_audit']:
                     latest = audit_summary['latest_audit']
-                    st.metric("Latest Audit Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
-                    st.metric("Latest Result", latest['result'] or "Pending")
+                    st.markdown("#### 🎯 Latest Audit")
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
+                    with col2:
+                        st.metric("Result", latest['result'] or "Pending")
             
             # Performance analytics section
-            with st.expander("📈 Performance Analytics", expanded=False):
+            with st.expander("📈 **Performance Analytics**", expanded=False):
                 if 'kpis' in performance_data:
+                    st.markdown("#### 📊 Key Performance Indicators")
                     for category, kpi in performance_data['kpis'].items():
                         st.metric(
                             category.replace('_', ' ').title(),
@@ -318,56 +343,89 @@ def render_sidebar():
                     st.info("No performance data available")
             
             # Conformity assessment section
-            with st.expander("🔍 Conformity Assessment", expanded=False):
-                st.metric("Total Assessments", assessment_summary['total_assessments'])
-                st.metric("Completed Assessments", assessment_summary['completed_assessments'])
+            with st.expander("🔍 **Conformity Assessment**", expanded=False):
+                st.markdown("#### 📋 Assessment Status")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Total Assessments", assessment_summary['total_assessments'])
+                with col2:
+                    st.metric("Completed", assessment_summary['completed_assessments'])
                 
                 if assessment_summary['latest_assessment']:
                     latest = assessment_summary['latest_assessment']
-                    st.metric("Latest Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
-                    st.metric("Certification Ready", "✅ Yes" if latest['certification_ready'] else "❌ No")
+                    st.markdown("#### 🎯 Latest Assessment")
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
+                    with col2:
+                        st.metric("Certification Ready", "✅ Yes" if latest['certification_ready'] else "❌ No")
             
             # Certification preparation section
-            with st.expander("📋 Certification Preparation", expanded=False):
-                st.metric("Readiness", f"{certification_readiness['readiness_percentage']:.1f}%")
-                st.metric("Ready for Submission", "✅ Yes" if certification_readiness['ready_for_submission'] else "❌ No")
-                st.metric("Approved Documents", f"{certification_readiness['approved_documents']}/{certification_readiness['total_required_documents']}")
+            with st.expander("📋 **Certification Preparation**", expanded=False):
+                st.markdown("#### 📄 Document Status")
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("Readiness", f"{certification_readiness['readiness_percentage']:.1f}%")
+                with col2:
+                    st.metric("Ready for Submission", "✅ Yes" if certification_readiness['ready_for_submission'] else "❌ No")
+                with col3:
+                    st.metric("Approved Docs", f"{certification_readiness['approved_documents']}/{certification_readiness['total_required_documents']}")
             
             # Compliance validation section
-            with st.expander("✅ Compliance Validation", expanded=False):
+            with st.expander("✅ **Compliance Validation**", expanded=False):
                 if 'overall_status' in validation_status:
-                    st.metric("Validation Status", validation_status['overall_status'].replace('_', ' ').title())
-                    st.metric("Overall Score", f"{validation_status['overall_score']:.1f}" if validation_status['overall_score'] else "N/A")
-                    st.metric("Certification Ready", "✅ Yes" if validation_status['certification_ready'] else "❌ No")
+                    st.markdown("#### 🔍 Validation Status")
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Status", validation_status['overall_status'].replace('_', ' ').title())
+                    with col2:
+                        st.metric("Score", f"{validation_status['overall_score']:.1f}" if validation_status['overall_score'] else "N/A")
+                    with col3:
+                        st.metric("Certification Ready", "✅ Yes" if validation_status['certification_ready'] else "❌ No")
                 else:
                     st.info("No validation data available")
             
             # Risk management summary
-            with st.expander("⚠️ Risk Management", expanded=False):
-                st.metric("Total Risks", risk_summary['total_risks'])
-                st.metric("High/Critical Risks", 
-                         risk_summary['risks_by_level'].get('high', 0) + 
-                         risk_summary['risks_by_level'].get('critical', 0))
+            with st.expander("⚠️ **Risk Management**", expanded=False):
+                st.markdown("#### 🚨 Risk Overview")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Total Risks", risk_summary['total_risks'])
+                with col2:
+                    st.metric("High/Critical", 
+                             risk_summary['risks_by_level'].get('high', 0) + 
+                             risk_summary['risks_by_level'].get('critical', 0))
                 
                 if risk_summary['risks_by_level']:
+                    st.markdown("#### 📊 Risk Distribution")
                     st.bar_chart(risk_summary['risks_by_level'])
             
             # Data governance summary
-            with st.expander("📋 Data Governance", expanded=False):
-                st.metric("Quality Assessments", len(data_governor.quality_assessments))
-                st.metric("Processing Records", len(data_governor.processing_records))
-                st.metric("Compliance Status", 
-                         "✅ Compliant" if governance_status['overall_compliance'] else "❌ Non-Compliant")
+            with st.expander("📋 **Data Governance**", expanded=False):
+                st.markdown("#### 📊 Governance Status")
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("Quality Assessments", len(data_governor.quality_assessments))
+                with col2:
+                    st.metric("Processing Records", len(data_governor.processing_records))
+                with col3:
+                    st.metric("Compliance", 
+                             "✅ Compliant" if governance_status['overall_compliance'] else "❌ Non-Compliant")
             
             # Record keeping summary
-            with st.expander("📝 Record Keeping", expanded=False):
-                st.metric("System Records", record_summary['total_records'])
-                st.metric("Audit Trails", record_summary['total_audit_trails'])
-                st.metric("Retention Compliance", 
-                         f"{record_summary['retention_compliance']['compliance_percentage']:.1f}%")
+            with st.expander("📝 **Record Keeping**", expanded=False):
+                st.markdown("#### 📚 Record Status")
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("System Records", record_summary['total_records'])
+                with col2:
+                    st.metric("Audit Trails", record_summary['total_audit_trails'])
+                with col3:
+                    st.metric("Retention Compliance", 
+                             f"{record_summary['retention_compliance']['compliance_percentage']:.1f}%")
             
             # Human oversight section
-            with st.expander("👥 Human Oversight", expanded=False):
+            with st.expander("👥 **Human Oversight**", expanded=False):
                 # Display flagged responses
                 if 'flagged_responses' in st.session_state and st.session_state.flagged_responses:
                     st.warning(f"🚩 {len(st.session_state.flagged_responses)} responses flagged for review")
