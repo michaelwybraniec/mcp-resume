@@ -129,13 +129,13 @@ def render_sidebar():
     with st.sidebar:
         # ===== SYSTEM STATUS SECTION =====
         st.markdown("---")
-        st.markdown("## 🚀 System Status")
+        st.markdown("## System Status")
         
         # Quick Setup Status
         if SessionManager.is_setup_complete():
-            st.success("✅ **All Systems Ready!**")
+            st.write("✅ All Systems Ready!")
         else:
-            if st.button("🚀 **Start Application**", type="primary", use_container_width=True, key="quick_start_main"):
+            if st.button("Start Application", type="primary", use_container_width=True, key="quick_start_main"):
                 if not st.session_state.get('openrouter_api_key', '').strip():
                     st.session_state.show_api_key_modal = True
                     st.rerun()
@@ -145,23 +145,23 @@ def render_sidebar():
         st.markdown("---")
         
         # ===== AI CONFIGURATION SECTION =====
-        st.markdown("## ⚙️ AI Configuration")
+        st.markdown("## AI Configuration")
         
         # System Configuration
-        with st.expander("🤖 **AI Provider Setup**", expanded=True):
-            st.info("🌟 **Live Data**: Resume loaded from local file. Always up-to-date!")
+        with st.expander("AI Provider Setup", expanded=True):
+            st.write("Live Data: Resume loaded from local file. Always up-to-date!")
             
             # Manual AI Provider Switch
-            st.markdown("### 📡 Provider Selection")
+            st.markdown("**Provider Selection**")
             provider_mode = st.radio(
                 "Choose AI provider:",
-                ["💻 Local (Ollama)", "🌐 Production (OpenRouter)"],
+                ["Local (Ollama)", "Production (OpenRouter)"],
                 index=0 if st.session_state.get('current_provider', 'ollama') == 'ollama' else 1,
                 key="provider_mode_switch"
             )
             
             # Update provider based on selection
-            if provider_mode == "💻 Local (Ollama)":
+            if provider_mode == "Local (Ollama)":
                 st.session_state.current_provider = "ollama"
                 st.session_state.current_model = "llama3.2"
             else:
@@ -172,47 +172,47 @@ def render_sidebar():
             current_provider = st.session_state.get('current_provider', 'ollama')
             current_model = st.session_state.get('current_model', 'llama3.2')
             
-            st.markdown("### 🔧 Current Configuration")
+            st.markdown("**Current Configuration**")
             if current_provider == 'ollama':
-                st.success(f"🤖 **{current_provider.upper()}** - {current_model}")
-                st.info("✅ **Local AI**: Using Ollama with Llama 3.2 - No API key needed!")
-                st.caption("💡 Running locally on your Apple M1 Max GPU")
+                st.write(f"Provider: {current_provider.upper()} - {current_model}")
+                st.write("Local AI: Using Ollama with Llama 3.2 - No API key needed!")
+                st.caption("Running locally on your Apple M1 Max GPU")
             else:
-                st.success(f"🌐 **{current_provider.upper()}** - {current_model}")
-                st.info("✅ **Cloud AI**: Using OpenRouter - API key configured!")
-                st.caption("💡 Running on OpenRouter's cloud infrastructure")
+                st.write(f"Provider: {current_provider.upper()} - {current_model}")
+                st.write("Cloud AI: Using OpenRouter - API key configured!")
+                st.caption("Running on OpenRouter's cloud infrastructure")
                 
-                st.markdown("### 🔑 API Key Management")
+                st.markdown("**API Key Management**")
                 if st.session_state.openrouter_api_key:
                     masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
-                    st.write(f"✅ `{masked_key}`")
+                    st.write(f"API Key: {masked_key}")
                     
                     col1, col2 = st.columns(2)
                     with col1:
-                        if st.button("🔄 Change", use_container_width=True, key="sidebar_change_key"):
+                        if st.button("Change", use_container_width=True, key="sidebar_change_key"):
                             st.session_state.openrouter_api_key = ""
-                            st.toast("🔑 API key cleared", icon="🔄")
+                            st.toast("API key cleared")
                             st.rerun()
                     with col2:
-                        if st.button("🗑️ Remove", use_container_width=True, key="sidebar_remove_key"):
+                        if st.button("Remove", use_container_width=True, key="sidebar_remove_key"):
                             st.session_state.openrouter_api_key = ""
-                            st.toast("🗑️ API key removed", icon="🗑️")
+                            st.toast("API key removed")
                             st.rerun()
                 else:
                     api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
                     if st.button("Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
                         if api_key_input:
                             st.session_state.openrouter_api_key = api_key_input
-                            st.toast("✅ OpenRouter API key added!", icon="🔑")
+                            st.toast("OpenRouter API key added!")
                             st.rerun()
                         else:
-                            st.toast("⚠️ Please enter an API key", icon="⚠️")
+                            st.toast("Please enter an API key")
                 
-                st.caption("💡 Get free key at [OpenRouter.ai](https://openrouter.ai)")
+                st.caption("Get free key at [OpenRouter.ai](https://openrouter.ai)")
         
         # Model selection
         if current_provider == 'openrouter':
-            st.markdown("### 🎯 Model Selection")
+            st.markdown("**Model Selection**")
             selected_model = st.selectbox(
                 "Choose a model:",
                 AVAILABLE_OPENROUTER_MODELS,
@@ -221,52 +221,46 @@ def render_sidebar():
             )
             st.session_state['current_model'] = selected_model
         elif current_provider == 'ollama':
-            st.markdown("### 🎯 Model Selection")
-            st.info(f"📦 **{current_model}** - 3.2B parameters, optimized for Apple Silicon")
+            st.markdown("**Model Selection**")
+            st.write(f"Model: {current_model} - 3.2B parameters, optimized for Apple Silicon")
         
         st.markdown("---")
         
         # ===== HELP & GUIDANCE SECTION =====
-        st.markdown("## 💡 Help & Guidance")
+        st.markdown("## Help & Guidance")
         
         # Help & Tips
-        with st.expander("📚 **Quick Start Guide**", expanded=False):
+        with st.expander("Quick Start Guide", expanded=False):
             st.markdown("""
-            ### 🚀 Getting Started
-            1. **Choose your AI provider** above
-            2. **Ask questions** about Michael's experience
-            3. **Try quick actions** in the main interface
+            **Getting Started:**
+            1. Choose your AI provider above
+            2. Ask questions about Michael's experience
+            3. Try quick actions in the main interface
             
-            ### 💬 Sample Questions
+            **Sample Questions:**
             - "What are their strongest technical skills?"
             - "How many years of Python experience?"
             - "Have they worked with AI/ML technologies?"
             - "What industries have they worked in?"
             
-            ### 🏢 Enterprise Solutions
+            **Enterprise Solutions:**
             - Contact [Michael](https://www.one-front.com/en/contact) for custom AI solutions
             """)
         
         st.markdown("---")
         
         # ===== COMPLIANCE & TRANSPARENCY SECTION =====
-        st.markdown("## ⚖️ Compliance & Transparency")
+        st.markdown("## Compliance & Transparency")
         
         # MCP-AI-ACT Compliance Notice
-        st.success("""
-        🛡️ **MCP-AI-ACT Verified**: This tool has been scanned and verified for EU AI Act compliance using the MCP-AI-ACT framework.
-        """, icon="✅")
+        st.write("**MCP-AI-ACT Verified**: This tool has been scanned and verified for EU AI Act compliance using the MCP-AI-ACT framework.")
         
         # AI Act Compliance: AI Transparency Notice (Article 13)
-        st.info("""
-        🤖 **AI-Powered System Notice**: This application uses artificial intelligence to analyze and present resume information. 
-        All responses are generated by AI systems and should be verified for accuracy. 
-        This system is classified as a high-risk AI system under EU AI Act regulations.
-        """, icon="ℹ️")
+        st.write("**AI-Powered System Notice**: This application uses artificial intelligence to analyze and present resume information. All responses are generated by AI systems and should be verified for accuracy. This system is classified as a high-risk AI system under EU AI Act regulations.")
         
         # AI Act Compliance: Advanced Dashboard
-        with st.expander("📊 **AI Act Compliance Dashboard**", expanded=False):
-            st.markdown("### 📋 EU AI Act Compliance Status")
+        with st.expander("AI Act Compliance Dashboard", expanded=False):
+            st.markdown("**EU AI Act Compliance Status**")
             
             # Overall compliance status
             risk_summary = risk_manager.get_risk_summary()
@@ -280,22 +274,22 @@ def render_sidebar():
             validation_status = compliance_validator.get_compliance_validation_status()
             
             # Compliance indicators
-            st.markdown("#### ✅ Compliance Articles")
+            st.markdown("**Compliance Articles**")
             col1, col2 = st.columns(2)
             with col1:
-                st.success("✅ AI Transparency (Art. 13)")
-                st.success("✅ Human Oversight (Art. 14)")
-                st.success("✅ Risk Management (Art. 9)")
-                st.success("✅ Data Governance (Art. 10)")
+                st.write("✅ AI Transparency (Art. 13)")
+                st.write("✅ Human Oversight (Art. 14)")
+                st.write("✅ Risk Management (Art. 9)")
+                st.write("✅ Data Governance (Art. 10)")
             with col2:
-                st.success("✅ Technical Docs (Art. 11)")
-                st.success("✅ Record Keeping (Art. 12)")
-                st.success("✅ Conformity Assessment")
-                st.success("✅ Certification Preparation")
+                st.write("✅ Technical Docs (Art. 11)")
+                st.write("✅ Record Keeping (Art. 12)")
+                st.write("✅ Conformity Assessment")
+                st.write("✅ Certification Preparation")
             
             # Advanced monitoring section
-            with st.expander("🔍 **Advanced Monitoring**", expanded=False):
-                st.markdown("#### 📊 Monitoring Metrics")
+            with st.expander("Advanced Monitoring", expanded=False):
+                st.markdown("**Monitoring Metrics**")
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.metric("Active Alerts", monitoring_data['active_alerts'])
@@ -305,15 +299,15 @@ def render_sidebar():
                     st.metric("Status", monitoring_data['monitoring_status'])
                 
                 if monitoring_data['metrics_summary']:
-                    st.markdown("#### 📈 Recent Metrics")
+                    st.markdown("**Recent Metrics**")
                     for metric_type, stats in monitoring_data['metrics_summary'].items():
                         if isinstance(stats, dict) and 'latest' in stats:
                             st.metric(metric_type.replace('_', ' ').title(), 
                                      f"{stats['latest']:.2f}")
             
             # Audit procedures section
-            with st.expander("🔍 **Audit Procedures**", expanded=False):
-                st.markdown("#### 📋 Audit Status")
+            with st.expander("Audit Procedures", expanded=False):
+                st.markdown("**Audit Status**")
                 col1, col2 = st.columns(2)
                 with col1:
                     st.metric("Total Audits", audit_summary['total_audits'])
@@ -322,7 +316,7 @@ def render_sidebar():
                 
                 if audit_summary['latest_audit']:
                     latest = audit_summary['latest_audit']
-                    st.markdown("#### 🎯 Latest Audit")
+                    st.markdown("**Latest Audit**")
                     col1, col2 = st.columns(2)
                     with col1:
                         st.metric("Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
@@ -330,9 +324,9 @@ def render_sidebar():
                         st.metric("Result", latest['result'] or "Pending")
             
             # Performance analytics section
-            with st.expander("📈 **Performance Analytics**", expanded=False):
+            with st.expander("Performance Analytics", expanded=False):
                 if 'kpis' in performance_data:
-                    st.markdown("#### 📊 Key Performance Indicators")
+                    st.markdown("**Key Performance Indicators**")
                     for category, kpi in performance_data['kpis'].items():
                         st.metric(
                             category.replace('_', ' ').title(),
@@ -340,11 +334,11 @@ def render_sidebar():
                             delta=f"{kpi['trend']}"
                         )
                 else:
-                    st.info("No performance data available")
+                    st.write("No performance data available")
             
             # Conformity assessment section
-            with st.expander("🔍 **Conformity Assessment**", expanded=False):
-                st.markdown("#### 📋 Assessment Status")
+            with st.expander("Conformity Assessment", expanded=False):
+                st.markdown("**Assessment Status**")
                 col1, col2 = st.columns(2)
                 with col1:
                     st.metric("Total Assessments", assessment_summary['total_assessments'])
@@ -353,41 +347,41 @@ def render_sidebar():
                 
                 if assessment_summary['latest_assessment']:
                     latest = assessment_summary['latest_assessment']
-                    st.markdown("#### 🎯 Latest Assessment")
+                    st.markdown("**Latest Assessment**")
                     col1, col2 = st.columns(2)
                     with col1:
                         st.metric("Score", f"{latest['score']:.1f}" if latest['score'] else "N/A")
                     with col2:
-                        st.metric("Certification Ready", "✅ Yes" if latest['certification_ready'] else "❌ No")
+                        st.metric("Certification Ready", "Yes" if latest['certification_ready'] else "No")
             
             # Certification preparation section
-            with st.expander("📋 **Certification Preparation**", expanded=False):
-                st.markdown("#### 📄 Document Status")
+            with st.expander("Certification Preparation", expanded=False):
+                st.markdown("**Document Status**")
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.metric("Readiness", f"{certification_readiness['readiness_percentage']:.1f}%")
                 with col2:
-                    st.metric("Ready for Submission", "✅ Yes" if certification_readiness['ready_for_submission'] else "❌ No")
+                    st.metric("Ready for Submission", "Yes" if certification_readiness['ready_for_submission'] else "No")
                 with col3:
                     st.metric("Approved Docs", f"{certification_readiness['approved_documents']}/{certification_readiness['total_required_documents']}")
             
             # Compliance validation section
-            with st.expander("✅ **Compliance Validation**", expanded=False):
+            with st.expander("Compliance Validation", expanded=False):
                 if 'overall_status' in validation_status:
-                    st.markdown("#### 🔍 Validation Status")
+                    st.markdown("**Validation Status**")
                     col1, col2, col3 = st.columns(3)
                     with col1:
                         st.metric("Status", validation_status['overall_status'].replace('_', ' ').title())
                     with col2:
                         st.metric("Score", f"{validation_status['overall_score']:.1f}" if validation_status['overall_score'] else "N/A")
                     with col3:
-                        st.metric("Certification Ready", "✅ Yes" if validation_status['certification_ready'] else "❌ No")
+                        st.metric("Certification Ready", "Yes" if validation_status['certification_ready'] else "No")
                 else:
-                    st.info("No validation data available")
+                    st.write("No validation data available")
             
             # Risk management summary
-            with st.expander("⚠️ **Risk Management**", expanded=False):
-                st.markdown("#### 🚨 Risk Overview")
+            with st.expander("Risk Management", expanded=False):
+                st.markdown("**Risk Overview**")
                 col1, col2 = st.columns(2)
                 with col1:
                     st.metric("Total Risks", risk_summary['total_risks'])
@@ -397,12 +391,12 @@ def render_sidebar():
                              risk_summary['risks_by_level'].get('critical', 0))
                 
                 if risk_summary['risks_by_level']:
-                    st.markdown("#### 📊 Risk Distribution")
+                    st.markdown("**Risk Distribution**")
                     st.bar_chart(risk_summary['risks_by_level'])
             
             # Data governance summary
-            with st.expander("📋 **Data Governance**", expanded=False):
-                st.markdown("#### 📊 Governance Status")
+            with st.expander("Data Governance", expanded=False):
+                st.markdown("**Governance Status**")
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.metric("Quality Assessments", len(data_governor.quality_assessments))
@@ -410,11 +404,11 @@ def render_sidebar():
                     st.metric("Processing Records", len(data_governor.processing_records))
                 with col3:
                     st.metric("Compliance", 
-                             "✅ Compliant" if governance_status['overall_compliance'] else "❌ Non-Compliant")
+                             "Compliant" if governance_status['overall_compliance'] else "Non-Compliant")
             
             # Record keeping summary
-            with st.expander("📝 **Record Keeping**", expanded=False):
-                st.markdown("#### 📚 Record Status")
+            with st.expander("Record Keeping", expanded=False):
+                st.markdown("**Record Status**")
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.metric("System Records", record_summary['total_records'])
@@ -425,7 +419,7 @@ def render_sidebar():
                              f"{record_summary['retention_compliance']['compliance_percentage']:.1f}%")
             
             # Human oversight section
-            with st.expander("👥 **Human Oversight**", expanded=False):
+            with st.expander("Human Oversight", expanded=False):
                 # Display flagged responses
                 if 'flagged_responses' in st.session_state and st.session_state.flagged_responses:
                     st.warning(f"🚩 {len(st.session_state.flagged_responses)} responses flagged for review")
@@ -457,7 +451,7 @@ def render_sidebar():
                 if st.button("🔄 Refresh All", key="refresh_all"):
                     st.toast("🔄 All systems refreshed", icon="🔄")
                     st.rerun()
-
+        
         # Quick Actions Panel
         with st.expander("Quick Actions", expanded=True):
             if st.button("🔄 Clear", key="sidebar_clear_chat", use_container_width=True):
