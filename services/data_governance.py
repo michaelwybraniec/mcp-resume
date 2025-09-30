@@ -73,14 +73,23 @@ class DataGovernanceSystem:
         try:
             with open(self.governance_log_file, 'r') as f:
                 data = json.load(f)
-                self.quality_assessments = [
-                    DataQualityAssessment(**assessment) 
-                    for assessment in data.get('quality_assessments', [])
-                ]
-                self.processing_records = [
-                    DataProcessingRecord(**record) 
-                    for record in data.get('processing_records', [])
-                ]
+                # Convert string values back to enums for assessments
+                assessments = []
+                for assessment in data.get('quality_assessments', []):
+                    if isinstance(assessment.get('category'), str):
+                        assessment['category'] = DataCategory(assessment['category'])
+                    if isinstance(assessment.get('quality_level'), str):
+                        assessment['quality_level'] = DataQualityLevel(assessment['quality_level'])
+                    assessments.append(DataQualityAssessment(**assessment))
+                self.quality_assessments = assessments
+                
+                # Convert string values back to enums for records
+                records = []
+                for record in data.get('processing_records', []):
+                    if isinstance(record.get('data_category'), str):
+                        record['data_category'] = DataCategory(record['data_category'])
+                    records.append(DataProcessingRecord(**record))
+                self.processing_records = records
         except FileNotFoundError:
             # File doesn't exist yet, will be created on first save
             pass
@@ -260,11 +269,11 @@ class DataGovernanceSystem:
         
         # Get latest assessment for each category
         for assessment in self.quality_assessments:
-            category = assessment.category.value
+            category = assessment.category.value if hasattr(assessment.category, 'value') else assessment.category
             if category not in latest_assessments or assessment.assessment_date > latest_assessments[category]['date']:
                 latest_assessments[category] = {
                     'date': assessment.assessment_date,
-                    'level': assessment.quality_level.value,
+                    'level': assessment.quality_level.value if hasattr(assessment.quality_level, 'value') else assessment.quality_level,
                     'overall_score': (assessment.completeness_score + assessment.accuracy_score + 
                                     assessment.consistency_score + assessment.timeliness_score) / 4
                 }
@@ -374,8 +383,8 @@ class DataGovernanceSystem:
         # Check if all latest assessments meet minimum standards
         latest_assessments = {}
         for assessment in self.quality_assessments:
-            category = assessment.category.value
-            if category not in latest_assessments or assessment.assessment_date > latest_assessments[category]['date']:
+            category = assessment.category.value if hasattr(assessment.category, 'value') else assessment.category
+            if category not in latest_assessments or assessment.assessment_date > latest_assessments[category].assessment_date:
                 latest_assessments[category] = assessment
         
         for assessment in latest_assessments.values():

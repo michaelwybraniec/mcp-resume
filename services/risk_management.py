@@ -71,6 +71,11 @@ class RiskManagementSystem:
             with open(self.risk_log_file, 'r') as f:
                 data = json.load(f)
                 for risk_data in data.get('risks', []):
+                    # Convert string values back to enums
+                    if isinstance(risk_data.get('category'), str):
+                        risk_data['category'] = RiskCategory(risk_data['category'])
+                    if isinstance(risk_data.get('level'), str):
+                        risk_data['level'] = RiskLevel(risk_data['level'])
                     risk = Risk(**risk_data)
                     self.risks[risk.id] = risk
                 self.assessments = [RiskAssessment(**assessment) for assessment in data.get('assessments', [])]
@@ -315,11 +320,11 @@ class RiskManagementSystem:
         
         for risk in self.risks.values():
             # Count by level
-            level = risk.level.value
+            level = risk.level.value if hasattr(risk.level, 'value') else risk.level
             risks_by_level[level] = risks_by_level.get(level, 0) + 1
             
             # Count by category
-            category = risk.category.value
+            category = risk.category.value if hasattr(risk.category, 'value') else risk.category
             risks_by_category[category] = risks_by_category.get(category, 0) + 1
             
             # Count by status

@@ -2,4 +2,459 @@
   "quality_assessments": [
     {
       "id": "DQ-001",
-      "category": 
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:10:19.723357",
+      "assessor": "Data Governance Team",
+      "quality_level": "excellent",
+      "completeness_score": 95.0,
+      "accuracy_score": 98.0,
+      "consistency_score": 92.0,
+      "timeliness_score": 100.0,
+      "issues_found": [
+        "Minor formatting inconsistencies in contact information"
+      ],
+      "remediation_actions": [
+        "Standardize contact information format",
+        "Implement data validation rules"
+      ],
+      "next_assessment_date": "2025-12-29T02:10:19.723372"
+    },
+    {
+      "id": "DQ-002",
+      "category": "work_experience",
+      "assessment_date": "2025-09-30T02:10:19.723381",
+      "assessor": "Data Governance Team",
+      "quality_level": "good",
+      "completeness_score": 88.0,
+      "accuracy_score": 95.0,
+      "consistency_score": 85.0,
+      "timeliness_score": 90.0,
+      "issues_found": [
+        "Some job descriptions lack detailed achievements",
+        "Date formats inconsistent across entries"
+      ],
+      "remediation_actions": [
+        "Enhance job description templates",
+        "Standardize date format across all entries"
+      ],
+      "next_assessment_date": "2025-12-29T02:10:19.723383"
+    },
+    {
+      "id": "DQ-003",
+      "category": "skills",
+      "assessment_date": "2025-09-30T02:10:19.723386",
+      "assessor": "Data Governance Team",
+      "quality_level": "excellent",
+      "completeness_score": 92.0,
+      "accuracy_score": 96.0,
+      "consistency_score": 94.0,
+      "timeliness_score": 95.0,
+      "issues_found": [
+        "Skill proficiency levels could be more granular"
+      ],
+      "remediation_actions": [
+        "Implement more detailed skill proficiency scales",
+        "Add skill validation mechanisms"
+      ],
+      "next_assessment_date": "2025-12-29T02:10:19.723387"
+    },
+    {
+      "id": "DQ-004",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:12:39.679215",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:12:39.679217"
+    },
+    {
+      "id": "DQ-005",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:13:00.028169",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:13:00.028173"
+    },
+    {
+      "id": "DQ-006",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:13:03.924567",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:13:03.924574"
+    },
+    {
+      "id": "DQ-007",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:13:16.997383",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:13:16.997385"
+    },
+    {
+      "id": "DQ-008",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:13:30.977691",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:13:30.977693"
+    },
+    {
+      "id": "DQ-009",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:14:00.376465",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:14:00.376471"
+    },
+    {
+      "id": "DQ-010",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:14:15.584282",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:14:15.584284"
+    },
+    {
+      "id": "DQ-011",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:14:30.413359",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:14:30.413361"
+    },
+    {
+      "id": "DQ-012",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:14:47.439696",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:14:47.439698"
+    },
+    {
+      "id": "DQ-013",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:15:10.425233",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:15:10.425244"
+    },
+    {
+      "id": "DQ-014",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:15:30.476609",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:15:30.476610"
+    },
+    {
+      "id": "DQ-015",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:15:47.327106",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:15:47.327108"
+    },
+    {
+      "id": "DQ-016",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:16:06.573305",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:16:06.573308"
+    },
+    {
+      "id": "DQ-017",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:16:26.053436",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:16:26.053439"
+    },
+    {
+      "id": "DQ-018",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:16:48.223479",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:16:48.223483"
+    },
+    {
+      "id": "DQ-019",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:17:08.626310",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:17:08.626312"
+    },
+    {
+      "id": "DQ-020",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:17:29.486158",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:17:29.486160"
+    },
+    {
+      "id": "DQ-021",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:17:48.299913",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:17:48.299915"
+    },
+    {
+      "id": "DQ-022",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:18:10.301713",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:18:10.301715"
+    },
+    {
+      "id": "DQ-023",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:18:47.407369",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:18:47.407373"
+    },
+    {
+      "id": "DQ-024",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:19:09.476599",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:19:09.476601"
+    },
+    {
+      "id": "DQ-025",
+      "category": "personal_info",
+      "assessment_date": "2025-09-30T02:19:34.116274",
+      "assessor": "Test Assessor",
+      "quality_level": "good",
+      "completeness_score": 95,
+      "accuracy_score": 90,
+      "consistency_score": 85,
+      "timeliness_score": 88,
+      "issues_found": [
+        "Minor formatting issue"
+      ],
+      "remediation_actions": [
+        "Standardize data format"
+      ],
+      "next_assessment_date": "2025-12-29T02:19:34.116276"
+    }
+  ],
+  "processing_records": [],
+  "last_updated": "2025-09-30T02:19:34.116419"
+}

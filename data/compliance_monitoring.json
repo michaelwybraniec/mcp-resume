@@ -1,0 +1,383 @@
+{
+  "alerts": [
+    {
+      "id": "c86e5fae-4712-4eb6-8d15-7c355efac483",
+      "timestamp": "2025-09-30T02:14:47.440715",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "25eb7d1f-9c9e-4f34-b375-24eb0f3573ff",
+      "timestamp": "2025-09-30T02:14:51.975311",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "e8902016-a9af-4b7f-9ef3-de627d2fac92",
+      "timestamp": "2025-09-30T02:15:10.435451",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "0358689f-6a99-408a-85c5-6dd450b59b52",
+      "timestamp": "2025-09-30T02:15:30.477806",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "638a8d8a-1ba3-4953-8e35-7294cc6ae9d7",
+      "timestamp": "2025-09-30T02:15:47.328390",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "1beda9ef-52df-4791-8de0-441f180098b7",
+      "timestamp": "2025-09-30T02:16:06.574818",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "268324e0-572a-4b74-92a5-a804c9317387",
+      "timestamp": "2025-09-30T02:16:26.055035",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "8a2619ef-718f-49e8-92cc-b260b4f30ecf",
+      "timestamp": "2025-09-30T02:16:48.225235",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "e9149366-1ff3-4333-b81a-41a2fe30003c",
+      "timestamp": "2025-09-30T02:17:08.628045",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "f5b02b98-afb0-4cc4-bddc-13f6575b0fbd",
+      "timestamp": "2025-09-30T02:17:29.488011",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "07c7838b-a12f-4ddf-b6fc-0d743d6d884f",
+      "timestamp": "2025-09-30T02:17:48.301655",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "d03de45e-b6ef-4ea2-8bcd-a93182693e5b",
+      "timestamp": "2025-09-30T02:18:10.303424",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "14479630-0027-47f1-8761-794057dbc3b8",
+      "timestamp": "2025-09-30T02:18:47.409364",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "885046e4-ba27-4fdc-937e-2e2e8d42ff6d",
+      "timestamp": "2025-09-30T02:19:09.478706",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    },
+    {
+      "id": "a775cb9d-339a-476d-817c-6b67bcffea09",
+      "timestamp": "2025-09-30T02:19:34.118407",
+      "level": "critical",
+      "metric_type": "system_performance",
+      "title": "System Performance Threshold Exceeded",
+      "description": "Current value 1.50 exceeds threshold of 0.95",
+      "threshold_value": 0.95,
+      "current_value": 1.5,
+      "status": "active",
+      "assigned_to": null,
+      "resolution_notes": null,
+      "resolved_at": null
+    }
+  ],
+  "metrics": [
+    {
+      "id": "3b462040-26e7-4596-b843-29e040c89524",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:14:47.440548",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "5e555708-30a2-4501-90fa-13bb3e8ebc95",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:14:51.975029",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "71bf0096-b254-492a-9c0b-147570ffd53e",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:15:10.435249",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "03d7762c-0e84-4fff-8085-f3dbe4d79831",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:15:30.477622",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "f7ffd42e-16fd-4a52-bf71-f545a11ae3d6",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:15:47.328178",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "0f15b93e-27e1-4652-ac7a-3493def9a623",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:16:06.574496",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "2cdaa263-43a3-4ef5-9bd2-576c94c7043c",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:16:26.054690",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "632d5216-3ed3-46ff-b4aa-8771d42873a9",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:16:48.224887",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "e5928c80-4baa-4334-a880-a9908c57b43b",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:17:08.627609",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "4d52ad8e-4eff-47f7-b36d-c7bce0d5ebe6",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:17:29.487603",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "47beb2ef-24e9-44f1-9a30-aa3e22257f5a",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:17:48.301240",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "e4e98412-43ae-4d0b-b715-bd47ad00d8f9",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:18:10.303039",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "010ef6bc-acdf-41eb-ad88-bb7964f13e23",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:18:47.408891",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "1007faef-6381-46be-835a-7834ffbb12bd",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:19:09.478231",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    },
+    {
+      "id": "379fdb93-e851-4c8c-b69b-6595a7312490",
+      "metric_type": "system_performance",
+      "timestamp": "2025-09-30T02:19:34.117803",
+      "value": 1.5,
+      "threshold_warning": 0.9,
+      "threshold_critical": 0.95,
+      "metadata": {
+        "test": "metric"
+      }
+    }
+  ],
+  "reports": [],
+  "last_updated": "2025-09-30T02:19:34.118527"
+}

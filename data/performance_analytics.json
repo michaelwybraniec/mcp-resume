@@ -1,0 +1,105 @@
+{
+  "metrics": [
+    {
+      "id": "0ecf7735-8567-468a-b69b-0fe8d2102afa",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:16:26.055755",
+      "metadata": {}
+    },
+    {
+      "id": "ad543194-f5f4-4c21-9e17-36dda76b7fba",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:16:48.225997",
+      "metadata": {}
+    },
+    {
+      "id": "bc1d1081-66d9-43b9-8e77-78c70d48c9ee",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:17:08.629065",
+      "metadata": {}
+    },
+    {
+      "id": "371b6c39-803e-435d-8e96-eff0eff8a1f8",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:17:29.489044",
+      "metadata": {}
+    },
+    {
+      "id": "e5732349-2e6d-4246-abd9-228fbeca1c14",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:17:48.302862",
+      "metadata": {}
+    },
+    {
+      "id": "3afcdf68-e504-46ee-98f6-e2beddab43b5",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:18:10.304490",
+      "metadata": {}
+    },
+    {
+      "id": "2f395499-2f3c-4415-9229-d5a7d673863a",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:18:47.410552",
+      "metadata": {}
+    },
+    {
+      "id": "65b85e49-5c15-4b63-826e-c1912639da53",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:19:09.480677",
+      "metadata": {}
+    },
+    {
+      "id": "45d4961f-5b2f-4627-95e4-bd717f38e607",
+      "category": "system_performance",
+      "name": "response_quality",
+      "value": 95,
+      "unit": {
+        "test": "kpi"
+      },
+      "timestamp": "2025-09-30T02:19:34.120042",
+      "metadata": {}
+    }
+  ],
+  "reports": [],
+  "last_updated": "2025-09-30T02:19:34.120091"
+}

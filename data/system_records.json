@@ -1,0 +1,533 @@
+{
+  "records": [
+    {
+      "id": "8a80bcdb-543d-42fe-9c98-cf9b57ade202",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:14:00.376957",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "3b29750b-41c9-4c8e-9a38-2a251edf3490",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:14:03.127650",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "34f91cbe-1c55-4dfb-b58a-cc2fea5198ae",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:14:15.584675",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "ef3bf8db-9843-4b69-80af-86713b7409cf",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:14:30.413777",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "5aabcbc0-17b9-4501-bd55-c5f52ff7067d",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:14:47.440148",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "aa68d3fb-b648-497b-94eb-af4973d119fb",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:15:10.434576",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "7c07f4e3-ad92-4ed1-a36e-10b81eed5af6",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:15:30.477071",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "b90e6084-f771-45fd-a205-1c21856f3274",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:15:47.327580",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "65143018-26d2-4f74-a7c5-428ebc93a7a6",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:16:06.573826",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "c4ec29a9-d6a9-4447-99f4-80e0f0d0454a",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:16:26.053945",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "49afcf8d-76e2-412a-ab61-b30913bf767b",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:16:48.224150",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "777cc832-a10b-42b8-bbf0-bd465b5839cf",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:17:08.626818",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "ab5b7878-7fc6-4384-9b4c-915e681550e0",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:17:29.486744",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "36c0472f-dd81-4171-87fa-28a3b17fc873",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:17:48.300466",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "6b6b2205-46da-4bde-896c-22c80d137848",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:18:10.302266",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "987a6fe4-7edd-48d8-9418-94bb86ac7683",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:18:47.407952",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "db733054-656a-4254-88d9-00d23f05fd3b",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:19:09.477305",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "0ff27366-3445-4a2d-bbe1-b033d14dc807",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:19:34.116871",
+      "user_id": "test_user",
+      "session_id": "test_session",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "test_query"
+      },
+      "output_data": {
+        "response": "test_response"
+      },
+      "processing_time_ms": 1500,
+      "ai_model_used": "test_model",
+      "confidence_score": 0.95,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "13182cf5-8e85-4203-8044-4dd201ecd171",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:29:56.507484",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": " "
+      },
+      "processing_time_ms": 1536,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "92b253d0-a188-4c33-ad2c-ea72aa60058e",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:48:52.880595",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Empty response from OpenRouter. Full response: {'id': 'gen-1759193331-SCPGExLGszUhnohQXaa3', 'provider': 'DeepInfra', 'model': 'mistralai/mistral-7b-instruct:free', 'object': 'chat.completion', 'created': 1759193331, 'choices': [{'logprobs': None, 'finish_reason': 'stop', 'native_finish_reason': 'stop', 'index': 0, 'message': {'role': 'assistant', 'content': ' ', 'refusal': None, 'reasoning': None}}], 'usage': {'prompt_tokens': 3518, 'completion_tokens': 3, 'total_tokens': 3521, 'prompt_tokens_details': None}}"
+      },
+      "processing_time_ms": 1580,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "e48b81ee-80e3-419f-81bd-576dd9be6abc",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:49:07.584534",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Empty response from OpenRouter. Full response: {'id': 'gen-1759193346-HhrIh30ycUsXv5e72Cim', 'provider': 'DeepInfra', 'model': 'mistralai/mistral-7b-instruct:free', 'object': 'chat.completion', 'created': 1759193346, 'choices': [{'logprobs': None, 'finish_reason': 'stop', 'native_finish_reason': 'stop', 'index': 0, 'message': {'role': 'assistant', 'content': ' ', 'refusal': None, 'reasoning': None}}], 'usage': {'prompt_tokens': 3518, 'completion_tokens': 3, 'total_tokens': 3521, 'prompt_tokens_details': None}}"
+      },
+      "processing_time_ms": 2008,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "d4dbe1a9-687d-4baf-924f-bc414a96ec01",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:53:13.172158",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 2,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "289cc3a3-0c5b-4e12-98c4-38bb52183d39",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:53:19.163903",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 0,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "edde9ba0-6e75-444e-8fa3-ede342922d36",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T02:53:53.831614",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": " <s> The candidate, Michael Wybraniec, has a total of **8+ years** of professional experience across various roles in software development, data analysis, and operations.\n\nHere's the breakdown of his experience by company and duration:\n\n- **ONE-FRONT (Freelance \u00b7 AI-Driven Agentic Development)**\n  - **Duration:** 2021-03-01 - 2025-04-01 (4.1 years)\n  - **Role:** Full-Stack Developer \u00b7 Architect\n\n- **SanteVet (Freelance \u00b7 Micro-services, Domain-Driven Design)**\n  - **Duration:** 2022-07-01 - 2024-03-01 (1.8 years)\n  - **Role:** Software Architect & Frontend Strategy Lead\n\n- **Interpol (via Accenture & Asenium \u00b7 Ripjar Solutions)**\n  - **Duration:** 2021-07-01 - 2022-06-30 (1.1 years)\n  - **Role:** Full-Stack Developer \u00b7 Security & Intelligence Systems\n\n- **Inpart (Biopgarmacy Lead Discovery)**\n  - **Duration:** 2020-03-01 - 2021-03-31 (1.1 years)\n  - **Role:** Frontend Developer \u00b7 Cross-Platform Web & Mobile\n\n- **Uplab \u00b7 eCommerce Saas**\n  - **Duration:** 2019-08-01 - 2020-03-31 (8 months)\n  - **Role:** Full-Stack Developer \u00b7 Financial SaaS & API Integrations\n\n- **Squirrel \u00b7 Agence Digitale**\n  - **Duration:** 2019-02-01 - 2019-08-31 (7 months)\n  - **Role:** Full-Stack Developer \u00b7 Healthcare Scheduling Platform\n\n- **PVH Corp.**\n  - **Duration:** 2017-08-01 - 2018-04-30 (9 months)\n  - **Role:** Senior Data Analyst \u00b7 Calvin Klein & Tommy Hilfiger Division\n\n- **LeCancer.fr**\n  - **Duration:** 2017-07-01 - 2017-09-30 (3 months)\n  - **Role:** Process Optimisation Developer \u00b7 Remote\n\n- **Echo-U Ltd \u00b7 Permanent**\n  - **Duration:** 2016-08 - 2017-10 (15 months)\n  - **Role:** Technical Support & BI\n\n- **Cisco**\n  - **Duration:** 2015-04-01 - 2016-08-31 (1.4 years)\n  - **Role:** Account Manager \u00b7 Hardware Metrics & Operations (EMEAR/APAC/US)\n\nHis experience spans multiple industries, including **finance, insurance, public safety, healthcare, biopharmaceuticals, retail, and non-profit sectors**. He has worked in **Europe (France, UK, Netherlands, Italy, Spain), Asia, and the Americas**, showcasing his adaptability and international expertise.\n\nWould you like more details on any specific role or skill set?"
+      },
+      "processing_time_ms": 20152,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    }
+  ],
+  "last_updated": "2025-09-30T02:53:53.832713"
+}

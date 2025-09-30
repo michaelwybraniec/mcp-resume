@@ -77,7 +77,15 @@ class RecordKeepingSystem:
             # Load system records
             with open(self.records_file, 'r') as f:
                 data = json.load(f)
-                self.records = [SystemRecord(**record) for record in data.get('records', [])]
+                # Convert string values back to enums
+                records = []
+                for record in data.get('records', []):
+                    if isinstance(record.get('record_type'), str):
+                        record['record_type'] = RecordType(record['record_type'])
+                    if isinstance(record.get('status'), str):
+                        record['status'] = RecordStatus(record['status'])
+                    records.append(SystemRecord(**record))
+                self.records = records
         except FileNotFoundError:
             pass
         except Exception as e:
@@ -93,6 +101,13 @@ class RecordKeepingSystem:
         except Exception as e:
             print(f"Error loading audit trails: {e}")
     
+    def _serialize_record(self, record: SystemRecord) -> Dict[str, Any]:
+        """Serialize record object for JSON storage"""
+        record_dict = asdict(record)
+        record_dict['record_type'] = record.record_type.value
+        record_dict['status'] = record.status.value
+        return record_dict
+    
     def _save_records(self):
         """Save system records to file"""
         try:
@@ -100,7 +115,7 @@ class RecordKeepingSystem:
             os.makedirs(os.path.dirname(self.records_file), exist_ok=True)
             
             data = {
-                'records': [asdict(record) for record in self.records],
+                'records': [self._serialize_record(record) for record in self.records],
                 'last_updated': datetime.datetime.now().isoformat()
             }
             

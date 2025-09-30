@@ -2,4 +2,470 @@
   "risks": [
     {
       "id": "RISK-001",
-      "category": 
+      "category": "accuracy",
+      "level": "medium",
+      "description": "AI responses may contain inaccuracies about candidate information",
+      "impact": "Incorrect information could mislead recruiters and affect hiring decisions",
+      "likelihood": "Medium - AI models may hallucinate or misinterpret data",
+      "mitigation_measures": [
+        "Human oversight and response flagging system",
+        "Regular accuracy monitoring and validation",
+        "Clear disclaimers about AI-generated content",
+        "User feedback collection and analysis"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:10:19.717816",
+      "last_updated": "2025-09-30T02:10:19.717835",
+      "owner": "Compliance Team"
+    },
+    {
+      "id": "RISK-002",
+      "category": "bias",
+      "level": "medium",
+      "description": "AI models may exhibit bias in resume analysis and presentation",
+      "impact": "Biased responses could lead to unfair hiring practices",
+      "likelihood": "Medium - AI models trained on potentially biased data",
+      "mitigation_measures": [
+        "Diverse training data validation",
+        "Bias detection and monitoring",
+        "Regular model performance audits",
+        "Human review of flagged responses"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:10:19.717843",
+      "last_updated": "2025-09-30T02:10:19.717844",
+      "owner": "Compliance Team"
+    },
+    {
+      "id": "RISK-003",
+      "category": "privacy",
+      "level": "high",
+      "description": "Personal data processing without proper safeguards",
+      "impact": "Privacy violations could result in regulatory penalties and user trust loss",
+      "likelihood": "Low - Data minimization principles applied",
+      "mitigation_measures": [
+        "Data minimization and purpose limitation",
+        "Encryption of sensitive data",
+        "Access controls and audit trails",
+        "Privacy impact assessments"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:10:19.717847",
+      "last_updated": "2025-09-30T02:10:19.717848",
+      "owner": "Compliance Team"
+    },
+    {
+      "id": "RISK-004",
+      "category": "transparency",
+      "level": "low",
+      "description": "Users may not understand AI system limitations and capabilities",
+      "impact": "Misunderstanding could lead to over-reliance on AI responses",
+      "likelihood": "Low - Transparency notices implemented",
+      "mitigation_measures": [
+        "Clear AI transparency notices",
+        "Detailed system information",
+        "User education and guidance",
+        "Regular transparency audits"
+      ],
+      "status": "mitigated",
+      "created_date": "2025-09-30T02:10:19.717849",
+      "last_updated": "2025-09-30T02:10:19.717850",
+      "owner": "Compliance Team"
+    },
+    {
+      "id": "RISK-005",
+      "category": "human_oversight",
+      "level": "low",
+      "description": "Insufficient human control over AI system decisions",
+      "impact": "Lack of human oversight could lead to automated decision-making errors",
+      "likelihood": "Low - Human oversight mechanisms implemented",
+      "mitigation_measures": [
+        "Response flagging and review system",
+        "Human oversight dashboard",
+        "Override mechanisms for AI decisions",
+        "Regular oversight effectiveness monitoring"
+      ],
+      "status": "mitigated",
+      "created_date": "2025-09-30T02:10:19.717852",
+      "last_updated": "2025-09-30T02:10:19.717853",
+      "owner": "Compliance Team"
+    },
+    {
+      "id": "RISK-006",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:11:19.390909",
+      "last_updated": "2025-09-30T02:11:19.390919",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-007",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:11:32.997982",
+      "last_updated": "2025-09-30T02:11:32.997995",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-008",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:11:46.269280",
+      "last_updated": "2025-09-30T02:11:46.269293",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-009",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:12:00.565258",
+      "last_updated": "2025-09-30T02:12:00.565268",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-010",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:12:39.678761",
+      "last_updated": "2025-09-30T02:12:39.678773",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-011",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:13:00.027371",
+      "last_updated": "2025-09-30T02:13:00.027391",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-012",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:13:16.996798",
+      "last_updated": "2025-09-30T02:13:16.996807",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-013",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:13:30.977205",
+      "last_updated": "2025-09-30T02:13:30.977213",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-014",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:14:00.375912",
+      "last_updated": "2025-09-30T02:14:00.375921",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-015",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:14:15.583751",
+      "last_updated": "2025-09-30T02:14:15.583759",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-016",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:14:30.412810",
+      "last_updated": "2025-09-30T02:14:30.412820",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-017",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:14:47.439129",
+      "last_updated": "2025-09-30T02:14:47.439140",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-018",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:15:10.212432",
+      "last_updated": "2025-09-30T02:15:10.212443",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-019",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:15:30.476092",
+      "last_updated": "2025-09-30T02:15:30.476101",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-020",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:15:47.326527",
+      "last_updated": "2025-09-30T02:15:47.326553",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-021",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:16:06.572657",
+      "last_updated": "2025-09-30T02:16:06.572666",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-022",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:16:26.052826",
+      "last_updated": "2025-09-30T02:16:26.052837",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-023",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:16:48.222861",
+      "last_updated": "2025-09-30T02:16:48.222870",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-024",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:17:08.625628",
+      "last_updated": "2025-09-30T02:17:08.625637",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-025",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:17:29.485524",
+      "last_updated": "2025-09-30T02:17:29.485533",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-026",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:17:48.299292",
+      "last_updated": "2025-09-30T02:17:48.299301",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-027",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:18:10.301116",
+      "last_updated": "2025-09-30T02:18:10.301124",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-028",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:18:47.406707",
+      "last_updated": "2025-09-30T02:18:47.406713",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-029",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:19:09.475967",
+      "last_updated": "2025-09-30T02:19:09.475972",
+      "owner": "Test Owner"
+    },
+    {
+      "id": "RISK-030",
+      "category": "accuracy",
+      "level": "medium",
+      "description": "Test risk for validation",
+      "impact": "low",
+      "likelihood": "medium",
+      "mitigation_measures": [
+        "Test mitigation measure"
+      ],
+      "status": "identified",
+      "created_date": "2025-09-30T02:19:34.115636",
+      "last_updated": "2025-09-30T02:19:34.115641",
+      "owner": "Test Owner"
+    }
+  ],
+  "assessments": [],
+  "last_updated": "2025-09-30T02:19:34.115801"
+}

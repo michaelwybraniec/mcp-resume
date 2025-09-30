@@ -1,5 +1,503 @@
 {
-  "assessments": [],
+  "assessments": [
+    {
+      "id": "4e898c71-11bc-40ac-a07c-063ebe3baa6c",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:17:08.630111",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "40765978-a943-4d53-bf87-901a0ce75fa9",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:17:29.490335",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "1d916ae7-6565-4c49-8e1c-ea2f04e39e2e",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:17:48.304306",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "79152533-4912-4a1b-a05c-1b4ad22103d8",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:18:10.305506",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "9cfba07a-be16-4ecc-a31f-dedf8bc2c37e",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:18:47.412355",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "6c307433-c83a-4a00-b1f6-0c90cc23f61a",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:19:09.485225",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    },
+    {
+      "id": "ca8ce389-12a4-433d-8919-ee34108217fa",
+      "assessment_type": "self_assessment",
+      "assessment_date": "2025-09-30T02:19:34.121581",
+      "assessor": "Test Assessor",
+      "status": "planned",
+      "overall_score": null,
+      "compliance_level": null,
+      "criteria_results": [
+        {
+          "criteria_id": "ART9-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART10-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART11-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART12-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART13-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART14-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        },
+        {
+          "criteria_id": "ART15-001",
+          "score": 0.0,
+          "evidence_provided": "",
+          "assessor_notes": "",
+          "compliance_status": "pending",
+          "recommendations": []
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "certification_ready": false,
+      "next_assessment_date": null
+    }
+  ],
   "criteria": [
     {
       "id": "ART9-001",
@@ -72,5 +570,5 @@
       "mandatory": true
     }
   ],
-  "last_updated": "2025-09-30T02:05:51.324617"
+  "last_updated": "2025-09-30T02:19:34.121748"
 }

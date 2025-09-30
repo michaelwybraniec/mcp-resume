@@ -1,0 +1,907 @@
+{
+  "audit_reports": [
+    {
+      "id": "36b1b026-b991-4bce-b82f-81b1dd6c983a",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:15:47.328603",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "8f00f8ec-46a5-473f-bbcb-574b1f7e828e",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:16:06.575118",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "dc9b4c5d-8b9d-4db1-a58f-2b871c8b7e3d",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:16:26.055392",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "534a0d2f-f40e-4573-b555-45e94f84f660",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:16:48.225579",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "3b180da6-f8f4-4439-a54c-dc5c8d5f2347",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:17:08.628509",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "7bba997e-cefb-442e-b6d0-2001fa566c7d",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:17:29.488415",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "825989a8-5c37-4e3d-855f-5bb2aa302907",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:17:48.302046",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "ea266152-072e-4587-b5ba-9c92baf155f7",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:18:10.303822",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "731fd66c-4564-4380-997d-f51f92b61150",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:18:47.409806",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "4b5351c4-9ca8-4726-8e81-ceccc472a61f",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:19:09.479179",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    },
+    {
+      "id": "68c7e10b-943f-48ab-b098-35d97918144b",
+      "audit_type": "compliance_audit",
+      "audit_date": "2025-09-30T02:19:34.118919",
+      "auditor": "Test Auditor",
+      "scope": "Test audit for validation",
+      "status": "planned",
+      "result": null,
+      "overall_score": null,
+      "checklist_items": [
+        {
+          "id": "COMP-001",
+          "category": "AI Transparency",
+          "description": "AI transparency notices are displayed to users",
+          "requirement": "Article 13 - Transparency and provision of information to users",
+          "evidence_required": "Screenshots of transparency notices in application",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-002",
+          "category": "Human Oversight",
+          "description": "Human oversight mechanisms are implemented",
+          "requirement": "Article 14 - Human oversight",
+          "evidence_required": "Documentation of oversight procedures and user interface",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-003",
+          "category": "Risk Management",
+          "description": "Risk management system is operational",
+          "requirement": "Article 9 - Risk management system",
+          "evidence_required": "Risk assessment reports and mitigation procedures",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-004",
+          "category": "Data Governance",
+          "description": "Data governance procedures are implemented",
+          "requirement": "Article 10 - Data governance and quality management",
+          "evidence_required": "Data quality assessments and processing records",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-005",
+          "category": "Technical Documentation",
+          "description": "Technical documentation is complete and up-to-date",
+          "requirement": "Article 11 - Technical documentation",
+          "evidence_required": "System architecture and algorithm documentation",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        },
+        {
+          "id": "COMP-006",
+          "category": "Record Keeping",
+          "description": "Record keeping system is operational",
+          "requirement": "Article 12 - Record keeping",
+          "evidence_required": "System operation logs and audit trails",
+          "status": "pending",
+          "notes": null,
+          "evidence_provided": null,
+          "auditor_notes": null
+        }
+      ],
+      "findings": [],
+      "recommendations": [],
+      "next_audit_date": null,
+      "compliance_status": "pending"
+    }
+  ],
+  "last_updated": "2025-09-30T02:19:34.119132"
+}
