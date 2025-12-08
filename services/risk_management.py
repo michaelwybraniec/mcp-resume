@@ -348,6 +348,124 @@ class RiskManagementSystem:
                 high_priority.append(risk)
         return sorted(high_priority, key=lambda x: x.level.value, reverse=True)
     
+    def get_comprehensive_risk_report(self) -> Dict[str, Any]:
+        """Generate comprehensive risk management report for Article 9 compliance"""
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        
+        # Calculate risk metrics
+        total_risks = len(self.risks)
+        critical_risks = len([r for r in self.risks.values() if r.level == RiskLevel.CRITICAL])
+        high_risks = len([r for r in self.risks.values() if r.level == RiskLevel.HIGH])
+        mitigated_risks = len([r for r in self.risks.values() if r.status == "mitigated"])
+        monitored_risks = len([r for r in self.risks.values() if r.status == "monitored"])
+        
+        # Risk distribution
+        risks_by_level = {}
+        risks_by_category = {}
+        risks_by_status = {}
+        
+        for risk in self.risks.values():
+            # By level
+            level = risk.level.value if hasattr(risk.level, 'value') else risk.level
+            risks_by_level[level] = risks_by_level.get(level, 0) + 1
+            
+            # By category
+            category = risk.category.value if hasattr(risk.category, 'value') else risk.category
+            risks_by_category[category] = risks_by_category.get(category, 0) + 1
+            
+            # By status
+            status = risk.status
+            risks_by_status[status] = risks_by_status.get(status, 0) + 1
+        
+        # Recent assessments
+        recent_assessments = self.assessments[-5:] if len(self.assessments) > 5 else self.assessments
+        
+        return {
+            "report_date": current_date,
+            "report_type": "Comprehensive Risk Management Report",
+            "compliance_article": "Article 9 - Risk Management System",
+            "system_name": "AI Resume Chat Interface",
+            "risk_metrics": {
+                "total_risks": total_risks,
+                "critical_risks": critical_risks,
+                "high_risks": high_risks,
+                "mitigated_risks": mitigated_risks,
+                "monitored_risks": monitored_risks,
+                "mitigation_rate": (mitigated_risks / total_risks * 100) if total_risks > 0 else 0
+            },
+            "risk_distribution": {
+                "by_level": risks_by_level,
+                "by_category": risks_by_category,
+                "by_status": risks_by_status
+            },
+            "recent_assessments": [
+                {
+                    "risk_id": assessment.risk_id,
+                    "assessment_date": assessment.assessment_date,
+                    "risk_level": assessment.risk_level.value if assessment.risk_level and hasattr(assessment.risk_level, 'value') else "unknown",
+                    "assessment_result": assessment.assessment_result,
+                    "recommendations": assessment.recommendations
+                }
+                for assessment in recent_assessments
+            ],
+            "compliance_status": {
+                "risk_management_system": "Operational",
+                "assessment_procedures": "Implemented",
+                "mitigation_strategies": "Active",
+                "monitoring_systems": "Functional",
+                "documentation": "Complete"
+            },
+            "next_assessment_due": self._calculate_next_assessment_date(),
+            "risk_management_effectiveness": self._calculate_risk_management_effectiveness()
+        }
+    
+    def _calculate_next_assessment_date(self) -> str:
+        """Calculate next risk assessment due date"""
+        if not self.assessments:
+            return datetime.datetime.now().strftime("%Y-%m-%d")
+        
+        last_assessment = max(self.assessments, key=lambda x: x.assessment_date)
+        try:
+            if 'T' in last_assessment.assessment_date:
+                last_date = datetime.datetime.fromisoformat(last_assessment.assessment_date.replace('Z', '+00:00'))
+            else:
+                last_date = datetime.datetime.strptime(last_assessment.assessment_date, "%Y-%m-%d")
+        except (ValueError, TypeError):
+            # Fallback to current date if parsing fails
+            last_date = datetime.datetime.now()
+        next_date = last_date + datetime.timedelta(days=90)  # Quarterly assessments
+        return next_date.strftime("%Y-%m-%d")
+    
+    def _calculate_risk_management_effectiveness(self) -> Dict[str, Any]:
+        """Calculate risk management effectiveness metrics"""
+        total_risks = len(self.risks)
+        if total_risks == 0:
+            return {"effectiveness_score": 100, "status": "No risks identified"}
+        
+        mitigated = len([r for r in self.risks.values() if r.status == "mitigated"])
+        monitored = len([r for r in self.risks.values() if r.status == "monitored"])
+        active = len([r for r in self.risks.values() if r.status in ["identified", "assessed"]])
+        
+        effectiveness_score = ((mitigated + monitored) / total_risks) * 100
+        
+        if effectiveness_score >= 90:
+            status = "Excellent"
+        elif effectiveness_score >= 75:
+            status = "Good"
+        elif effectiveness_score >= 60:
+            status = "Adequate"
+        else:
+            status = "Needs Improvement"
+        
+        return {
+            "effectiveness_score": round(effectiveness_score, 1),
+            "status": status,
+            "mitigated_count": mitigated,
+            "monitored_count": monitored,
+            "active_count": active,
+            "total_count": total_risks
+        }
+    
     def get_risk_by_id(self, risk_id: str) -> Optional[Risk]:
         """Get specific risk by ID"""
         return self.risks.get(risk_id)

@@ -1,0 +1,63 @@
+{
+  "documents": [
+    {
+      "id": "SYS-ARCH-001",
+      "title": "AI Resume System Architecture",
+      "doc_type": "system_architecture",
+      "version": "1.0",
+      "status": "draft",
+      "created_date": "2025-09-30",
+      "last_updated": "2025-09-30",
+      "author": "System Administrator",
+      "reviewer": null,
+      "content": "\n# AI Resume System Architecture\n\n## System Overview\nThe AI Resume Chat Interface is a high-risk AI system designed for resume analysis and career information presentation. The system uses multiple LLM providers to provide intelligent responses about candidate information.\n\n## Architecture Components\n\n### Frontend Layer\n- **Streamlit Application**: Web-based user interface\n- **UI Components**: Chat interface, modals, and interactive elements\n- **Session Management**: User session and state management\n\n### Service Layer\n- **Resume Service**: Data retrieval and context generation\n- **LLM Providers**: Integration with multiple AI providers\n- **Document Generator**: PDF generation capabilities\n- **Compliance Services**: AI Act compliance monitoring\n\n### Data Layer\n- **Resume Data**: JSON-based resume information\n- **Compliance Data**: Audit trails, risk assessments, governance records\n- **Configuration**: System settings and constants\n\n### External Integrations\n- **OpenRouter API**: Cloud-based LLM provider\n- **OpenAI API**: GPT model integration\n- **Ollama**: Local LLM deployment\n\n## Data Flow\n1. User input \u2192 UI Components \u2192 Session Manager\n2. Session Manager \u2192 Resume Service \u2192 Context Generation\n3. Context + User Input \u2192 LLM Providers \u2192 AI Response\n4. AI Response \u2192 UI Components \u2192 User Interface\n5. All interactions \u2192 Compliance Systems \u2192 Audit Trails\n\n## Security Measures\n- API key management and validation\n- Session state protection\n- Data minimization principles\n- Audit trail logging\n                ",
+      "sections": [],
+      "compliance_articles": [
+        "Article 11",
+        "Article 9",
+        "Article 10"
+      ],
+      "review_notes": [],
+      "approval_date": null
+    },
+    {
+      "id": "ALG-DESC-001",
+      "title": "AI Algorithm Description and Limitations",
+      "doc_type": "algorithm_description",
+      "version": "1.0",
+      "status": "draft",
+      "created_date": "2025-09-30",
+      "last_updated": "2025-09-30",
+      "author": "System Administrator",
+      "reviewer": null,
+      "content": "\n# AI Algorithm Description and Limitations\n\n## Algorithm Overview\nThe system uses Large Language Models (LLMs) for natural language processing and information retrieval. The primary algorithms include:\n\n### Context Retrieval Algorithm\n- **Purpose**: Extract relevant resume information based on user queries\n- **Method**: Keyword matching and semantic similarity\n- **Input**: User query, resume data\n- **Output**: Relevant context snippets\n\n### Response Generation Algorithm\n- **Purpose**: Generate human-like responses about resume information\n- **Method**: Transformer-based language models\n- **Input**: User query + context + system prompt\n- **Output**: Formatted response text\n\n## Model Specifications\n- **OpenRouter Models**: Various open-source and proprietary models\n- **OpenAI Models**: GPT-3.5, GPT-4 variants\n- **Ollama Models**: Local Llama 3.2, Llama 3.1\n\n## Limitations and Constraints\n- **Accuracy**: AI responses may contain inaccuracies\n- **Bias**: Potential bias in model training data\n- **Context**: Limited to provided resume information\n- **Real-time**: No real-time data updates\n- **Language**: Primarily English language support\n\n## Performance Metrics\n- **Response Time**: < 5 seconds for most queries\n- **Accuracy**: Estimated 85-90% for factual information\n- **Availability**: 99.9% uptime target\n                ",
+      "sections": [],
+      "compliance_articles": [
+        "Article 11",
+        "Article 15"
+      ],
+      "review_notes": [],
+      "approval_date": null
+    },
+    {
+      "id": "TRAIN-DATA-001",
+      "title": "Training Data Documentation",
+      "doc_type": "training_data",
+      "version": "1.0",
+      "status": "draft",
+      "created_date": "2025-09-30",
+      "last_updated": "2025-09-30",
+      "author": "System Administrator",
+      "reviewer": null,
+      "content": "\n# Training Data Documentation\n\n## Data Sources\nThe system uses pre-trained language models and does not perform additional training on user data.\n\n### Resume Data\n- **Source**: Manually curated resume information\n- **Format**: JSON structured data\n- **Content**: Professional experience, skills, education\n- **Privacy**: Personal information anonymized where possible\n\n### Model Training Data\n- **LLM Models**: Trained on publicly available text data\n- **Training Period**: Various dates depending on model\n- **Data Quality**: High-quality, diverse text corpora\n- **Bias Considerations**: Models may reflect training data biases\n\n## Data Quality Measures\n- **Validation**: Manual review of resume data accuracy\n- **Consistency**: Standardized data formats\n- **Completeness**: Regular updates and maintenance\n- **Privacy**: Data minimization principles applied\n\n## Data Governance\n- **Retention**: Data retained only as necessary\n- **Access**: Limited to authorized personnel\n- **Processing**: Minimal processing for stated purpose\n- **Protection**: Encrypted storage and transmission\n                ",
+      "sections": [],
+      "compliance_articles": [
+        "Article 10",
+        "Article 11"
+      ],
+      "review_notes": [],
+      "approval_date": null
+    }
+  ],
+  "last_updated": "2025-09-30T03:32:46.717949"
+}

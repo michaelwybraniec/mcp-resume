@@ -312,28 +312,6 @@ class UIComponents:
                   
             Just ask anything!
             """)
-            
-        # AI Act Compliance: Detailed AI System Information (Article 13)
-        with st.expander("ℹ️ AI System Information & User Rights", expanded=False):
-            st.markdown("""
-            **🤖 AI System Details:**
-            - **System Type**: High-risk AI system under EU AI Act
-            - **Purpose**: Resume analysis and career information presentation
-            - **AI Models**: Multiple LLM providers (OpenRouter, OpenAI, Ollama)
-            - **Data Processing**: Personal and professional information analysis
-            - **Decision Influence**: Advisory only - no automated decision making
-            - **Compliance Status**: ✅ **AWP Verified** - Scanned and verified for EU AI Act compliance using Agentic Workflow Protocol (Context Engineering & Migration Strategy Backlog Generation)
-            
-            **📋 Your Rights:**
-            - Right to human oversight and review
-            - Right to request explanation of AI decisions
-            - Right to contest AI-generated information
-            - Right to data protection and privacy
-            
-            **⚠️ Important Notice:**
-            All AI-generated responses should be verified for accuracy. 
-            This system provides information for informational purposes only.
-            """)
     
     @staticmethod 
     def render_api_key_modal():

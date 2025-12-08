@@ -1,0 +1,92 @@
+{
+  "session_id": "20251205_135603_668f6195",
+  "timestamp": "2025-12-05T13:56:03.305804",
+  "tool_name": "check_compliance",
+  "input_data": {
+    "system_description": "AI Resume Chat Interface - A high-risk AI system that analyzes and presents resume information using LLM providers (OpenRouter, OpenAI, Ollama). The system provides career information, resume analysis, and job matching capabilities. It processes personal data (resume information) and provides AI-generated responses about candidate qualifications and experience.",
+    "input_length": 363,
+    "input_hash": "668f6195",
+    "input_type": "text_description"
+  },
+  "output_data": {
+    "user_facing_output": "🔴 **HIGH RISK - Requires comprehensive compliance measures**\n\n📋 **Applicable Articles:** Article 8, Article 14, Article 5, Article 12, Article 9 (and 7 more)\n\n📝 **Key Requirements:**\n• Technical documentation\n• Compliance with applicable requirements\n• Transparency and provision of information to users\n• ... and 5 more requirements\n\n💡 **Key Recommendations:**\n• 🔴 HIGH RISK: Implement comprehensive compliance framework\n• Develop risk management system per Article 9\n• Create technical documentation per Article 11\n• ... and 5 more recommendations\n\n\n\n📁 **Report saved to:** /Users/michaelwybraniec/Documents/GitHub/mcp-resume/mcp-ai-act/session-20251205_135603/report-analysis/report-20251205_135603.md",
+    "output_length": 704,
+    "output_type": "text_summary"
+  },
+  "analysis_result": {
+    "risk_level": "high_risk",
+    "confidence_score": 1.0,
+    "applicable_articles_count": 12,
+    "requirements_count": 8,
+    "recommendations_count": 8,
+    "compliance_score": 0.33
+  },
+  "intelligent_resolution": {
+    "original_description": "AI Resume Chat Interface - A high-risk AI system that analyzes and presents resume information using LLM providers (OpenRouter, OpenAI, Ollama). The system provides career information, resume analysis, and job matching capabilities. It processes personal data (resume information) and provides AI-generated responses about candidate qualifications and experience.",
+    "resolved_parameters": {
+      "system_description": "AI Resume Chat Interface - A high-risk AI system that analyzes and presents resume information using LLM providers (OpenRouter, OpenAI, Ollama). The system provides career information, resume analysis, and job matching capabilities. It processes personal data (resume information) and provides AI-generated responses about candidate qualifications and experience.",
+      "intended_purpose": "ai resume chat interface - a high-risk ai system that analyzes and presents resume information using...",
+      "use_case_category": "employment_performance_monitoring",
+      "deployment_context": "private_enterprise",
+      "data_types_processed": [
+        "personal_data"
+      ],
+      "decision_making_influence": "low",
+      "human_oversight_level": "supervision",
+      "safety_component_status": false,
+      "compliance_categories": [
+        "high_risk_systems",
+        "data_governance",
+        "technical_documentation",
+        "record_keeping",
+        "transparency_information",
+        "human_oversight",
+        "accuracy_robustness",
+        "cybersecurity"
+      ],
+      "confidence_score": 1.0
+    },
+    "confidence_score": 1.0,
+    "resolution_notes": [
+      "🔍 Detected high-risk use case: employment_performance_monitoring",
+      "📊 Detected data types: personal_data",
+      "⚖️ Decision influence level: low",
+      "👥 Human oversight level: supervision"
+    ]
+  },
+  "performance_metrics": {
+    "analysis_duration_ms": 150.0,
+    "data_loaded": {
+      "articles_count": 167,
+      "chapters_count": 5,
+      "compliance_categories_count": 10
+    }
+  },
+  "quality_indicators": {
+    "input_completeness": 0.8,
+    "analysis_confidence": 1.0,
+    "result_completeness": 0.9999999999999999,
+    "risk_assessment_quality": 1.0,
+    "recommendation_quality": 1.0,
+    "output_quality": 0.7999999999999999,
+    "input_output_coherence": 0.6000000000000001,
+    "overall_quality_score": 0.8857142857142858
+  },
+  "user_context": {
+    "working_directory": "/Users/michaelwybraniec",
+    "mcp_version": "v0.2",
+    "data_version": "2025-09-28T12:11:20.168336"
+  },
+  "input_output_analysis": {
+    "input_output_length_ratio": 1.9393939393939394,
+    "input_output_word_overlap": 0.10256410256410256,
+    "risk_level_appropriateness": 0.7,
+    "output_completeness": 1.0,
+    "user_satisfaction_indicators": {
+      "positive_indicators": 1,
+      "negative_indicators": 0,
+      "neutral_indicators": 5,
+      "satisfaction_score": 0.16666666666666666
+    }
+  }
+}

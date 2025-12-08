@@ -527,7 +527,315 @@
       "metadata": {
         "interaction_type": "chat"
       }
+    },
+    {
+      "id": "a8d293ab-515f-45e6-a526-ef7ad0485485",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:29:12.852787",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 1,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "419d8851-59d9-472d-9709-7b13407a9d06",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:30:33.322808",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 0,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "dfdad9e9-842a-4adb-bf8d-30096d2e7a8d",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:30:41.577803",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Empty response from OpenRouter. Full response: {'id': 'gen-1759195840-OzMqOgpFsTzwhLnpyeAJ', 'provider': 'DeepInfra', 'model': 'mistralai/mistral-7b-instruct:free', 'object': 'chat.completion', 'created': 1759195840, 'choices': [{'logprobs': None, 'finish_reason': 'stop', 'native_finish_reason': 'stop', 'index': 0, 'message': {'role': 'assistant', 'content': '', 'refusal': None, 'reasoning': None}}], 'usage': {'prompt_tokens': 3513, 'completion_tokens': 1, 'total_tokens': 3514, 'prompt_tokens_details': None}}"
+      },
+      "processing_time_ms": 1767,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "abbc7aa3-4158-4ecf-b294-97e0630060b5",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:30:44.608984",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Empty response from OpenRouter. Full response: {'id': 'gen-1759195843-rUXRINjh6oJsn1FQowaU', 'provider': 'DeepInfra', 'model': 'mistralai/mistral-7b-instruct:free', 'object': 'chat.completion', 'created': 1759195843, 'choices': [{'logprobs': None, 'finish_reason': 'stop', 'native_finish_reason': 'stop', 'index': 0, 'message': {'role': 'assistant', 'content': '', 'refusal': None, 'reasoning': None}}], 'usage': {'prompt_tokens': 3513, 'completion_tokens': 1, 'total_tokens': 3514, 'prompt_tokens_details': None}}"
+      },
+      "processing_time_ms": 1553,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "2f1ab9dc-52a5-4fe7-8b98-df5a29a2eba8",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:30:56.076665",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": " Michael Wybraniec is a **Senior Full-Stack Developer & AI Specialist** with a strong focus on **Financial Technology (FinTech)**, **Artificial Intelligence & Machine Learning**, and **Healthcare & Insurance Technology**. Despite not having formal professional experience listed, he appears to be a skilled professional with expertise in both **backend and frontend development** as well as **AI/ML technologies**.\n\n### Key Highlights:\n- **Full-Stack Development**: Likely proficient in both **backend** (e.g., Python, Java, Node.js) and **frontend** (e.g., React, Angular, Vue.js) technologies.\n- **AI & Machine Learning**: Strong knowledge of **AI frameworks** (e.g., TensorFlow, PyTorch) and **ML models** (e.g., NLP, computer vision).\n- **Industry Experience**: Worked in **FinTech**, **AI/ML**, and **healthcare/insurance tech**, suggesting a versatile background.\n- **Technical Skills**: Likely skilled in **cloud platforms** (AWS, Azure, GCP) and **databases** (SQL, NoSQL).\n\nWould you like more details on any specific area, such as **technologies used** or **project experience**?"
+      },
+      "processing_time_ms": 8123,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "515e0549-587d-42c1-8d0a-8063c6a25a2b",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:35:13.829711",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 0,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "c6b7833c-8f01-4d96-86c7-0c01fc571e59",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:35:41.411983",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 0,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "4aac4abe-64e4-4cfc-9798-972d9093116e",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:36:29.643355",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "##### Years of Experience\n\nBased on the provided work experience, Michael Wybraniec has a total of around 10 years of experience in various roles and industries. Here's a rough breakdown:\n\n* 4 years with Echo-U Ltd (2016-2020)\n* 3 years with Cisco (2015-2018)\n* 2.5 years with LeCancer.fr, PVH Corp., Squirrel, Uplab, Inpart, Interpol, and ONE-FRONT (2017-2021)\n* 1 year with SanteVet (2022)\n\nKeep in mind that this is an estimate based on the provided information, and the actual number of years may vary depending on how one defines a \"year\" of experience."
+      },
+      "processing_time_ms": 7890,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "b993412f-fd79-47f4-9c68-f262939f6b41",
+      "record_type": "user_interaction",
+      "timestamp": "2025-09-30T03:36:44.246748",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": "##### Michael Wybraniec Profile Summary\n\n**Overview**\nMichael Wybraniec is a **Senior Full-Stack Developer & AI Specialist** with no current professional experience. His expertise spans across various industries, including Financial Technology (FinTech), Artificial Intelligence & Machine Learning, Healthcare & Insurance Technology.\n\n**Key Highlights**\n\n* **Recent Roles**: No specific roles mentioned\n* **Industries**: FinTech, AI/ML, Healthcare & Insurance Technology\n\n### Skills and Technologies\n\n`Programming:`\n- Language proficiency (no specifics mentioned)\n\n`Technologies:`\n- No specific technologies listed\n\n`AI/ML:`\n- No detailed skills or technologies mentioned\n\n### Education\n\nNo information on Michael Wybraniec's education is provided."
+      },
+      "processing_time_ms": 2579,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "c2bf437e-6684-4f9c-a2c2-5f2090174e2e",
+      "record_type": "user_interaction",
+      "timestamp": "2025-12-07T19:10:15.784935",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": " Michael Wybraniec is a **Senior Full-Stack Developer** and **AI Specialist** with a focus on **Artificial Intelligence & Machine Learning**, **Healthcare & Insurance Technology**, and **Financial Technology (FinTech)**. His background is particularly strong in **front-end and back-end development**, with expertise in **modern programming languages** and **AI/ML frameworks**. Although he has **0 years of professional experience** as listed, he may be an emerging talent or someone with unique training/education background. His skills likely include:\n- **Front-End Development**: HTML, CSS, JavaScript, frameworks like React, Angular, or Vue.js\n- **Back-End Development**: Node.js, Python, or Java, with knowledge of databases (SQL/NoSQL)\n- **AI/ML**: TensorFlow, PyTorch, or scikit-learn, with experience in model deployment\n- **Full-Stack Development**: Experience in building end-to-end applications\n\nIf you'd like more details on any specific area, feel free to ask!"
+      },
+      "processing_time_ms": 7745,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "2f772d80-c7c8-42a6-babf-df2c84fee727",
+      "record_type": "user_interaction",
+      "timestamp": "2025-12-08T14:21:15.094851",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": " Michael Wybraniec is a **Senior Full-Stack Developer & AI Specialist** with a strong focus on **Artificial Intelligence, Machine Learning, and software development**. Although the resume does not specify his years of professional experience, his recent roles suggest significant expertise in **Healthcare & Insurance Technology, Financial Technology (FinTech), and AI/ML applications**.\n\nHis **key skills** include:\n- **Programming**: Likely proficiency in languages like Python, JavaScript, and others (though specific languages aren\u2019t listed).\n- **Technologies**: Experience with **full-stack development**, which typically involves frameworks like React, Node.js, and databases like MongoDB or SQL.\n- **AI/ML**: Knowledge in **machine learning models, data analysis, and AI-driven solutions**, possibly including NLP, computer vision, or predictive analytics.\n\nWhile his **education** background is not specified, his roles indicate a strong technical foundation and hands-on experience in **AI integration and software development**. For more specific details, you could ask about his **work experience, projects, or certifications** if available.\n\nWould you like to explore a particular aspect of his profile in more detail?"
+      },
+      "processing_time_ms": 5175,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "20287bde-66b5-41c8-b07f-260b5c532986",
+      "record_type": "user_interaction",
+      "timestamp": "2025-12-08T14:21:37.507552",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "Ollama error: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download"
+      },
+      "processing_time_ms": 1,
+      "ai_model_used": "llama3.2",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "233110a0-156b-4392-a141-93db0c36a091",
+      "record_type": "user_interaction",
+      "timestamp": "2025-12-08T14:24:06.588054",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": " Based on the resume context provided, here's a summary of Michael Wybraniec's professional profile:\n\n**Senior Full-Stack Developer & AI Specialist** with a focus on cutting-edge technologies in **Artificial Intelligence (AI) & Machine Learning (ML)**, **Healthcare & Insurance Technology**, and **Financial Technology (FinTech)**.\n\n**Key Highlights:**\n- **Emerging Talent**: 0 years of professional experience, but likely a recent graduate or early-career professional with strong academic or project-based background\n- **Technical Expertise**:\n  - **Programming**: Likely proficient in multiple languages (though specific ones aren't listed)\n  - **Technologies**: Full-stack capabilities covering front-end, back-end, and database systems\n  - **AI/ML**: Specialization in artificial intelligence and machine learning applications\n- **Industry Focus**: Experience or strong interest in **AI/ML**, **Healthcare/Insurance Tech**, and **FinTech**\n\n**Notable Attributes**:\n- Ability to work with modern, evolving technologies\n- Potential for rapid growth in technical and leadership roles\n- Adaptability to diverse industry applications\n\nWhile specific details about education, exact skills, or projects aren't provided in the resume context, Michael appears to be a **high-potential candidate** in the tech space, particularly in **AI-driven sectors**. For more precise insights, further details about specific skills, project experiences, or educational background would be helpful.\n\nWould you like to explore any particular aspect of his profile in more detail?"
+      },
+      "processing_time_ms": 5043,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "6700c048-4f76-41f0-bb37-8352f8127d3e",
+      "record_type": "user_interaction",
+      "timestamp": "2025-12-08T14:30:24.828397",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": " Michael Wybraniec is a **senior full-stack developer and AI specialist** with a focus on **artificial intelligence, machine learning, healthcare/insurance technology, and financial technology (FinTech)**. Although his resume indicates **0 years of professional experience**, he likely has relevant skills in:\n\n- **Programming**: JavaScript, Python, Java, C#\n- **Technologies**: React, Node.js, SQL, Docker, AWS\n- **AI/ML**: TensorFlow, PyTorch, NLP, Computer Vision\n\nHis background suggests expertise in **full-stack development, AI/ML integration, and cloud-based solutions**. If you'd like more details about a specific area (e.g., projects, work experience, or education), let me know!"
+      },
+      "processing_time_ms": 6235,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
     }
   ],
-  "last_updated": "2025-09-30T02:53:53.832713"
+  "last_updated": "2025-12-08T14:30:24.828825"
 }

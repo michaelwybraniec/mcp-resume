@@ -5,6 +5,33 @@ Configuration settings for AI Resume application
 import os
 import streamlit as st
 
+# Production Detection
+def is_production() -> bool:
+    """
+    Detect if we're running in production environment.
+    Checks for:
+    - PRODUCTION environment variable (for local testing)
+    - Streamlit Cloud environment variables
+    - Streamlit server configuration
+    """
+    # Check explicit PRODUCTION env var (for local testing)
+    if os.getenv("PRODUCTION", "").lower() in ("true", "1", "yes"):
+        return True
+    
+    # Check Streamlit Cloud environment
+    if os.getenv("STREAMLIT_SERVER_ENV") == "production":
+        return True
+    
+    # Check if running on Streamlit Cloud (share.streamlit.io)
+    try:
+        # Streamlit Cloud sets this environment variable
+        if os.getenv("STREAMLIT_SHARING_MODE") == "sso":
+            return True
+    except:
+        pass
+    
+    return False
+
 # API Keys and Secrets
 def get_openrouter_api_key():
     """Get OpenRouter API key from secrets or environment"""

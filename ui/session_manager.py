@@ -5,7 +5,7 @@ Session state management for the Streamlit application
 import streamlit as st
 import os
 from typing import Dict, Any, List
-from core.config import get_openrouter_api_key, get_openai_api_key, DEFAULT_OPENROUTER_MODEL, DEFAULT_GIST_ID, DEFAULT_SERVER_PATH
+from core.config import get_openrouter_api_key, get_openai_api_key, DEFAULT_OPENROUTER_MODEL, DEFAULT_GIST_ID, DEFAULT_SERVER_PATH, is_production
 
 class SessionManager:
     """Handles session state management and initialization"""
@@ -24,10 +24,16 @@ class SessionManager:
         if 'openai_api_key' not in st.session_state:
             st.session_state.openai_api_key = get_openai_api_key()
         
-        # LLM Configuration - Default to Ollama (can be changed via manual switch)
+        # LLM Configuration - Auto-set OpenRouter in production, default to Ollama locally
         if 'current_provider' not in st.session_state:
-            st.session_state.current_provider = "ollama"
-            st.session_state.current_model = "llama3.2"
+            if is_production():
+                # Production: automatically use OpenRouter
+                st.session_state.current_provider = "openrouter"
+                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
+            else:
+                # Local: default to Ollama
+                st.session_state.current_provider = "ollama"
+                st.session_state.current_model = "llama3.2"
         
         if 'current_model' not in st.session_state:
             if st.session_state.current_provider == "openrouter":

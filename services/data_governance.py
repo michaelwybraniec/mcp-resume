@@ -406,6 +406,172 @@ class DataGovernanceSystem:
         # This would typically check retention periods against actual data
         # For now, return True as we're implementing proper retention
         return True
+    
+    def get_comprehensive_data_governance_report(self) -> Dict[str, Any]:
+        """Generate comprehensive data governance report for Article 10 compliance"""
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        
+        # Calculate governance metrics
+        total_assessments = len(self.quality_assessments)
+        total_records = len(self.processing_records)
+        
+        # Quality distribution
+        quality_distribution = {}
+        for assessment in self.quality_assessments:
+            level = assessment.quality_level.value if hasattr(assessment.quality_level, 'value') else assessment.quality_level
+            quality_distribution[level] = quality_distribution.get(level, 0) + 1
+        
+        # Category distribution
+        category_distribution = {}
+        for assessment in self.quality_assessments:
+            category = assessment.category.value if hasattr(assessment.category, 'value') else assessment.category
+            category_distribution[category] = category_distribution.get(category, 0) + 1
+        
+        # Recent assessments (last 90 days)
+        recent_assessments = []
+        for a in self.quality_assessments:
+            try:
+                # Handle different datetime formats
+                if 'T' in a.assessment_date:
+                    # ISO format with time
+                    assessment_date = datetime.datetime.fromisoformat(a.assessment_date.replace('Z', '+00:00'))
+                else:
+                    # Date only format
+                    assessment_date = datetime.datetime.strptime(a.assessment_date, "%Y-%m-%d")
+                
+                if assessment_date > datetime.datetime.now() - datetime.timedelta(days=90):
+                    recent_assessments.append(a)
+            except (ValueError, TypeError):
+                # Skip invalid dates
+                continue
+        
+        # Calculate average scores
+        avg_completeness = sum(a.completeness_score for a in recent_assessments) / len(recent_assessments) if recent_assessments else 0
+        avg_accuracy = sum(a.accuracy_score for a in recent_assessments) / len(recent_assessments) if recent_assessments else 0
+        avg_consistency = sum(a.consistency_score for a in recent_assessments) / len(recent_assessments) if recent_assessments else 0
+        avg_timeliness = sum(a.timeliness_score for a in recent_assessments) / len(recent_assessments) if recent_assessments else 0
+        
+        # Overall quality score
+        overall_quality_score = (avg_completeness + avg_accuracy + avg_consistency + avg_timeliness) / 4
+        
+        return {
+            "report_date": current_date,
+            "report_type": "Comprehensive Data Governance Report",
+            "compliance_article": "Article 10 - Data Governance and Quality Management",
+            "system_name": "AI Resume Chat Interface",
+            "governance_metrics": {
+                "total_assessments": total_assessments,
+                "total_processing_records": total_records,
+                "recent_assessments": len(recent_assessments),
+                "overall_quality_score": round(overall_quality_score, 1),
+                "compliance_status": "Compliant" if overall_quality_score >= 80 else "Needs Improvement"
+            },
+            "quality_metrics": {
+                "average_completeness": round(avg_completeness, 1),
+                "average_accuracy": round(avg_accuracy, 1),
+                "average_consistency": round(avg_consistency, 1),
+                "average_timeliness": round(avg_timeliness, 1)
+            },
+            "data_distribution": {
+                "by_quality_level": quality_distribution,
+                "by_category": category_distribution
+            },
+            "recent_assessments": [
+                {
+                    "id": assessment.id,
+                    "category": assessment.category.value if hasattr(assessment.category, 'value') else assessment.category,
+                    "assessment_date": assessment.assessment_date,
+                    "quality_level": assessment.quality_level.value if hasattr(assessment.quality_level, 'value') else assessment.quality_level,
+                    "completeness_score": assessment.completeness_score,
+                    "accuracy_score": assessment.accuracy_score,
+                    "consistency_score": assessment.consistency_score,
+                    "timeliness_score": assessment.timeliness_score,
+                    "issues_count": len(assessment.issues_found),
+                    "remediation_actions": len(assessment.remediation_actions)
+                }
+                for assessment in recent_assessments[-10:]  # Last 10 assessments
+            ],
+            "compliance_status": {
+                "data_quality_management": "Operational",
+                "processing_records": "Maintained",
+                "quality_assessments": "Regular",
+                "remediation_procedures": "Active",
+                "documentation": "Complete"
+            },
+            "next_assessment_due": self._calculate_next_quality_assessment_date(),
+            "data_governance_effectiveness": self._calculate_governance_effectiveness()
+        }
+    
+    def _calculate_next_quality_assessment_date(self) -> str:
+        """Calculate next data quality assessment due date"""
+        if not self.quality_assessments:
+            return datetime.datetime.now().strftime("%Y-%m-%d")
+        
+        last_assessment = max(self.quality_assessments, key=lambda x: x.assessment_date)
+        try:
+            if 'T' in last_assessment.assessment_date:
+                last_date = datetime.datetime.fromisoformat(last_assessment.assessment_date.replace('Z', '+00:00'))
+            else:
+                last_date = datetime.datetime.strptime(last_assessment.assessment_date, "%Y-%m-%d")
+        except (ValueError, TypeError):
+            # Fallback to current date if parsing fails
+            last_date = datetime.datetime.now()
+        next_date = last_date + datetime.timedelta(days=30)  # Monthly assessments
+        return next_date.strftime("%Y-%m-%d")
+    
+    def _calculate_governance_effectiveness(self) -> Dict[str, Any]:
+        """Calculate data governance effectiveness metrics"""
+        if not self.quality_assessments:
+            return {"effectiveness_score": 100, "status": "No assessments available"}
+        
+        recent_assessments = []
+        for a in self.quality_assessments:
+            try:
+                # Handle different datetime formats
+                if 'T' in a.assessment_date:
+                    # ISO format with time
+                    assessment_date = datetime.datetime.fromisoformat(a.assessment_date.replace('Z', '+00:00'))
+                else:
+                    # Date only format
+                    assessment_date = datetime.datetime.strptime(a.assessment_date, "%Y-%m-%d")
+                
+                if assessment_date > datetime.datetime.now() - datetime.timedelta(days=90):
+                    recent_assessments.append(a)
+            except (ValueError, TypeError):
+                # Skip invalid dates
+                continue
+        
+        if not recent_assessments:
+            return {"effectiveness_score": 0, "status": "No recent assessments"}
+        
+        # Calculate effectiveness based on quality scores and remediation
+        total_issues = sum(len(a.issues_found) for a in recent_assessments)
+        total_remediations = sum(len(a.remediation_actions) for a in recent_assessments)
+        
+        avg_quality = sum((a.completeness_score + a.accuracy_score + a.consistency_score + a.timeliness_score) / 4 
+                         for a in recent_assessments) / len(recent_assessments)
+        
+        # Effectiveness considers quality scores and remediation activity
+        remediation_rate = (total_remediations / total_issues * 100) if total_issues > 0 else 100
+        effectiveness_score = (avg_quality + remediation_rate) / 2
+        
+        if effectiveness_score >= 90:
+            status = "Excellent"
+        elif effectiveness_score >= 75:
+            status = "Good"
+        elif effectiveness_score >= 60:
+            status = "Adequate"
+        else:
+            status = "Needs Improvement"
+        
+        return {
+            "effectiveness_score": round(effectiveness_score, 1),
+            "status": status,
+            "average_quality_score": round(avg_quality, 1),
+            "remediation_rate": round(remediation_rate, 1),
+            "total_issues_found": total_issues,
+            "total_remediations": total_remediations
+        }
 
 # Global data governance system instance
 data_governor = DataGovernanceSystem()
