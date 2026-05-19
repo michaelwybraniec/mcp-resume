@@ -44,15 +44,19 @@ class FallbackResumeService:
             return {
                 "personal": {
                     "name": "Michael Wybraniec",
-                    "title": "Senior Full-Stack Developer & AI Specialist",
-                    "summary": "Experienced full-stack developer with 10+ years of international experience."
+                    "title": "Product Engineer · Software Architecture · Data & AI",
+                    "summary": "Experienced full-stack developer with 10+ years of international experience.",
+                    "profiles": [],
                 },
                 "experience": [],
                 "skills": {},
                 "education": [],
                 "projects": [],
                 "achievements": [],
-                "industries": []
+                "industries": [],
+                "certificates": [],
+                "recommendations": [],
+                "career_pillars": [],
             }
     
     def _convert_json_resume_format(self, json_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -60,13 +64,25 @@ class FallbackResumeService:
         
         # Extract personal information
         basics = json_data.get("basics", {})
+        loc = basics.get("location") or {}
+        location_str = loc.get("city") or loc.get("region") or "Global Remote"
         personal = {
             "name": basics.get("name", "Michael Wybraniec"),
-            "title": basics.get("label", "Senior Full-Stack Developer & AI Specialist"),
-            "location": basics.get("location", {}).get("city", "Global Remote"),
+            "title": basics.get("label", "Product Engineer · Software Architecture · Data & AI"),
+            "location": location_str,
             "email": basics.get("email", ""),
             "website": basics.get("url", ""),
-            "summary": basics.get("summary", "")
+            "phone": basics.get("phone", ""),
+            "summary": basics.get("summary", ""),
+            "profiles": [
+                {
+                    "network": p.get("network", ""),
+                    "username": p.get("username", ""),
+                    "url": p.get("url", ""),
+                }
+                for p in basics.get("profiles", [])
+                if p.get("url")
+            ],
         }
         
         # Extract work experience
@@ -144,41 +160,52 @@ class FallbackResumeService:
             if "e-commerce" in desc.lower():
                 industries.add("E-commerce & Retail")
         
-        # Extract recommendations (support both 'recommendations' and 'references')
+        def _append_recommendation(entry_list, rec):
+            if isinstance(rec, str):
+                entry_list.append({"reference": rec})
+                return
+            if not isinstance(rec, dict):
+                return
+            text = rec.get("reference") or rec.get("text") or rec.get("content")
+            name = rec.get("name")
+            if not (text or name):
+                return
+            entry = {}
+            if text:
+                entry["reference"] = text
+            if name:
+                entry["name"] = name
+            for field in ("position", "relationship", "date"):
+                if rec.get(field):
+                    entry[field] = rec[field]
+            entry_list.append(entry)
+
         recommendations = []
-        # 1. 'recommendations' field (array of strings or objects)
-        if "recommendations" in json_data:
-            recs = json_data["recommendations"]
-            if isinstance(recs, list):
-                for rec in recs:
-                    if isinstance(rec, str):
-                        recommendations.append({"reference": rec})
-                    elif isinstance(rec, dict):
-                        text = rec.get("reference") or rec.get("text") or rec.get("content")
-                        name = rec.get("name")
-                        if text or name:
-                            entry = {}
-                            if text:
-                                entry["reference"] = text
-                            if name:
-                                entry["name"] = name
-                            recommendations.append(entry)
-        # 2. 'references' field (array of objects with 'reference' key)
-        if "references" in json_data:
-            refs = json_data["references"]
-            if isinstance(refs, list):
-                for ref in refs:
-                    if isinstance(ref, dict):
-                        text = ref.get("reference") or ref.get("text") or ref.get("content")
-                        name = ref.get("name")
-                        if text or name:
-                            entry = {}
-                            if text:
-                                entry["reference"] = text
-                            if name:
-                                entry["name"] = name
-                            recommendations.append(entry)
-        
+        seen_names = set()
+        for source_key in ("recommendations", "references"):
+            recs = json_data.get(source_key)
+            if not isinstance(recs, list):
+                continue
+            for rec in recs:
+                name = rec.get("name") if isinstance(rec, dict) else None
+                if name and name in seen_names:
+                    continue
+                if name:
+                    seen_names.add(name)
+                _append_recommendation(recommendations, rec)
+
+        certificates = []
+        for cert in json_data.get("certificates", []):
+            if isinstance(cert, dict) and cert.get("name"):
+                certificates.append({
+                    "name": cert.get("name", ""),
+                    "date": cert.get("date", ""),
+                    "url": cert.get("url", ""),
+                })
+
+        meta = json_data.get("meta") or {}
+        career_pillars = meta.get("careerPillars") or []
+
         return {
             "personal": personal,
             "experience": experience,
@@ -187,7 +214,9 @@ class FallbackResumeService:
             "projects": projects,
             "achievements": achievements[:15],  # Limit to top 15
             "industries": list(industries),
-            "recommendations": recommendations
+            "recommendations": recommendations,
+            "certificates": certificates,
+            "career_pillars": career_pillars,
         }
     
     def get_full_resume(self) -> Dict[str, Any]:
@@ -225,6 +254,18 @@ class FallbackResumeService:
     def get_recommendations(self) -> Dict[str, Any]:
         """Get recommendations (from both 'recommendations' and 'references')"""
         return {"recommendations": self.data.get("recommendations", [])}
+
+    def get_certificates(self) -> Dict[str, Any]:
+        """Get professional certificates"""
+        return {"certificates": self.data.get("certificates", [])}
+
+    def get_profiles(self) -> Dict[str, Any]:
+        """Get social and professional profile links"""
+        return {"profiles": self.data.get("personal", {}).get("profiles", [])}
+
+    def get_career_pillars(self) -> Dict[str, Any]:
+        """Get career pillar summaries (software, product, data, AI)"""
+        return {"career_pillars": self.data.get("career_pillars", [])}
     
     def search_resume(self, query: str) -> Dict[str, Any]:
         """Search through resume data"""

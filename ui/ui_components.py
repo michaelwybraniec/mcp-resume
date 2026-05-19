@@ -5,7 +5,7 @@ UI Components and styling for the Streamlit application
 import streamlit as st
 import datetime
 from typing import List, Dict, Any
-from core.models import ChatMessage
+from resume_core.models import ChatMessage
 
 class UIComponents:
     """Handles UI components and styling"""
@@ -256,7 +256,7 @@ class UIComponents:
                 
                 # AI Act Compliance: Human Oversight Mechanism (Article 14)
                 if message["role"] == "assistant":
-                    col1, col2, col3 = st.columns([1, 1, 4])
+                    col1, col2, col3 = st.columns([1, 1, 20])
                     with col1:
                         if st.button("👍", key=f"thumbs_up_{idx}", help="Response is accurate"):
                             st.toast("✅ Response marked as accurate", icon="👍")

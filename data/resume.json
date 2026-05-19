@@ -1,29 +1,44 @@
 {
   "basics": {
     "name": "Michael Wybraniec",
-    "label": "10 Years’ Experience · Software Engineer · Architecture · MCP Servers & Coding Agents",
+    "label": "Product Engineer · Software Architecture · Data & AI · AWP Creator · AIE_C",
     "image": "https://media.licdn.com/dms/image/v2/D4D03AQFfMCJNe-bGQA/profile-displayphoto-shrink_800_800/B4DZdAFfIzH4Ac-/0/1749126870070?e=1754524800&v=beta&t=9o7NFNiNcgzPEpll8Xj372MxELNuzo6wloIq9tTqz3U",
     "email": "michael@one-front.com",
-    "phone": "(+33) 0 XXX XXX XXX",
-    "url": "https://one-front.com",
-    "summary": "With a decade of professional experience spanning the UK 🇬🇧, Spain 🇪🇸, Netherlands 🇳🇱, France 🇫🇷 and Poland 🇵🇱. I bring a unique blend of hands-on full-stack development and strategic software architecture. Over the past seven years, I have delivered scalable, high-performance applications, and for three years, I have architected complex systems that align technical solutions with business goals. As a tech lead, I have driven cross-functional projects in finance, public safety, healthcare, and Web3, leading developer teams and shaping company policies for sustainable growth. I am also a passionate community builder — founding ONE-FRONT and the santeJS JavaScript community — and have shared my expertise at industry conferences. Currently, my focus is on AI-driven development projects, integrating LLMs, Agentic workflows, IDEs, and MCP Servers to drive innovation and build next-generation solutions. To contribute to open-source, I have begun publishing content and code on my website's blog and R&D sections, one-front.com.",
+    "phone": "+33 605 498 301 🇫🇷 / +34 666 374 486 🇪🇸",
+    "url": "https://www.one-front.com",
+    "summary": "Product Engineer (Software Architecture, Agentic AI, Data) with ten years in software product delivery, engineering strategy, and cross-functional leadership. International experience across public safety, insurance, finance, healthcare, life sciences, and AI. Comfortable bridging technical teams, product owners, and business stakeholders—from discovery to architecture and delivery. Author of the Agentic Workflow Protocol (AWP) for human–AI collaboration aligned with EU AI regulation; co-developed the Universal Data Cleaning Pipeline with AIE_C (Barcelona). Prior Accenture freelance delivery for INTERPOL; founder of ONE-FRONT and santeJS. Focus on modern data platform architecture, responsible agentic delivery, and open R&D (one-front.com/en/rnd).",
     "location": {
-      "city": "",
-      "countryCode": "",
+      "city": "Barcelona (ES), Lyon(FR)",
+      "countryCode": "ES",
       "region": ""
     },
     "profiles": [
       {
         "network": "LinkedIn",
+        "username": "",
+        "url": "https://www.linkedin.com/in/one-front/"
+      },
+      {
+        "network": "GitHub",
         "username": "michaelwybraniec",
-        "url": "https://www.linkedin.com/in/michaelwybraniec"
+        "url": "https://github.com/michaelwybraniec"
+      },
+      {
+        "network": "Medium",
+        "username": "@michauwybraniec",
+        "url": "https://medium.com/@michauwybraniec"
+      },
+      {
+        "network": "Spotify",
+        "username": "spotify: https://bit.ly/3YopZF8",
+        "url": "https://bit.ly/3YopZF8"
       }
     ]
   },
   "work": [
     {
-      "name": "ONE-FRONT (Freelance · AI-Driven Agentic Development)",
-      "position": "Full-Stack Developer · Architect",
+      "name": "ONE-FRONT",
+      "position": "Product Engineer · Full-Stack Developer · Architect",
       "url": "https://one-front.com",
       "imageUrls": [
         "/projects/yogamos-dark-1.png",
@@ -32,22 +47,24 @@
       ],
       "startDate": "2021-03-01",
       "endDate": "2025-04-01",
-      "summary": "Delivered high-impact solutions across finance, insurance, public safety, non-profit, and Web3 sectors. Led international teams and end-to-end projects focused on building reliable, scalable, and maintainable systems using modern web technologies and cloud platforms.",
+      "summary": "Delivered high-impact solutions across finance, insurance, public safety, non-profit, and Web3 sectors. Led international teams and end-to-end projects focused on building reliable, scalable, and maintainable systems using modern web technologies and cloud platforms. Created and implemented the Agentic Workflow Protocol (AWP) to orchestrate human-AI collaboration, enabling 10x faster backlog management while ensuring AI Act compliance and security-first design.",
       "highlights": [
-        "Built and maintained MCP Server for project documentation, using TypeScript and open-source language models to help organize information.",
+        "Created the Agentic Workflow Protocol (AWP) — a complete methodology for orchestrating human-AI collaboration in software development, enabling 10x faster backlog management, automated story generation, and self-updating documentation.",
+        "Built and maintained MCP Server for project documentation, using TypeScript and open-source language models to help organize information and enable AI-enhanced workflows.",
+        "Orchestrated human-AI collaboration workflows, ensuring AI Act compliance, security-first AI integration patterns, and effective oversight mechanisms for AI-enhanced development teams.",
         "Created a multilingual blog portfolio with error monitoring and easy content management, including French language support.",
         "Led the development of a platform for an Eco Village in France, managing bookings, donations, and events with Vue 3, Laravel, and Stripe.",
         "Designed insurance web applications for SanteVet in France, Spain, and Italy, using Vue, Nuxt, Contentful, and AWS, and helped improve deployment processes.",
         "Developed a secure graph analysis tool for international police, using React, Elasticsearch, and SQL to provide data visualization and fast search.",
         "Built a Web3 NFT marketplace for Aventus in the UK, using Ethereum smart contracts, React, and Node.js to enable online bidding.",
         "Led the creation of a finance and reporting platform with QuickBooks integration and business intelligence tools, helping improve financial forecasts.",
-        "Tech Stack: TS · Vue · React · Node · GraphQL · Sentry · Nuxt · CMS · MCP"
+        "Tech Stack: TS · Vue · React · Node · GraphQL · Sentry · Nuxt · CMS · MCP · AWP · Agentic Workflows"
       ],
-      "description": "System Architecture and Hands-on development, integrating modern frameworks, cloud services, and automation tools to improve performance, maintainability, and developer productivity. Projects included international deployments and multilingual support, with a strong emphasis on quality and collaboration across business and tech teams.\n\n\nKey responsibilities:\n •\tDesigned secure, scalable, and modular system architectures for client platforms\n •\tLed development with TypeScript, Vue, Nuxt, React, Laravel, Node.js, and AWS\n •\tDirected santeJS, an international dev community focused on tech debt prevention\n •\tIntegrated AI and open-source tools to enhance docs and dev workflows\n • Delivered multilingual, multi-regional web platforms with full i18n support\n • Collaborated with stakeholders to align delivery with business strategy\n\n\nKey Projects:\n • Eco Village SaaS (🇫🇷): Booking, donations, and event platform — Vue, Laravel, Stripe\n • Insurance SaaS (🇫🇷 🇪🇸): Multilingual FR/ES/IT applications — Nuxt, AWS, Contentful\n • Law Enforcement Tool (🇫🇷 🇺🇸): Graph visualizations — React, Elasticsearch\n • Finance & BI App (🇫🇷): QuickBooks integration + custom dashboards\n • NFT Marketplace (🇬🇧): Real-time bidding — Ethereum, React, Node.js\n • Multilingual Blog CMS (🇬🇧 🇫🇷 🇪🇸): Headless CMS with support and error tracking",
+      "description": "Product Engineer role: Orchestrating human-AI collaboration, ensuring AI Act compliance, and delivering value 10x faster through agentic workflows. System Architecture and Hands-on development, integrating modern frameworks, cloud services, and automation tools to improve performance, maintainability, and developer productivity. Projects included international deployments and multilingual support, with a strong emphasis on quality, compliance, and collaboration across business and tech teams.\n\n\nKey responsibilities:\n •\tCreated and implemented Agentic Workflow Protocol (AWP) for human-AI collaboration orchestration\n •\tDesigned secure, scalable, and modular system architectures for client platforms\n •\tLed development with TypeScript, Vue, Nuxt, React, Laravel, Node.js, and AWS\n •\tDirected santeJS, an international dev community focused on tech debt prevention\n •\tIntegrated AI and open-source tools to enhance docs and dev workflows\n •\tEnsured AI Act compliance and security-first design in AI-enhanced development\n •\tDelivered multilingual, multi-regional web platforms with full i18n support\n •\tCollaborated with stakeholders to align delivery with business strategy\n\n\nKey Projects:\n • Agentic Workflow Protocol (AWP): Complete methodology for human-AI collaboration\n • Eco Village SaaS (🇫🇷): Booking, donations, and event platform — Vue, Laravel, Stripe\n • Insurance SaaS (🇫🇷 🇪🇸): Multilingual FR/ES/IT applications — Nuxt, AWS, Contentful\n • Law Enforcement Tool (🇫🇷 🇺🇸): Graph visualizations — React, Elasticsearch\n • Finance & BI App (🇫🇷): QuickBooks integration + custom dashboards\n • NFT Marketplace (🇬🇧): Real-time bidding — Ethereum, React, Node.js\n • Multilingual Blog CMS (🇬🇧 🇫🇷 🇪🇸): Headless CMS with support and error tracking",
       "location": "Paris & Lyon, FR 🇫🇷 • London, UK 🇬🇧 • Sicuani, PE 🇵🇪"
     },
     {
-      "name": "SanteVet (Freelance · Micro-services, Domain-Driven Design)",
+      "name": "SanteVet",
       "position": "Software Architect & Frontend Strategy Lead",
       "url": "https://www.santevet.com/",
       "startDate": "2022-07-01",
@@ -57,11 +74,11 @@
         "/projects/payvet-bright.png",
         "/projects/ripjar-bright-1.png"
       ],
-      "summary": "As Software Architect and Frontend Strategy Lead at SanteVet, I drove a pivotal multinational transformation of the company’s frontend architecture, establishing a foundation for advanced, scalable, and maintainable product development across France 🇫🇷, Spain 🇪🇸, and Italy 🇮🇹.",
+      "summary": "As Software Architect and Frontend Strategy Lead at SanteVet, I drove a pivotal multinational transformation of the company's frontend architecture, establishing a foundation for advanced, scalable, and maintainable product development across France 🇫🇷, Spain 🇪🇸, and Italy 🇮🇹.",
       "highlights": [
         "Planned and executed company-wide ONE-FRONT Engineering Strategy (2022–2024) for scalable frontend development.",
         "Unified frontend architecture across regions (France, Spain, Italy) with shared components and Contentful CMS integration.",
-        "Founded and led ‘santeJS’, SanteVet’s internal JavaScript community focused on quality, innovation, and collaboration.",
+        "Founded and led 'santeJS', SanteVet's internal JavaScript community focused on quality, innovation, and collaboration.",
         "Guided cross-functional DDD teams through architectural decision-making and technical migrations.",
         "Defined a global frontend performance and refactoring roadmap to improve reliability and maintainability.",
         "Defined and enforced Frontend Security Policy v1 (2023), improving system resilience and reducing risk.",
@@ -72,7 +89,7 @@
       "description": "Key Responsibilities:\n • Architected a unified, modular frontend system by migrating to one technology with a component bank. \n • Design (DDD) and microservices principles, enabling significant scalability and maintainability across all regions.\n • Defined and implemented ONE-FRONT Engineering Strategy (2022–2023). This strategy optimised performance, integrated Shift Left testing, and established robust migration and frontend security policies.\n • Directed internal JavaScript community (\"santeJS\"), promoting knowledge sharing and continuous improvement among engineers.\n • Designed and enforced Frontend Security Policy v1 (2023), boosting system resilience and data protection.\n • Drove architectural decisions and ensured the strategic alignment of technical delivery.\n • Conducted technical interviews supporting team growth and capabilities.\n\nTech Stack: TypeScript, Vue 2 & 3, Nuxt 2 Bridge & Nuxt 3, Pinia, Contentful, AWS (Lambda, S3, Amplify, Cognito, REST & GraphQL APIs)."
     },
     {
-      "name": "Interpol (Freelance via Accenture & Asenium · Ripjar Solutions)",
+      "name": "Interpol",
       "position": "Full-Stack Developer · Security & Intelligence Systems",
       "url": "https://ripjar.com/",
       "startDate": "2021-07-01",
@@ -95,7 +112,7 @@
       "description": "Key Responsibilities:\n • Developed and maintained a secure, scalable full-stack platform used by European law enforcement agencies.\n • Designed and implemented modular front- and back-end components for intelligence data processing.\n • Built custom workflows and graph-based interfaces to support analysts in real-time decision-making.\n • Integrated hybrid infrastructure (cloud + on-prem) and supported data lake connectivity.\n • Ensured security, compliance, and operational resilience in all development pipelines.\n • Collaborated with international teams to support deployments, training, and knowledge transfer.\n\nTech Stack: TypeScript, React, Elasticsearch, GraphQL, SQL, NLP, hybrid cloud/on-prem infrastructure."
     },
     {
-      "name": "Inpart (Biopgarmacy Lead Discovery)",
+      "name": "Inpart",
       "position": "Frontend Developer · Cross-Platform Web & Mobile",
       "url": "https://www.inpart.io/",
       "startDate": "2020-03-01",
@@ -107,7 +124,7 @@
       ],
       "summary": "Contributed to the design and development of 'Lead Space' — a cross-platform partnering platform for the pharma and innovation industry. Focused on building fast, responsive, and intuitive UIs using modern frontend frameworks. Collaborated closely with product teams to translate user feedback into meaningful product improvements. Delivered consistent performance across web and mobile using Vue and Quasar.",
       "highlights": [
-        "Developed and maintained ‘Lead Space’, a lead discovery platform for global innovation partnerships in pharma and research.",
+        "Developed and maintained 'Lead Space', a lead discovery platform for global innovation partnerships in pharma and research.",
         "Built responsive, mobile-ready UIs using Vue.js, Quasar Framework, and TypeScript for seamless web-to-mobile experiences.",
         "Improved performance and accessibility, ensuring consistent UX across devices and platforms.",
         "Collaborated in cross-functional agile teams, turning user needs into polished frontend components and features.",
@@ -119,7 +136,7 @@
       "location": "Lyon, FR 🇫🇷"
     },
     {
-      "name": "Uplab · eCommerce Saas",
+      "name": "Uplab",
       "position": "Full-Stack Developer · Financial SaaS & API Integrations",
       "url": "https://www.labelium.com/",
       "startDate": "2019-08-01",
@@ -144,7 +161,7 @@
       "location": "Lyon, FR 🇫🇷"
     },
     {
-      "name": "Squirrel – Agence Digitale",
+      "name": "Squirrel",
       "position": "Full-Stack Developer · Healthcare Scheduling Platform",
       "url": "https://squirrel.fr/",
       "startDate": "2019-02-01",
@@ -204,14 +221,14 @@
       "highlights": [
         "Automated Microsoft Excel database workflows for internal reporting and publication management.",
         "Reduced manual work for editorial and finance teams through efficient VBA scripting and logic improvements.",
-        "Delivered lightweight reporting tools tailored to the client’s oncology content pipeline.",
+        "Delivered lightweight reporting tools tailored to the client's oncology content pipeline.",
         "Supported a remote team with hands-on, fast-delivery prototyping for process optimization.",
         "Client: LeCancer.fr – French premium publisher in oncology field."
       ],
       "location": "Amsterdam, NL 🇳🇱"
     },
     {
-      "name": "Echo-U Ltd · Permanent",
+      "name": "Echo-U",
       "position": "Technical Support & BI",
       "startDate": "2016-08",
       "endDate": "2017-10",
@@ -244,7 +261,7 @@
         "/projects/payvet-bright.png",
         "/projects/ripjar-bright-1.png"
       ],
-      "summary": "Led hardware account forecasting and reporting across Cisco’s global supply chain, supporting logistics and partner enablement across EMEAR, APAC, and the US. Promoted from Logistics & Operations for driving impactful process improvements and high-value metrics.",
+      "summary": "Led hardware account forecasting and reporting across Cisco's global supply chain, supporting logistics and partner enablement across EMEAR, APAC, and the US. Promoted from Logistics & Operations for driving impactful process improvements and high-value metrics.",
       "highlights": [
         "Managed Tier 2 hardware distribution metrics, forecasting, and partner training across global regions.",
         "Improved hardware sales forecasting by +20% in Q1 2016, generating $300K in additional revenue.",
@@ -260,10 +277,11 @@
   "volunteer": [
     {
       "organization": "Non-profit Eco Village",
-      "position": "CTO · Digital Platform for Booking, Donations & Events",
+      "position": "Project Lead (chef de projet) · Digital Platform for Booking, Donations & Events",
       "url": "https://newmayapur.com/",
+      "location": "France 🇫🇷",
       "startDate": "2024-09-01",
-      "endDate": "2024-05-01",
+      "endDate": "2025-05-01",
       "imageUrls": [
         "/projects/yogamos-dark-1.png",
         "/projects/payvet-bright.png",
@@ -471,26 +489,22 @@
   ],
   "skills": [
     {
-      "name": "Core Expertise",
-      "level": "75",
+      "name": "AI TECH LEAD",
+      "level": "85",
       "keywords": [
-        "Full-Stack",
-        "JavaScript",
-        "TypeScript",
-        "Vue 3",
-        "Nuxt 3",
-        "React",
-        "Next.js",
-        "Node.js",
-        "Migration",
-        "Architecture",
+        "Product Engineer",
+        "Agentic Workflow Protocol (AWP)",
+        "Human-AI Collaboration Orchestration",
+        "AI Risk Classification",
+        "Agentic Backlog Management",
+        "AI-Enhanced Product Management",
+        "Product Roadmap Planning",
+        "Backlog Prioritization",
+        "Requirements Gathering",
+        "MVP Definition",
+        "Stakeholder Communication",
         "Agile",
-        "API",
-        "REST",
-        "GraphQL",
-        "Swagger",
-        "Postman",
-        "OpenAPI"
+        "Scrum"
       ]
     },
     {
@@ -511,7 +525,67 @@
         "Anthropic Claude",
         "Function Calling",
         "Tool Use",
-        "Multi-Agent Coordination"
+        "Multi-Agent Coordination",
+        "Agentic Workflows",
+        "RAG",
+        "A2A API",
+        "Token Management",
+        "Cost Optimization"
+      ]
+    },
+    {
+      "name": "Data Engineering",
+      "level": "50",
+      "keywords": [
+        "Python",
+        "SQL",
+        "Apache",
+        "Data Pipelines",
+        "ETL",
+        "Data Modeling",
+        "Data Cleaning",
+        "Data Analysis",
+        "Pandas",
+        "Production Planning"
+      ]
+    },
+    {
+      "name": "Core Expertise",
+      "level": "75",
+      "keywords": [
+        "Full-Stack",
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "SQL",
+        "Vue 3",
+        "Nuxt 3",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Migration",
+        "Architecture",
+        "Agile",
+        "API",
+        "REST",
+        "GraphQL",
+        "Swagger",
+        "Postman",
+        "OpenAPI"
+      ]
+    },
+    {
+      "name": "Languages & API Standards",
+      "level": "75",
+      "keywords": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "SQL",
+        "REST",
+        "GraphQL",
+        "OpenAPI",
+        "Swagger"
       ]
     },
     {
@@ -519,6 +593,8 @@
       "level": "75",
       "keywords": [
         "Node.js",
+        "Python",
+        "SQL",
         "Express",
         "Fastify",
         "NestJS",
@@ -579,7 +655,12 @@
         "Responsive Web Design",
         "Web Components",
         "PWA",
-        "Cross-browser Development"
+        "Cross-browser Development",
+        "Nuxt",
+        "React",
+        "Next",
+        "TypeScript",
+        "Storybook"
       ]
     },
     {
@@ -654,13 +735,43 @@
       ]
     },
     {
-      "name": "Data Engineering",
-      "level": "50",
+      "name": "Security & Compliance",
+      "level": "80",
       "keywords": [
-        "Apache",
-        "Data Pipelines",
-        "ETL",
-        "Data Modeling"
+        "AI Act Compliance",
+        "GDPR Compliance",
+        "Security-First AI Design",
+        "JWT",
+        "OAuth 2.0",
+        "TLS/SSL",
+        "CORS"
+      ]
+    },
+    {
+      "name": "Soft Skills & Leadership",
+      "level": "90",
+      "keywords": [
+        "Technical Leadership",
+        "Cross-functional Collaboration",
+        "Stakeholder Management",
+        "Mentoring & Coaching",
+        "Engineering Strategy",
+        "Team Building",
+        "Remote Team Management",
+        "Workshop Facilitation",
+        "Technical Communication",
+        "Business–Technical Bridging",
+        "Problem-Solving",
+        "Conflict Resolution",
+        "Proactive Ownership",
+        "Adaptability",
+        "Continuous Learning",
+        "Code Review Culture",
+        "Knowledge Sharing",
+        "Discovery & Requirement Gathering",
+        "Backlog Management",
+        "Sprint Planning",
+        "Delivery Oversight"
       ]
     }
   ],
@@ -685,127 +796,247 @@
   "references": [
     {
       "name": "Marianne Guerrero",
-      "reference": "I had the pleasure to work with Michael. I collaborated with him as a Software Architect. He's very efficient on technical strategic vision. Thanks to his great JavaScript knowledge, my team was able to build a more scalable project with clear steps toward our goal. Moreover, he's a strong facilitator who understands how to bridge business needs and technical constraints."
+      "reference": "I had the pleasure to work with Michael. I collaborate with him as a Software Architect. He's verry efficient on technical strategic vision. Thanks to his great JavaScript knwoledges my team was able to have a more scalable project for the future with real steps to reach our final goal. Moreover he's a strong facilitator and know how to manage links between business need and technical limitations.",
+      "date": "2024-06-26",
+      "relationship": "Michael was senior to Marianne but didn't manage Marianne directly",
+      "position": "Business Analyst || PSPO I"
     },
     {
       "name": "Juan Burgos Leon",
-      "reference": "Michael is deeply committed to the projects he works on, demonstrating dynamism and a proactive approach in finding solutions. His profound expertise in technology and architecture ensures he stays abreast of the latest technological advancements."
+      "reference": "Michael is deeply committed to the projects he works on, demonstrating dynamism and a proactive approach in finding solutions. His profound expertise in technology and architecture ensures he stays abreast of the latest technological advancements.",
+      "date": "2024-06-25",
+      "relationship": "Juan managed Michael directly",
+      "position": "Directeur de projets chez Avanade"
     },
     {
       "name": "Ignas Tornau",
-      "reference": "I’ve had the pleasure of working with Michael at SantéVet when he was our Software Architect. He consistently demonstrated a positive attitude and genuine passion for his work. His dedication to enhancing the technical teams across domains was exceptional. He encouraged team members to speak up about issues, leading to tangible improvements in workflows. He initiated dedicated knowledge-sharing sessions, which improved our tech stack and collaboration. He’s an overall great person to work with — we need more like him."
+      "reference": "I've had the please of working with Michael at SantéVet when he was our software Architect, he's someone who consistently demonstrated a positive attitude and genuine passion for his work. His remarkable dedication to continually enhancing the technical teams across our diverse domains stands out as one of his many exceptional skills. Moreover, he always made a great effort to make people speak-up about issues they might be facing when working on the technical day-to-day tasks. This has evolved into many improvements that have shaped the ways of working within the company. He opened the door to dedicated knowledge sharing sessions within our teams which resulted in many improvements overall in our tech stack as well as our ways of working while fostering collaboration. He's an overall great person to work with, we need more of them :)",
+      "date": "2024-06-22",
+      "relationship": "Michael was senior to Ignas but didn't manage Ignas directly",
+      "position": "Freelance Full Stack Web Developer"
     },
     {
       "name": "Francisco Carlos López Jurado",
-      "reference": "I just had the opportunity to work with Michael for 6 months, and it was a nice experience. We were able to work together easily, even though we were remote. His knowledge about the frontend side, good practices, clean code, and architecture design is massive and really useful. I would recommend him without any doubt for all challenges a technical tribe can face. He has great communication skills to share his ideas clearly in an understandable way for everybody. His abilities for leadership are trustable too."
+      "reference": "I just had the opportunity to work with Michael 6 months but it was a nice experience. We were able to work together easily although we were on remote. His knowledge about frontend side, good practises, clean code and architecture design is massive and really useful. I would recommend him without any doubt for all challenges a technical tribe can face. He has great communication skills to share his ideas clearly in an understandable way for everybody. His abilities for leadership are trustable too.",
+      "date": "2024-06-20",
+      "relationship": "Francisco Carlos worked with Michael on the same team",
+      "position": "Web Engineering Manager @ Leadtech"
     },
     {
       "name": "Marcus Wiseman",
-      "reference": "I had the pleasure of working with Michael, on our team he served as a Software Architect. Michael consistently demonstrated exceptional technical prowess and strategic vision, significantly impacting our projects and overall success. His deep knowledge of JavaScript allowed him to translate complex business requirements into robust, scalable solutions. Michael's innovative mindset and ability to stay ahead of emerging trends provided us with a competitive edge. In addition to his technical expertise, Michael is an excellent leader and communicator, effectively conveying complex concepts to non-technical stakeholders and fostering a culture of continuous learning within our team. His dedication and problem-solving skills were crucial in meeting project deadlines and navigating challenges. I highly recommend Michael to any organization seeking a visionary and skilled Software Architect. He will undoubtedly bring the same level of excellence and innovation to any future endeavor."
+      "reference": "I had the pleasure of working with Michael, on our team he served as a Software Architect. Michael consistently demonstrated exceptional technical prowess and strategic vision, significantly impacting our projects and overall success. His deep knowledge of JavaScript allowed him to translate complex business requirements into robust, scalable solutions. Michael's innovative mindset and ability to stay ahead of emerging trends provided us with a competitive edge. In addition to his technical expertise, Michael is an excellent leader and communicator, effectively conveying complex concepts to non-technical stakeholders and fostering a culture of continuous learning within our team. His dedication and problem-solving skills were crucial in meeting project deadlines and navigating challenges. I highly recommend Michael to any organization seeking a visionary and skilled Software Architect. He will undoubtedly bring the same level of excellence and innovation to any future endeavor.",
+      "date": "2024-06-20",
+      "relationship": "Michael was senior to Marcus but didn't manage Marcus directly",
+      "position": "Vue, Nuxt, Node, Frontend developer, JavaScript developer, Web developer"
     },
     {
       "name": "Luiz Lima",
-      "reference": "With great pleasure, I recommend Michael as a Software Architect who possesses outstanding expertise in JavaScript (Node.js, Vue.js) in conjunction with AWS solutions. I have personally experienced his superb leadership, acute perspicacity, and steadfast dedication to providing clients with outstanding results. He has a wonderful capacity for motivating and inspiring his team members, creating a cooperative atmosphere where each person is encouraged to offer their best effort. Leading by example, Michael exhibits an infectious work ethic and commitment to excellence. His ability to design reliable and scalable solutions is impressive, and his meticulous attention to detail guarantees that every component of the software satisfies the highest requirements. We have collaborated on a few projects together."
+      "reference": "With great pleasure, I recommend Michael as a Software Architect who possesses outstanding expertise in JavaScript (Node.js, Vue.js) in conjunction with AWS solutions. I have personally experienced their superb leadership, acute perspicacity, and steadfast dedication to providing clients with outstanding results. He has a wonderful capacity for motivating and inspiring his team members, creating a cooperative atmosphere where each person is encouraged to offer their best effort. Leading by example, Michael exhibits an infectious work ethic and commitment to excellence. Their ability to design reliable and scalable solutions is impressive, and their meticulous attention to detail guarantees that every component of the software satisfies the highest requirements. We have collaborated on a few projects together.",
+      "date": "2024-03-11",
+      "relationship": "Luiz worked with Michael on the same team",
+      "position": "Enterprise Solutions Architect | Solutions Engineer | Customer Success Architect"
     },
     {
       "name": "Julien SOUQUES",
-      "reference": "Michael consistently demonstrates exceptional support and guidance within our team, offering insights and expert advice whenever needed. His contributions have enhanced our projects and fostered a collaborative and dynamic team environment."
+      "reference": "Michael consistently demonstrates exceptional support and guidance within our team, offering insights and expert advice whenever needed. His contributions have enhanced our projects and fostered a collaborative and dynamic team environment.",
+      "date": "2024-03-08",
+      "relationship": "Julien worked with Michael but on different teams",
+      "position": "Lead Product Manager"
     },
     {
       "name": "Hooman Seyfi",
-      "reference": "A team player, someone direct, innovative, open to new ideas, fun to work with. I strongly recommend him but I doubt he needs it knowing his professional skills and experience."
+      "reference": "A team player, someone direct, innovative, open to new ideas, fun to work with. I strongly recommend him but I doubt he needs it knowing his professional skills and experience.",
+      "date": "2023-07-14",
+      "relationship": "Hooman worked with Michael on the same team",
+      "position": "Senior Quality Assurance Engineer @ Glooko | Master's in Computer Science"
     },
     {
       "name": "Jérémy Banchet",
-      "reference": "Michael is committed to the projects he works on, dynamic and force of proposal to find solutions. Strong technological and architecture background, up to date on the last tech trends. Dziękuję Ci!"
+      "reference": "Michael is comitted to the projects he works on, dynamic and force of proposal to find solutions. Strong technological and architecture background, up to date on the last tech trends. Dziękuję Ci !",
+      "date": "2022-04-25",
+      "relationship": "Jérémy was Michael's client",
+      "position": "Data Scientist | Data & AI Business Solutions Lead"
     },
     {
       "name": "Chen WANG",
-      "reference": "I have been working with Michael Wybraniec for more than one year, Michael is dedicated to providing high quality work, and keeps up-to-date on the latest technologies. He is open minded and easy to get along with. Michael's potential is limitless, he can motivate the entire company by organizing code challenges and other activities, to show that software developers are not just geeks. I think Michael can be fully qualified as a freelance fullstack developer."
+      "reference": "I have been working with Michael Wybraniec for more than one year, Michael is dedicated to providing high quality work, and keeps up-to-date on the latest technologies. He is open minded and easy to get along with. Michael's potential is limitless, he can motivate the entire company by organizing code challenges and other activities, to show that software developers are not just geeks. I think Michael can be fully qualified as a freelance fullstack developer.",
+      "date": "2021-05-11",
+      "relationship": "Chen worked with Michael on the same team",
+      "position": "Lead Software Engineer at Inpart"
     },
     {
       "name": "Ludovic Lecomte",
-      "reference": "Michael is a passionate developer that is always putting himself out there to learn new and interesting technologies and languages 💡 He likes to take on challenges. It's just a shame he's stronger than me on a bike 🚲. I would happily work with him again and believe he would be a strong asset to any web dev team."
+      "reference": "Michael is a passionate developer that is always putting himself out there learn new and interesting technologies and languages 💡 He likes to take on challenges. It's just a shame he's stronger than me on a bike 🚲. I would happily work with him again and believe he would be a strong asset to any web dev team.",
+      "date": "2021-05-11",
+      "relationship": "Ludovic was senior to Michael but didn't manage Michael directly",
+      "position": "Head of Cybersecurity & Senior Lecturer in Healthcare Data Protection and Artificial Intelligence"
     },
     {
       "name": "Elisa Tervo",
-      "reference": "Michael is a team player and I can always come to him when I have a question!"
+      "reference": "Michael is a team player and I can always come to him when I have a question!",
+      "date": "2021-02-03",
+      "relationship": "Elisa worked with Michael on the same team",
+      "position": "Consultante chez Rainbow Partners"
     },
     {
-      "name": "Zhe JIANG, MBA",
-      "reference": "I did not work with Michael directly, but due to his Research and Development challenge initiatives, we have exchanged a few ideas about opportunities and technology directives. Add value? Definitely."
+      "name": "Zhe JIANG, MBA, PMP®",
+      "reference": "I did not work with Michael directly, but due to his Research and Development challenge initiatives, we have exchanged a few ideas about opportunities and technology directives. Add value? Definitely.",
+      "date": "2021-01-28",
+      "relationship": "Zhe worked with Michael but on different teams",
+      "position": "Customer Success Management, Project Management"
     },
     {
       "name": "YASH MAHENDRA JOSHI",
-      "reference": "Michael has solid technical qualities, a wonderful curiosity and passion to learn! He has shown many times that it is possible to find out-of-the-box solutions to real-world problems. His focused attitude as well as his strong communication skills and friendly nature make him an ideal person to have in any team. Keep up the great work Micheal! I highly recommend."
+      "reference": "Michael has solid technical qualities, a wonderful curiosity and passion to learn! He has shown many times that it is possible to find out-of-the-box solutions to real-world problems. His focused attitude as well as his strong communication skills and friendly nature make him an ideal person to have in any team. Keep up the great work Micheal! I highly recommend.",
+      "date": "2020-02-22",
+      "relationship": "YASH MAHENDRA worked with Michael on the same team",
+      "position": "No titles, just learning and relearning constantly"
     },
     {
       "name": "Mohamed Amine Mejri",
-      "reference": "Michael is wonderful to work with. He is a quick learner and always ready to accept new challenges with motivation and a will to progress. I would definitely recommend him."
+      "reference": "Michael is wonderful to work with. He is a quick learner and always ready to accept new challenges with motivation and a will to progress. I would definitely recommend him.",
+      "date": "2020-02-07",
+      "relationship": "Mohamed Amine worked with Michael on the same team",
+      "position": "Data Engineer at Padoa"
     },
     {
       "name": "Sylvain Goumy",
-      "reference": "Michael is a passionate and hard worker. Always puts more effort to deliver what will make our customers satisfied. Able to understand business needs and great person to work with!"
+      "reference": "Michael is a passionate and hard worker. Always puts more effort to deliver what will make our customers satisfied. Able to understand business needs and great person to work with!",
+      "date": "2020-02-06",
+      "relationship": "Sylvain managed Michael directly",
+      "position": "Tech Lead, Senior Software Engineer in Web3 & Entrepreneur"
     },
     {
       "name": "Cedric Garcia",
-      "reference": "J'ai beaucoup aimé travailler avec Michael, son sens de remise en question a permis à l'intégralité de l'équipe de progresser énormément sur différents points, tant en technologie, qu'en mentalité. Toujours le sourire au lèvre et prêt à inviter son équipe à passer un bon moment !"
+      "reference": "J'ai beaucoup aimé travailler avec Michael, son sens de remise en question a permis à l'intégralité de l'équipe de progresser énormément sur différents points, tant en technologie, qu'en mentalité. Toujours le sourire au lèvre et prêt à inviter son équipe à passer un bon moment !",
+      "date": "2020-01-28",
+      "relationship": "Cedric worked with Michael on the same team"
     },
     {
       "name": "Modar HMEDAN",
-      "reference": "Des nombreuses compétences en js. Haut niveau en mongoDB, il est a l'aise avec l'aggregate. En terme de personnalité: Excellente capacité de manager des projets dans le groupe. Travailleur et passioné par l'informatique."
+      "reference": "Des nombreuses compétences en js. Haut niveau en mongoDB, il est a l'aise avec l'aggregate. En terme de personnalité: Excellente capacité de manager des projets dans le groupe. Travailleur et passioné par l'informatique.",
+      "date": "2019-07-22",
+      "relationship": "Modar worked with Michael on the same team"
     },
     {
       "name": "Gael Ferrand",
-      "reference": "Michael is a quick learner and very comitted to the projects he works on. Eager to improve and deliver, and overall a great person to work with. Definitely recommend!"
-    },
-    {
-      "name": "Sylvain Goumy",
-      "reference": "Michael is a passionate and hard worker. Always puts more effort to deliver what will make our customers satisfied. Able to understand business needs and great person to work with!"
-    },
-    {
-      "name": "Cedric Garcia",
-      "reference": "J'ai beaucoup aimé travailler avec Michael, son sens de remise en question a permis à l'intégralité de l'équipe de progresser énormément sur différents points, tant en technologie, qu'en mentalité. Toujours le sourire au lèvre et prêt à inviter son équipe à passer un bon moment !"
-    },
-    {
-      "name": "Modar HMEDAN",
-      "reference": "Des nombreuses compétences en js. Haut niveau en mongoDB, il est a l'aise avec l'aggregate. En terme de personnalité: Excellente capacité de manager des projets dans le groupe. Travailleur et passioné par l'informatique."
-    },
-    {
-      "name": "Gael Ferrand",
-      "reference": "Michael is a quick learner and very comitted to the projects he works on. Eager to improve and deliver, and overall a great person to work with. Definitely recommend!"
+      "reference": "Michael is a quick learner and very comitted to the projects he works on. Eager to improve and deliver, and overall a great person to work with. Definitely recommend!",
+      "date": "2019-07-08",
+      "relationship": "Gael managed Michael directly"
     },
     {
       "name": "Arek Noetzelmann",
-      "reference": "I have known Michael for a long time now, and I can recommend him in all honesty. He is the smartest, most kind and fastest learning guy I know. Given opportunity to progress within a company he will rise up with a speed of light."
+      "reference": "I have known Michael for a long time now, and I can recommend him in all honesty. He is the smartest, most kind and fastest learning guy I know. Given opportunity to progress within a company he will rise up with a speed of light.",
+      "date": "2018-01-08",
+      "relationship": "Arek was Michael's teacher"
     },
     {
       "name": "Bahtiyor Dugamatov",
-      "reference": "Michael has unique ability to work and adapt to any business environment. He integrated quite well in our diverse environment and was well spotted for his unique out of box thinking on business development and strategy. He also gave us some valuable insight on various ideas, which created some new opportunities in our complex business environment. I would highly recommend Michael, for his consistency in delivering desired results!"
+      "reference": "Michael has unique ability to work and adapt to any business environment. He integrated quite well in our diverse environment and was well spotted for his unique out of box thinking on business development and strategy. He also gave us some valuable insight on various ideas, which created some new opportunities in our complex business environment. I would highly recommend Michael, for his consistency in delivering desired results!",
+      "date": "2017-11-09",
+      "relationship": "Bahtiyor worked with Michael on the same team",
+      "position": "Digital Customer experience Manager at Cisco"
     },
     {
       "name": "Marta BialobrzeskaKrasteva",
-      "reference": "Michael is an excellent team player. He is hardworking, well organized and proactive person, always ready to share his knowledge and experience. I feel confident in saying that he is capable of handling any situation with thoughtfulness and maturity. He is result oriented and responsible employee always ready to put all his energy and time to accomplish KPI's targets. I highly recommend Michael for any position or endeavor."
+      "reference": "Michael is an excellent team player. He is hardworking, well organized and proactive person, always ready to share his knowledge and experience. I feel confident in saying that he is capable of handling any situation with thoughtfulness and maturity. He is result oriented and responsible employee always ready to put all his energy and time to accomplish KPI's targets. I highly recommend Michael for any position or endeavor.",
+      "date": "2017-11-07",
+      "relationship": "Marta worked with Michael on the same team",
+      "position": "Renewals Manager / CX Customer Experience at Cisco"
     },
     {
       "name": "Subhash Shankar",
-      "reference": "Michael is a very committed and knowledgeable professional. He has excellent domain knowledge and is very good in building rapport with all his stakeholders. He has the drive to excel in any role and will be an asset in any organization."
+      "reference": "Michael is a very committed and knowledgeable professional. He has excellent domain knowledge and is very good in building rapport with all his stakeholders. He has the drive to excel in any role and will be an asset in any organization.",
+      "date": "2017-10-27",
+      "relationship": "Subhash was Michael's client",
+      "position": "Customer Experience Leader managing Global Teams"
     },
     {
       "name": "Frederik Bekker",
-      "reference": "I worked with Michael during my time at Echo-U and found that he was very helpful to anyone who needed support, regardless of their position or role. Easy to get on with and consistently professional."
+      "reference": "I worked with Michael during my time at Echo-U and found that he was very helpful to anyone who needed support, regardless of their position or role. Easy to get on with and consistently professional.",
+      "date": "2017-10-27",
+      "relationship": "Frederik worked with Michael on the same team"
     },
     {
       "name": "Lucas Hawro",
-      "reference": "Michael is a great team player. I have worked with him on numerous projects and was impressed with his proactivity and 'thinking outside the box' attitude. What stands out is Michael's urgency in trying to contribute and bring value to the Team right from the day one. I have never seen him waiting for the 'perfect time' or 'know it all' point. Michael will make an effort to bring the ideas and go the extra mile to learn quickly and make all business goals a reality. I would recommend Michael as a valuable asset to support any business endeavour - an established company or a startup - as he is a great fit everywhere."
+      "reference": "Michael is a great team player. I have worked with him on numerous projects and was impressed with his proactivity and 'thinking outside the box' attitude. What stands out is Michael's urgency in trying to contribute and bring value to the Team right from the day one. I have never seen him waiting for the 'perfect time' or 'know it all' point. Michael will make an effort to bring the ideas and go the extra mile to learn quickly and make all business goals a reality. I would recommend Michael as a valuable asset to support any business endeavour - an established company or a startup - as he is a great fit everywhere.",
+      "date": "2017-10-24",
+      "relationship": "Lucas worked with Michael on the same team",
+      "position": "Owner at COLORPEAK"
     },
     {
       "name": "Manu Bozza",
-      "reference": "Michael worked as a tester for our internally developed order intake application, WeConnect. During the time he worked in the project he was very thorough and showed great dedication also going the extra mile by providing improvement suggestions and in general looking for ways to add value to his test results. Thanks to his previous experience he seems also very resourceful and during the testing sessions I noticed that he would use his IT knowledge to overcome unexpected challenges that other users would have needed support for. Michael seemed highly motivated and eager to understand the company’s functioning both on high level as in process detail level."
+      "reference": "Michael worked as a tester for our internally developed order intake application, WeConnect. During the time he worked in the project he was very thorough and showed great dedication also going the extra mile by providing improvement suggestions and in general looking for ways to add value to his test results. Thanks to his previous experience he seems also very resourceful and during the testing sessions I noticed that he would use his IT knowledge to overcome unexpected challenges that other users would have needed support for. Michael seemed highly motivated and eager to understand the company's functioning both on high level as in process detail level.",
+      "date": "2017-10-11",
+      "relationship": "Manu worked with Michael on the same team",
+      "position": "Product Owner | Digital Selling | Merchandise & Financial planning | Data mapping, taxonomy and integration"
     },
     {
       "name": "Rebecca Psarri",
-      "reference": "I'd like to recommend Michael as a future employee. I worked with Michael in an international team at Convergys in Newcastle, UK. Our teams shared the goals and office investing enthusiasm and ambitions in developing Cisco accounts in a sales cycle to maximize quarterly revenues. Michael was in a different team but he was always welcome to see us for coffee to chat about the project progress and ideas."
+      "reference": "I'd like to recommend Michael as a future employee. I worked with Michael in an international team at Convergys in Newcastle, UK. Our teams shared the goals and office investing enthusiasm and ambitions in developing Cisco accounts in a sales cycle to maximize quarterly revenues. Michael was in a different team but he was always welcome to see us for coffee to chat about the project progress and ideas.",
+      "date": "2017-10-10",
+      "relationship": "Rebecca worked with Michael but on different teams"
     }
-  ]
+  ],
+  "metadata": {
+    "version": "product",
+    "printFeatures": {
+      "enabled": true,
+      "defaultFilename": "CV - Michael Wybraniec (Jan 2026)",
+      "profiles": {
+        "3-page": {
+          "name": "3-Page",
+          "description": "Summary, Experience, Skills",
+          "sections": [
+            "summary",
+            "skills-section",
+            "work-section"
+          ]
+        },
+        "max-pro": {
+          "name": "Complete",
+          "description": "All sections included",
+          "sections": [
+            "summary",
+            "skills-section",
+            "work-section",
+            "volunteer-section",
+            "certificates-section",
+            "references-section"
+          ]
+        }
+      }
+    },
+    "lastUpdated": "2026-01-15"
+  },
+  "meta": {
+    "sourceVersion": "unified-2026-05",
+    "sources": [
+      "rnd/resume/resume-product.json (primary)",
+      "rnd/resume/resume-mike.json (profiles, ONE-FRONT, skills)",
+      "mcp-resume/data/resume.json (certificates)"
+    ],
+    "careerPillars": [
+      {
+        "id": "software_engineering",
+        "title": "Software Engineering",
+        "summary": "Full-stack development and software architecture across Vue, React, Nuxt, Node.js, Laravel, and AWS. Roles include ONE-FRONT, SanteVet, Interpol/Ripjar, Lead Space, Hydrogen-Rempla, and earlier delivery roles."
+      },
+      {
+        "id": "product",
+        "title": "Product",
+        "summary": "Product Engineer work bridging discovery, backlog, stakeholders, and delivery. Cross-functional leadership at ONE-FRONT and SanteVet; product collaboration on Lead Space (pharma partnering platform)."
+      },
+      {
+        "id": "data",
+        "title": "Data Engineering & Analytics",
+        "summary": "Data analysis, pipelines, Elasticsearch/SQL graph tooling, BI and QuickBooks integrations, Calvin Klein & Tommy Hilfiger production planning, and co-development of the Universal Data Cleaning Pipeline with AIE_C (Barcelona)."
+      },
+      {
+        "id": "ai",
+        "title": "AI & Agentic Systems",
+        "summary": "MCP servers, LLM-integrated platforms, Agentic Workflow Protocol (AWP), AI Act compliance framing, and agentic development workflows. Open R&D at one-front.com/en/rnd."
+      }
+    ]
+  }
 }

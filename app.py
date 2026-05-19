@@ -15,13 +15,21 @@ MODULAR ARCHITECTURE:
 - app.py: Main application (this file)
 """
 
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path (Streamlit Cloud)
+_APP_ROOT = Path(__file__).resolve().parent
+if str(_APP_ROOT) not in sys.path:
+    sys.path.insert(0, str(_APP_ROOT))
+
 import streamlit as st
 import os
 import datetime
 from typing import Dict, Any
 
-# Import our modules
-from core.config import (
+# Import our modules (resume_core avoids PyPI 'core' package shadowing on Streamlit Cloud)
+from resume_core.config import (
     APP_TITLE,
     APP_ICON,
     DEFAULT_OPENROUTER_MODEL,
@@ -70,18 +78,37 @@ The AI system has been stopped by a human operator for review.
     
     # Start timing for record keeping
     start_time = time.time()
-    
-    # Get context from resume service
-    context = ResumeService.get_resume_context(user_message)
+
+    # Build conversation history (last 6 turns = 3 user/assistant pairs + current)
+    # Strip internal fields like "timestamp" that the LLM API doesn't expect
+    history_raw = st.session_state.get("messages", [])
+
+    # Get context from resume service (pass history so follow-up questions route correctly)
+    context = ResumeService.get_resume_context(user_message, history=history_raw)
+    # #region agent log
+    from services.resume_grounding import debug_log as _dbg_log, audit_response as _audit_response
+    _dbg_log(
+        "app.py:process_user_message",
+        "context ready for LLM",
+        {"query_preview": user_message[:80], "context_chars": len(context)},
+        "A",
+    )
+    # #endregion
     
     provider = st.session_state.get('current_provider', 'openrouter')
     model = st.session_state.get('current_model', DEFAULT_OPENROUTER_MODEL)
     
     if not provider or not model:
         return "⚠️ Please configure an LLM provider in the sidebar first!"
-    
-    messages = [{"role": "user", "content": user_message}]
-    
+    messages = [
+        {"role": m["role"], "content": m["content"]}
+        for m in history_raw[-7:]
+        if m.get("role") in ("user", "assistant") and m.get("content")
+    ]
+    # Guarantee the current user message is the final item
+    if not messages or messages[-1]["content"] != user_message:
+        messages.append({"role": "user", "content": user_message})
+
     # Get API key based on provider
     api_key = ""
     if provider == "openrouter":
@@ -121,6 +148,9 @@ To chat with AI, you need a free OpenRouter API key:
     
     # Store last AI response for human oversight flagging
     st.session_state.last_ai_response = response
+    # #region agent log
+    _audit_response(response, context, user_message)
+    # #endregion
     
     # Log the user interaction
     record_keeper.log_user_interaction(
@@ -138,7 +168,7 @@ To chat with AI, you need a free OpenRouter API key:
 def handle_quick_actions(actions: Dict[str, bool]):
     """Handle quick action button clicks"""
     if actions.get("summary"):
-        question = "Summarize this candidate's profile"
+        question = "Give me a full summary of this candidate"
         SessionManager.add_message("user", question)
         SessionManager.set_processing_state(question)
         st.toast(f"Processing: {question[:50]}...")
@@ -991,7 +1021,10 @@ def render_sidebar():
         # System Configuration
         with st.expander("🤖 AI Provider Setup", expanded=False):
             st.caption("Configure your AI provider and model selection")
-            st.write("📄 **Live Data**: Resume loaded from local file. Always up-to-date!")
+            st.write(
+                "📄 **Live Data**: Unified resume (software, product, data, AI) "
+                "from local file — includes links, certificates, and recommendations."
+            )
             
             # Production (OpenRouter) only
             st.markdown("**Provider**")
@@ -1154,16 +1187,15 @@ def main():
     
     # Handle message processing
     if st.session_state.get('processing_message', False):
-        st.toast(f"Processing: {st.session_state.current_processing_message[:50]}...")
-        
-        with st.spinner("Processing your question..."):
-            user_input = st.session_state.current_processing_message
+        user_input = st.session_state.current_processing_message
+
+        with st.spinner("MikeGPT is thinking... ⚡ Free LLM tier — responses may take 5–30 seconds"):
             response = process_user_message(user_input)
-            
-            SessionManager.add_message("assistant", response)
-            SessionManager.clear_processing_state()
-            
-            st.rerun()
+
+        SessionManager.add_message("assistant", response)
+        SessionManager.clear_processing_state()
+
+        st.rerun()
     
     # Render sidebar
     render_sidebar()

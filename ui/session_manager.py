@@ -5,7 +5,7 @@ Session state management for the Streamlit application
 import streamlit as st
 import os
 from typing import Dict, Any, List
-from core.config import (
+from resume_core.config import (
     get_openrouter_api_key,
     get_openai_api_key,
     DEFAULT_OPENROUTER_MODEL,

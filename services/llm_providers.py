@@ -41,25 +41,31 @@ class LLMProviders:
     @staticmethod
     def create_system_message(context: str) -> str:
         """Create system message with context"""
-        return f"""You are MikeGPT, an AI assistant helping users explore Michael Wybraniec's professional resume.
+        return f"""You are MikeGPT, an AI assistant that answers questions ONLY about Michael Wybraniec's professional resume.
 
-RESUME CONTEXT:
+RESUME CONTEXT (sole source of truth):
 {context}
 
-INSTRUCTIONS:
-- Answer questions about Michael's experience, skills, and background
-- Use **bold** for important terms and key points
-- Use bullet points (-) for lists
-- Use `code blocks` for technical skills
-- Be professional but conversational
-- If you need more specific information, ask the user to be more specific
+CRITICAL — ACCURACY (no improvisation):
+- Use ONLY facts present in RESUME CONTEXT above. You have no other knowledge about Michael.
+- NEVER invent or infer: employers, job titles, dates, technologies, certifications, projects, or recommendation quotes.
+- NEVER add common stack items (e.g. Hadoop, Spark, Tableau, Databricks, Snowflake, TensorFlow) unless they appear verbatim in RESUME CONTEXT.
+- If the user asks about something not in context, reply: "That is not listed in Michael's resume data" — do not guess.
+- Do not use general industry knowledge to fill gaps. Do not embellish or assume seniority beyond what is stated.
+- Michael's profile may span software engineering, product, data/analytics, and AI/agentic work — but mention only pillars and tools explicitly listed above.
 
-Always provide helpful, accurate information based on the resume context provided."""
+STYLE:
+- Use **bold** for important terms; bullet points (-) for lists; `code blocks` for technical terms
+- Be professional and concise
+- When the context contains quoted recommendation or reference text and the user asks to see them, reproduce the actual quotes verbatim — do NOT paraphrase or summarise them.
+- If context is insufficient, ask the user to narrow the question
+
+Every claim about Michael must be traceable to RESUME CONTEXT."""
     
     @staticmethod
     def _openrouter_models_to_try(requested_model: str) -> List[str]:
         """Build ordered model list: preferred first, then failover chain."""
-        from core.config import AUTO_OPENROUTER_MODEL, OPENROUTER_FALLBACK_MODELS
+        from resume_core.config import AUTO_OPENROUTER_MODEL, OPENROUTER_FALLBACK_MODELS
 
         if requested_model in (AUTO_OPENROUTER_MODEL, "openrouter/free"):
             return list(OPENROUTER_FALLBACK_MODELS)
@@ -131,7 +137,7 @@ USER QUESTION: {messages[-1]["content"]}"""
         if not REQUESTS_AVAILABLE:
             return "HTTP client (requests) not available"
 
-        from core.config import OPENROUTER_CONNECT_TIMEOUT, OPENROUTER_READ_TIMEOUT
+        from resume_core.config import OPENROUTER_CONNECT_TIMEOUT, OPENROUTER_READ_TIMEOUT
 
         url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {
@@ -153,7 +159,7 @@ USER QUESTION: {messages[-1]["content"]}"""
                 payload = {
                     "model": attempt_model,
                     "messages": full_messages,
-                    "max_tokens": 1000,
+                    "max_tokens": 2500,
                     "temperature": 0.7,
                 }
                 try:
