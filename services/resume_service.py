@@ -388,6 +388,16 @@ class ResumeService:
         return "\n\n".join(blocks)
 
     @staticmethod
+    def get_job_match_context() -> str:
+        """Full skills + experience context for Smart Match job analysis."""
+        data = fallback_service.get_full_resume()
+        skills_block = ResumeService._format_skills_context(data)
+        experience_block = f"Work Experience:\n{json.dumps(fallback_service.get_experience(), indent=2)}"
+        body = f"{skills_block}\n\n---\n\n{experience_block}"
+        from services.resume_grounding import finalize_context
+        return finalize_context(body, "job_match", "job match analysis")
+
+    @staticmethod
     def get_resume_context(user_message: str, history: List[Dict] = None) -> str:
         """Get relevant resume context based on user message using fallback service"""
         try:

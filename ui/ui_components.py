@@ -6,6 +6,7 @@ import streamlit as st
 import datetime
 from typing import List, Dict, Any
 from resume_core.models import ChatMessage
+from resume_core.config import DEFAULT_OPENROUTER_MODEL
 
 class UIComponents:
     """Handles UI components and styling"""
@@ -363,14 +364,17 @@ class UIComponents:
     
     @staticmethod
     def render_job_analysis_modal():
-        """Render the job analysis modal""" 
+        """Render the job analysis modal — processes inline so spinner is always visible."""
+        from services.resume_service import ResumeService
+        from services.llm_providers import LLMProviders
+
         @st.dialog("🎯 Smart Match Analysis", width="large")
         def job_analysis_modal():
             st.markdown("**Analyze how well this candidate fits a specific job role**")
-            
+
             job_description = st.text_area(
                 "Paste Job Description",
-                height=450,
+                height=350,
                 placeholder="""Example:
 Senior Full-Stack Developer - Remote
 Company: TechCorp
@@ -387,57 +391,76 @@ Responsibilities:
 - Lead frontend architecture decisions
 - Mentor junior developers
 - Build scalable web applications
-- Collaborate with product team
 
 Nice to have:
 - AI/ML integration experience
-- DevOps knowledge
-- Startup experience""",
-                key="modal_job_desc"
+- DevOps knowledge""",
+                key="modal_job_desc",
             )
-            
+
             col1, col2 = st.columns([1, 1])
-            
-            action_taken = False
-            
+
             with col1:
-                if st.button("🔍 Analyze Fit", type="primary", use_container_width=True):
-                    if job_description.strip():
-                        analysis_prompt = f"""
-                        Based on this job description:
-                        
-                        {job_description}
-                        
-                        Please provide a comprehensive analysis of this candidate including:
-                        1. **Match Score** (1-10): How well does the candidate fit this role?
-                        2. **Key Strengths**: What makes them a good fit?
-                        3. **Potential Gaps**: What skills or experience might they be missing?
-                        4. **Recommendations**: Should we proceed with this candidate?
-                        5. **Interview Focus**: What areas should we focus on during interviews?
-                        
-                        Be specific and reference their actual experience and skills.
-                        """
-                        
-                        # Add to messages and process
-                        timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
-                        st.session_state.messages.append({"role": "user", "content": f"Smart Match Request", "timestamp": timestamp})
-                        st.session_state.processing_message = True
-                        st.session_state.current_processing_message = analysis_prompt
-                        st.session_state.show_job_analysis_modal = False
-                        st.toast("Analyzing candidate fit for this job...")
-                        action_taken = True
-                    else:
-                        st.error("Please paste a job description first!")
-            
+                analyze_clicked = st.button("🔍 Analyze Fit", type="primary", use_container_width=True)
             with col2:
                 if st.button("❌ Close", use_container_width=True):
                     st.session_state.show_job_analysis_modal = False
-                    action_taken = True
-            
-            if action_taken:
-                st.rerun()
-            
+                    st.rerun()
+
             st.markdown("---")
-            st.caption("💡 **Tip**: Include requirements, responsibilities, and company details for best analysis results")
-        
-        job_analysis_modal() 
+            st.caption("💡 **Tip**: Include requirements, responsibilities, and company details for best results")
+
+            if analyze_clicked:
+                if not job_description.strip():
+                    st.error("Please paste a job description first!")
+                    return
+
+                api_key = st.session_state.get("openrouter_api_key", "").strip()
+                if not api_key:
+                    st.error("🔑 OpenRouter API key required — add it in the sidebar first.")
+                    return
+
+                analysis_prompt = (
+                    f"Job match analysis request.\n\n"
+                    f"Job description:\n{job_description}\n\n"
+                    f"Please provide a comprehensive fit analysis:\n"
+                    f"1. **Match Score** (1–10): How well does the candidate fit?\n"
+                    f"2. **Key Strengths**: What makes them a strong fit?\n"
+                    f"3. **Potential Gaps**: Any skills or experience that may be missing?\n"
+                    f"4. **Recommendation**: Should we proceed with this candidate?\n"
+                    f"5. **Interview Focus**: What areas to probe in interviews?\n\n"
+                    f"Be specific and reference the candidate's actual experience and skills."
+                )
+
+                with st.spinner("Analyzing candidate fit... ⚡ This may take 10–30 seconds"):
+                    context = ResumeService.get_job_match_context()
+                    provider = st.session_state.get("current_provider", "openrouter")
+                    model = st.session_state.get("current_model", DEFAULT_OPENROUTER_MODEL)
+                    messages = [{"role": "user", "content": analysis_prompt}]
+
+                    if provider == "openrouter":
+                        response = LLMProviders.chat_openrouter(model, messages, context, api_key)
+                    elif provider == "openai":
+                        openai_key = st.session_state.get("openai_api_key", "")
+                        response = LLMProviders.chat_openai(model, messages, context, openai_key)
+                    elif provider == "ollama":
+                        response = LLMProviders.chat_ollama(model, messages, context)
+                    else:
+                        response = f"Unsupported provider: {provider}"
+
+                timestamp = datetime.datetime.now().strftime("%b %d, %I:%M %p")
+                jd_preview = job_description.strip()[:80].replace("\n", " ")
+                st.session_state.messages.append({
+                    "role": "user",
+                    "content": f"🎯 Smart Match: _{jd_preview}..._",
+                    "timestamp": timestamp,
+                })
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": response,
+                    "timestamp": timestamp,
+                })
+                st.session_state.show_job_analysis_modal = False
+                st.rerun()
+
+        job_analysis_modal()
