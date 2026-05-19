@@ -45,9 +45,12 @@ LLM_PROVIDERS = {
     "openrouter": LLMProvider(
         name="OpenRouter",
         models=[
-            "mistralai/mistral-7b-instruct:free",
-            "microsoft/phi-3-mini-128k-instruct:free",
-            "google/gemma-2-9b-it:free"
+            "auto",
+            "openrouter/free",
+            "google/gemma-4-26b-a4b-it:free",
+            "openai/gpt-oss-20b:free",
+            "deepseek/deepseek-v4-flash:free",
+            "meta-llama/llama-3.2-3b-instruct:free",
         ],
         requires_api_key=True,
         api_key_env_var="OPENROUTER_API_KEY"

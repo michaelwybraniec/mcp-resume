@@ -5,7 +5,16 @@ Session state management for the Streamlit application
 import streamlit as st
 import os
 from typing import Dict, Any, List
-from core.config import get_openrouter_api_key, get_openai_api_key, DEFAULT_OPENROUTER_MODEL, DEFAULT_GIST_ID, DEFAULT_SERVER_PATH, is_production
+from core.config import (
+    get_openrouter_api_key,
+    get_openai_api_key,
+    DEFAULT_OPENROUTER_MODEL,
+    AUTO_OPENROUTER_MODEL,
+    AVAILABLE_OPENROUTER_MODELS,
+    DEPRECATED_OPENROUTER_MODELS,
+    DEFAULT_GIST_ID,
+    DEFAULT_SERVER_PATH,
+)
 
 class SessionManager:
     """Handles session state management and initialization"""
@@ -24,22 +33,22 @@ class SessionManager:
         if 'openai_api_key' not in st.session_state:
             st.session_state.openai_api_key = get_openai_api_key()
         
-        # LLM Configuration - Auto-set OpenRouter in production, default to Ollama locally
+        # LLM Configuration - always use OpenRouter
         if 'current_provider' not in st.session_state:
-            if is_production():
-                # Production: automatically use OpenRouter
-                st.session_state.current_provider = "openrouter"
-                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
-            else:
-                # Local: default to Ollama
-                st.session_state.current_provider = "ollama"
-                st.session_state.current_model = "llama3.2"
-        
-        if 'current_model' not in st.session_state:
-            if st.session_state.current_provider == "openrouter":
-                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
-            else:
-                st.session_state.current_model = "llama3.2"
+            st.session_state.current_provider = "openrouter"
+            st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
+
+        # Migrate legacy sessions to OpenRouter
+        st.session_state.current_provider = "openrouter"
+        st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
+
+        current_model = st.session_state.get("current_model", "")
+        if (
+            current_model in DEPRECATED_OPENROUTER_MODELS
+            or current_model not in AVAILABLE_OPENROUTER_MODELS
+            or current_model == "openrouter/free"
+        ) and current_model != AUTO_OPENROUTER_MODEL:
+            st.session_state.current_model = AUTO_OPENROUTER_MODEL
         
         # Server Configuration
         if 'current_gist_id' not in st.session_state:
@@ -118,18 +127,13 @@ class SessionManager:
         except:
             requests_available = True
         
-        current_provider = st.session_state.get('current_provider', 'ollama')
-        
-        # For Ollama, we don't need an API key
-        if current_provider == 'ollama':
-            return requests_available and current_provider
-        else:
-            # For other providers, we need an API key
-            return (
-                requests_available and 
-                current_provider and 
-                st.session_state.get('openrouter_api_key', '').strip()
-            )
+        current_provider = st.session_state.get('current_provider', 'openrouter')
+
+        return (
+            requests_available
+            and current_provider == 'openrouter'
+            and st.session_state.get('openrouter_api_key', '').strip()
+        )
     
     @staticmethod
     def get_system_status() -> Dict[str, str]:

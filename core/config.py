@@ -44,13 +44,39 @@ def get_openai_api_key():
     """Get OpenAI API key from environment"""
     return os.getenv("OPENAI_API_KEY", "")
 
-# Default Models
-DEFAULT_OPENROUTER_MODEL = "mistralai/mistral-7b-instruct:free"
-AVAILABLE_OPENROUTER_MODELS = [
+# OpenRouter HTTP timeouts: (connect_seconds, read_seconds)
+OPENROUTER_CONNECT_TIMEOUT = 10
+OPENROUTER_READ_TIMEOUT = 90
+
+# Auto mode: try each free model in order on 429/404/empty (no wait for Retry-After)
+AUTO_OPENROUTER_MODEL = "auto"
+OPENROUTER_FALLBACK_MODELS = [
+    "openrouter/free",
+    "google/gemma-4-26b-a4b-it:free",
+    "openai/gpt-oss-20b:free",
+    "deepseek/deepseek-v4-flash:free",
+    "nvidia/nemotron-nano-9b-v2:free",
+    "meta-llama/llama-3.2-3b-instruct:free",
+    "meta-llama/llama-3.3-70b-instruct:free",
+]
+DEFAULT_OPENROUTER_MODEL = AUTO_OPENROUTER_MODEL
+AVAILABLE_OPENROUTER_MODELS = [AUTO_OPENROUTER_MODEL, *OPENROUTER_FALLBACK_MODELS]
+OPENROUTER_MODEL_LABELS = {
+    AUTO_OPENROUTER_MODEL: "Auto (best available free)",
+    "openrouter/free": "OpenRouter Free Router",
+    "google/gemma-4-26b-a4b-it:free": "Google Gemma 4 26B (free)",
+    "openai/gpt-oss-20b:free": "OpenAI GPT-OSS 20B (free)",
+    "deepseek/deepseek-v4-flash:free": "DeepSeek V4 Flash (free)",
+    "nvidia/nemotron-nano-9b-v2:free": "NVIDIA Nemotron Nano 9B (free)",
+    "meta-llama/llama-3.2-3b-instruct:free": "Meta Llama 3.2 3B (free)",
+    "meta-llama/llama-3.3-70b-instruct:free": "Meta Llama 3.3 70B (free)",
+}
+# Retired models — migrate any persisted session selection away from these
+DEPRECATED_OPENROUTER_MODELS = frozenset({
     "mistralai/mistral-7b-instruct:free",
     "microsoft/phi-3-mini-128k-instruct:free",
-    "google/gemma-2-9b-it:free"
-]
+    "google/gemma-2-9b-it:free",
+})
 DEFAULT_GIST_ID = "dabf368473d41748e9d6051afb67efcf"
 DEFAULT_SERVER_PATH = "../build/index.js"
 

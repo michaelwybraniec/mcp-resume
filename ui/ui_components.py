@@ -187,7 +187,7 @@ class UIComponents:
         """Render the application header with system status"""
         st.markdown(f"""
         <div style='text-align: center;'>
-            <h1 style='margin: 0; font-size: 68px; font-weight: 800;'>🤖 AI Resume</h1>
+            <h1 style='margin: 0; font-size: 68px; font-weight: 800;'>🤖 MikeGPT</h1>
             <p style='font-size: 18px; color: #666; margin: 0 0 0.5rem 0; font-weight: 500;'>
                 Intelligent CV Chat Interface &nbsp;|&nbsp; Ask anything about Michael's experience &nbsp;|&nbsp; 
                 <span style='background: linear-gradient(135deg, #00C851, #00A041); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 5px; display: inline-block;'>
@@ -224,7 +224,7 @@ class UIComponents:
             actions["skills"] = st.button("🛠️ Technical Skills", key="top_quick_tech_skills", use_container_width=True, help="Analyze technical competencies")
         
         with quick_col4:
-            actions["download"] = UIComponents.render_download_button()
+            UIComponents.render_download_button()
         
         with quick_col5:
             actions["match"] = st.button("🎯 Smart Match", key="top_quick_job_analysis", use_container_width=True, help="Analyze candidate fit for a specific job")
@@ -233,32 +233,13 @@ class UIComponents:
     
     @staticmethod
     def render_download_button():
-        """Render the CV download button"""
-        try:
-            import os
-            from core.config import CV_PDF_FILENAME
-            
-            # CV_PDF_FILENAME already includes 'data/' prefix
-            pdf_path = CV_PDF_FILENAME
-            
-            if os.path.exists(pdf_path):
-                with open(pdf_path, "rb") as pdf_file:
-                    cv_pdf_data = pdf_file.read()
-                
-                return st.download_button(
-                    label="📄 Download CV",
-                    data=cv_pdf_data,
-                    file_name="Awesome CV - Michael Wybraniec.pdf",
-                    mime="application/pdf",
-                    use_container_width=True,
-                    help="Download Michael's professional CV in PDF format"
-                )
-            else:
-                st.button("📄 Download CV", disabled=True, use_container_width=True, help="CV PDF file not found")
-                return False
-        except Exception as e:
-            st.button("📄 Download CV", disabled=True, use_container_width=True, help=f"Error loading CV: {str(e)}")
-            return False
+        """Render the CV link button (opens CV page in a new tab)."""
+        return st.link_button(
+            label="📄 Download CV",
+            url="https://www.one-front.com/cv",
+            use_container_width=True,
+            help="Open Michael's professional CV in a new tab",
+        )
     
     @staticmethod
     def render_chat_messages(messages: List[Dict[str, Any]]):
@@ -307,7 +288,7 @@ class UIComponents:
             📅 **Years Experience** - View career timeline and progression  
             🛠️ **Technical Skills** - Explore technical expertise and specializations  
             🎯 **Smart Match** - Analyze job descriptions against candidate fit  
-            📄 **Download CV** - Get professional PDF resume  
+            📄 **Download CV** - Open professional CV in a new tab  
             
                   
             Just ask anything!
@@ -383,7 +364,7 @@ class UIComponents:
     @staticmethod
     def render_job_analysis_modal():
         """Render the job analysis modal""" 
-        @st.dialog("🎯 Smart Match Analysis")
+        @st.dialog("🎯 Smart Match Analysis", width="large")
         def job_analysis_modal():
             st.markdown("**Analyze how well this candidate fits a specific job role**")
             

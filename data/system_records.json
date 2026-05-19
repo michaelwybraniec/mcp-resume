@@ -835,7 +835,161 @@
       "metadata": {
         "interaction_type": "chat"
       }
+    },
+    {
+      "id": "ee0196e7-9255-4667-bd98-ff4b2343bede",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:35:16.883596",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": "\u274c **OpenRouter API Error (404)**\n\n{\"error\":{\"message\":\"No endpoints found for mistralai/mistral-7b-instruct:free.\",\"code\":404},\"user_id\":\"user_2ygKv05nqujUOZKKB8AJVor0hf7\"}\n\nPlease check:\n1. Your API key is valid and active\n2. You have credits/quota remaining\n3. The model 'mistralai/mistral-7b-instruct:free' is available"
+      },
+      "processing_time_ms": 237,
+      "ai_model_used": "mistralai/mistral-7b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "30e09760-ff70-4744-9e02-94e608d016e8",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:39:34.012757",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "How many years of experience does this candidate have?"
+      },
+      "output_data": {
+        "response": "\nBased on the resume, Michael has approximately **10 years of professional experience**.\n\nHere's the breakdown:\n\n- **Earliest role**: Cisco (April 2015 - August 2016)\n- **Latest role**: ONE-FRONT (March 2021 - April 2025)\n\nThis spans from **2015 to 2025**, which is roughly **"
+      },
+      "processing_time_ms": 71060,
+      "ai_model_used": "openrouter/free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "30ffd184-df72-4616-a5d3-a033d66511ea",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:40:53.658955",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": "\u274c **OpenRouter API Error (429)**\n\n{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Venice\",\"is_byok\":false,\"retry_after_seconds\":30,\"retry_after_seconds_raw\":29.252,\"headers\":{\"Retry-After\":\"30\"}}},\"user_id\":\"user_2ygKv05nqujUOZKKB8AJVor0hf7\"}\n\nPlease check:\n1. Your API key is valid and active\n2. You have credits/quota remaining\n3. The model 'meta-llama/llama-3.2-3b-instruct:free' is available"
+      },
+      "processing_time_ms": 314,
+      "ai_model_used": "meta-llama/llama-3.2-3b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "712c8290-0a2e-4286-b3fc-939f050466c3",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:40:57.197496",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": "\u274c **OpenRouter API Error (429)**\n\n{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"meta-llama/llama-3.2-3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Venice\",\"is_byok\":false,\"retry_after_seconds\":26,\"retry_after_seconds_raw\":25.71,\"headers\":{\"Retry-After\":\"26\"}}},\"user_id\":\"user_2ygKv05nqujUOZKKB8AJVor0hf7\"}\n\nPlease check:\n1. Your API key is valid and active\n2. You have credits/quota remaining\n3. The model 'meta-llama/llama-3.2-3b-instruct:free' is available"
+      },
+      "processing_time_ms": 321,
+      "ai_model_used": "meta-llama/llama-3.2-3b-instruct:free",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "51cf2b09-839b-424f-a73f-e278b66d6caa",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:43:46.728952",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "Summarize this candidate's profile"
+      },
+      "output_data": {
+        "response": "Here's a summary of Michael Wybraniec's profile based on the available resume:\n\n---\n\n**Michael Wybraniec** is a **Senior Full-Stack Developer & AI Specialist** whose professional background centers on cutting-edge technology across three key industries:\n\n- **Financial Technology (FinTech)**\n- **Healthcare & Insurance Technology**\n- **Artificial Intelligence & Machine Learning**\n\n**Key observations:**\n\n- His title indicates a **senior-level** role, suggesting significant expertise\n- However, the resume lists **0 years of professional experience**, which is a notable discrepancy \u2014 this could mean the experience section is incomplete or that he's transitioning into the field\n- **Skills, technologies, and education** are not specified in the provided context\n- The combination of **full-stack development** with **AI/ML specialization** points to someone bridging software engineering and data science\n\n---\n\n> \u26a0\ufe0f The resume appears **incomplete**. To give a more accurate summary, could you clarify which areas you'd like me to focus on \u2014 for example, **projects**, **technical skills**, or **work experience**?"
+      },
+      "processing_time_ms": 7278,
+      "ai_model_used": "auto",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "92530b21-2cd0-4ada-aca8-adfe07a18609",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:43:57.227607",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": "Based on Michael's resume, his **strongest technical skills** span full-stack development, modern JavaScript/TypeScript ecosystems, cloud-native architectures, and cutting-edge AI/agent technologies. Here\u2019s a breakdown of his core expertise:\n\n---\n\n### **Core Expertise (Highest Proficiency)**\n- **Full-Stack JavaScript/TypeScript** \u2013 Deep experience across the entire stack.\n- **Modern Frontend Frameworks** \u2013 Vue 3/Nuxt 3 (primary), React/Next.js.\n- **Backend & API Development** \u2013 Node.js, Express, Fastify, RESTful & GraphQL APIs.\n- **Architecture & Migration** \u2013 System design, cloud migration, performance optimization.\n- **Agile & DevOps** \u2013 CI/CD pipelines, Docker, GitHub Actions, GitLab CI.\n\n---\n\n### **Specialized & High-Demand Skills**\n- **AI & Autonomous Agents** \u2013 Model Context Protocol (MCP), RAG, vector databases, multi-agent coordination, LLM integration (OpenAI, Anthropic).\n- **Cloud Platforms** \u2013 AWS (Lambda, API Gateway, AppSync, S3, Cognito), serverless architectures.\n- **Database & Data** \u2013 PostgreSQL, MySQL, MongoDB, Prisma/TypeORM, Redis, Elasticsearch.\n- **Testing & Quality** \u2013 Vitest, Jest, Cypress, ESLint, SonarQube.\n- **UI/UX & Frontend Polish** \u2013 Tailwind CSS, responsive design, PWA, component libraries (Vuetify, Quasar).\n\n---\n\n### **Key Technical Proficiencies (Code-Level)**\n```javascript\n// Frontend\nVue 3, Nuxt 3, Pinia, React, Next.js, Vite, Tailwind CSS\n\n// Backend\nNode.js, Express, Fastify, NestJS, GraphQL, REST APIs\n\n// Databases & Cloud\nPostgreSQL, MongoDB, Redis, AWS Lambda, S3, DynamoDB\n\n// AI & Agents\nMCP Servers, RAG, Vector DBs, Prompt Engineering, Function Calling\n```\n\n---\n\n### **Why These Are Strongest**\n- **Breadth & Depth** \u2013 He covers both frontend and backend equally well, with senior-level architecture skills.\n- **Modern Stack** \u2013 Focuses on current industry standards (TypeScript, Vue 3, Nuxt 3, serverless).\n- **Future-Proofing** \u2013 Heavy investment in AI/agent technologies (MCP, autonomous agents) which are high-value in 2025+.\n- **Production-Ready** \u2013 Includes DevOps, testing, monitoring, and security (JWT, OAuth).\n\n**In short:** Michael is a **full-stack architect** with a unique blend of **traditional web expertise** and **next-gen AI integration skills**, making him adaptable to both established systems and innovative AI-driven projects."
+      },
+      "processing_time_ms": 5606,
+      "ai_model_used": "auto",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
+    },
+    {
+      "id": "4da40d0a-5e60-4f44-92cb-76cccdaf7c36",
+      "record_type": "user_interaction",
+      "timestamp": "2026-05-19T10:47:28.939397",
+      "user_id": "anonymous",
+      "session_id": "default",
+      "action": "user_query_processed",
+      "input_data": {
+        "query": "What are their strongest technical skills?"
+      },
+      "output_data": {
+        "response": "Based on Michael's resume, his **strongest technical skills** span several key areas:\n\n## \ud83c\udfaf Core Expertise\n- **Full-Stack Development** as the foundation\n- **JavaScript** and **TypeScript** as primary languages\n- **Vue 3**, **Nuxt 3**, **React**, and **Next.js** for frontend\n- **Node.js** for backend\n- **Architecture**, **Migration**, and **Agile** methodologies\n\n## \ud83e\udd16 AI & Agents (Emerging Strength)\n- **Model Context Protocol (MCP)** and **MCP Server Management**\n- **LLM-Integrated Platforms** with **OpenAI API** and **Anthropic Claude**\n- **RAG**, **Vector Databases**, and **Autonomous Agents**\n- **Prompt Engineering** and **Multi-Agent Coordination**\n\n## \ud83d\udda5\ufe0f Backend & DevOps\n- **NestJS**, **Express**, **Fastify**\n- **PostgreSQL**, **MySQL**, **MongoDB**, **Redis**\n- **Docker**, **GitHub Actions**, **GitLab CI**\n\n## \u2601\ufe0f Cloud & Serverless\n- **AWS Lambda**, **API Gateway**, **Cognito**\n- **S3**, **Step Functions**, **Lambda@Edge**\n\n## \ud83d\udcf1 Mobile & Frontend\n- **React Native**, **Expo**, **Flutter**\n- **Tailwind CSS**, **Vite**, **PWA**\n\nHis **full-stack foundation** combined with **AI/agents expertise** makes him particularly strong for modern, intelligent application development. Would you like me to dive deeper into any specific area?"
+      },
+      "processing_time_ms": 8350,
+      "ai_model_used": "auto",
+      "confidence_score": null,
+      "human_reviewed": false,
+      "status": "active",
+      "metadata": {
+        "interaction_type": "chat"
+      }
     }
   ],
-  "last_updated": "2025-12-08T14:30:24.828825"
+  "last_updated": "2026-05-19T10:47:28.940580"
 }

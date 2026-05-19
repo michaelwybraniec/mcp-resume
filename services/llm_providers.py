@@ -3,7 +3,7 @@ LLM Provider implementations for different AI services
 """
 
 import os
-from typing import List, Dict, Optional
+from typing import List, Dict
 import openai
 
 try:
@@ -57,6 +57,36 @@ INSTRUCTIONS:
 Always provide helpful, accurate information based on the resume context provided."""
     
     @staticmethod
+    def _openrouter_models_to_try(requested_model: str) -> List[str]:
+        """Build ordered model list: preferred first, then failover chain."""
+        from core.config import AUTO_OPENROUTER_MODEL, OPENROUTER_FALLBACK_MODELS
+
+        if requested_model in (AUTO_OPENROUTER_MODEL, "openrouter/free"):
+            return list(OPENROUTER_FALLBACK_MODELS)
+
+        chain = [requested_model]
+        for model in OPENROUTER_FALLBACK_MODELS:
+            if model not in chain:
+                chain.append(model)
+        return chain
+
+    @staticmethod
+    def _extract_openrouter_content(result: dict) -> str:
+        if not result.get("choices"):
+            return ""
+        message = result["choices"][0].get("message") or {}
+        content = message.get("content") or ""
+        return content.strip() if isinstance(content, str) else ""
+
+    @staticmethod
+    def _should_try_next_openrouter_model(status_code: int, content: str) -> bool:
+        if status_code in (404, 429, 502, 503):
+            return True
+        if status_code == 200 and not content:
+            return True
+        return False
+
+    @staticmethod
     def chat_ollama(model: str, messages: List[Dict], context: str = "") -> str:
         """Chat with Ollama model"""
         if not OLLAMA_AVAILABLE:
@@ -89,7 +119,7 @@ USER QUESTION: {messages[-1]["content"]}"""
     
     @staticmethod
     def chat_openrouter(model: str, messages: List[Dict], context: str = "", api_key: str = "") -> str:
-        """Chat with OpenRouter model using direct HTTP requests"""
+        """Chat with OpenRouter; auto-failover across free models on rate limits."""
         api_key = api_key.strip() if api_key else ""
         
         if not api_key:
@@ -98,37 +128,57 @@ USER QUESTION: {messages[-1]["content"]}"""
         if not api_key.startswith("sk-or-"):
             return f"Invalid API key format. Expected format: sk-or-... but got: {api_key[:10]}..."
         
+        if not REQUESTS_AVAILABLE:
+            return "HTTP client (requests) not available"
+
+        from core.config import OPENROUTER_CONNECT_TIMEOUT, OPENROUTER_READ_TIMEOUT
+
+        url = "https://openrouter.ai/api/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://ai-resume.streamlit.app",
+            "X-Title": "AI Resume Chat Interface",
+        }
+        system_message = {
+            "role": "system",
+            "content": LLMProviders.create_system_message(context),
+        }
+        full_messages = [system_message] + messages
+        models_to_try = LLMProviders._openrouter_models_to_try(model)
+        failures: List[str] = []
+
         try:
-            url = "https://openrouter.ai/api/v1/chat/completions"
-            
-            headers = {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://ai-resume.streamlit.app",
-                "X-Title": "AI Resume Chat Interface"
-            }
-            
-            system_message = {
-                "role": "system", 
-                "content": LLMProviders.create_system_message(context)
-            }
-            full_messages = [system_message] + messages
-            
-            # Debug: Print the messages being sent
-            print(f"OpenRouter messages: {full_messages}")
-            print(f"Context length: {len(context)} characters")
-            
-            payload = {
-                "model": model,
-                "messages": full_messages,
-                "max_tokens": 1000,  # Add max_tokens to prevent empty responses
-                "temperature": 0.7   # Add temperature for better responses
-            }
-            
-            response = requests.post(url, headers=headers, json=payload)
-            
-            if response.status_code == 401:
-                return f"""🔑 **Authentication Failed (401)**
+            for attempt_model in models_to_try:
+                payload = {
+                    "model": attempt_model,
+                    "messages": full_messages,
+                    "max_tokens": 1000,
+                    "temperature": 0.7,
+                }
+                try:
+                    response = requests.post(
+                        url,
+                        headers=headers,
+                        json=payload,
+                        timeout=(OPENROUTER_CONNECT_TIMEOUT, OPENROUTER_READ_TIMEOUT),
+                    )
+                except requests.exceptions.Timeout:
+                    failures.append(f"`{attempt_model}`: timed out")
+                    continue
+                except requests.exceptions.RequestException as exc:
+                    failures.append(f"`{attempt_model}`: {exc}")
+                    continue
+
+                content = ""
+                if response.status_code == 200:
+                    try:
+                        content = LLMProviders._extract_openrouter_content(response.json())
+                    except Exception:
+                        content = ""
+
+                if response.status_code == 401:
+                    return f"""🔑 **Authentication Failed (401)**
 
 Your API key is not being accepted by OpenRouter. Please:
 
@@ -138,33 +188,30 @@ Your API key is not being accepted by OpenRouter. Please:
 4. **Generate New Key**: Try creating a fresh API key at [OpenRouter.ai](https://openrouter.ai)
 
 **Current key format**: {api_key[:15]}...{api_key[-4:] if len(api_key) > 20 else ''}"""
-            
-            elif response.status_code != 200:
-                return f"""❌ **OpenRouter API Error ({response.status_code})**
 
-{response.text}
+                if LLMProviders._should_try_next_openrouter_model(response.status_code, content):
+                    failures.append(f"`{attempt_model}`: HTTP {response.status_code}")
+                    continue
 
-Please check:
-1. Your API key is valid and active
-2. You have credits/quota remaining
-3. The model '{model}' is available"""
-            
-            result = response.json()
-            
-            # Debug: Print the response structure
-            print(f"OpenRouter response: {result}")
-            
-            if 'choices' in result and len(result['choices']) > 0:
-                content = result['choices'][0]['message']['content']
-                if content and content.strip():
-                    return content
-                else:
-                    return f"Empty response from OpenRouter. Full response: {result}"
-            else:
-                return f"Unexpected response format: {result}"
-                
-        except requests.exceptions.RequestException as e:
-            return f"Network error: {str(e)}"
+                if response.status_code != 200:
+                    failures.append(f"`{attempt_model}`: HTTP {response.status_code} — {response.text[:120]}")
+                    continue
+
+                return content
+
+            tried = ", ".join(failures) if failures else "none"
+            return f"""❌ **All free models are temporarily unavailable**
+
+Tried: {', '.join(f'`{m}`' for m in models_to_try)}
+
+Details:
+{chr(10).join(f'- {f}' for f in failures)}
+
+**What to do:**
+1. Wait a minute and send your message again (rate limits reset quickly)
+2. Sidebar → keep **Auto (best available free)** selected
+3. Add provider API keys at [OpenRouter integrations](https://openrouter.ai/settings/integrations) for higher limits"""
+
         except Exception as e:
             return f"OpenRouter error: {str(e)}"
     
@@ -201,4 +248,4 @@ Please check:
         elif provider == "openai":
             return LLMProviders.chat_openai(model, messages, context, api_key)
         else:
-            return f"Unknown provider: {provider}" 
+            return f"Unknown provider: {provider}"

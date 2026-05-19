@@ -467,7 +467,91 @@
       "reason": "System operation logged: user_query_processed",
       "ip_address": null,
       "user_agent": null
+    },
+    {
+      "id": "6a8b0a21-1c7c-4cbd-8bcb-f24b800855b0",
+      "timestamp": "2026-05-19T10:35:16.885857",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_ee0196e7-9255-4667-bd98-ff4b2343bede",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "e0c5d800-8c6c-42bd-92a7-752a3d823efd",
+      "timestamp": "2026-05-19T10:39:34.014092",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_30e09760-ff70-4744-9e02-94e608d016e8",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "15a2cdac-f0ec-4887-b2a3-dc9a0ac7e2fa",
+      "timestamp": "2026-05-19T10:40:53.660835",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_30ffd184-df72-4616-a5d3-a033d66511ea",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "b021f06d-57de-4097-ae77-680c3c5bb10b",
+      "timestamp": "2026-05-19T10:40:57.198692",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_712c8290-0a2e-4286-b3fc-939f050466c3",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "f0bacee4-e81c-4f3a-9a86-35563c7f5716",
+      "timestamp": "2026-05-19T10:43:46.731121",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_51cf2b09-839b-424f-a73f-e278b66d6caa",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "7752972a-54d5-494b-82ea-7d90d385c185",
+      "timestamp": "2026-05-19T10:43:57.231274",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_92530b21-2cd0-4ada-aca8-adfe07a18609",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
+    },
+    {
+      "id": "16ee7ec6-0a60-4ee8-bc3b-c587ec466e41",
+      "timestamp": "2026-05-19T10:47:28.943149",
+      "user_id": "anonymous",
+      "action": "system_operation_user_query_processed",
+      "resource": "record_4da40d0a-5e60-4f44-92cb-76cccdaf7c36",
+      "old_value": null,
+      "new_value": "user_query_processed",
+      "reason": "System operation logged: user_query_processed",
+      "ip_address": null,
+      "user_agent": null
     }
   ],
-  "last_updated": "2025-12-08T14:30:24.830255"
+  "last_updated": "2026-05-19T10:47:28.943511"
 }

@@ -21,7 +21,14 @@ import datetime
 from typing import Dict, Any
 
 # Import our modules
-from core.config import APP_TITLE, APP_ICON, DEFAULT_OPENROUTER_MODEL, AVAILABLE_OPENROUTER_MODELS, is_production
+from core.config import (
+    APP_TITLE,
+    APP_ICON,
+    DEFAULT_OPENROUTER_MODEL,
+    AVAILABLE_OPENROUTER_MODELS,
+    OPENROUTER_MODEL_LABELS,
+    is_production,
+)
 from ui.session_manager import SessionManager
 from ui.ui_components import UIComponents
 from services.llm_providers import LLMProviders
@@ -67,8 +74,8 @@ The AI system has been stopped by a human operator for review.
     # Get context from resume service
     context = ResumeService.get_resume_context(user_message)
     
-    provider = st.session_state.get('current_provider', 'ollama')
-    model = st.session_state.get('current_model', 'llama3.2')
+    provider = st.session_state.get('current_provider', 'openrouter')
+    model = st.session_state.get('current_model', DEFAULT_OPENROUTER_MODEL)
     
     if not provider or not model:
         return "⚠️ Please configure an LLM provider in the sidebar first!"
@@ -986,82 +993,63 @@ def render_sidebar():
             st.caption("Configure your AI provider and model selection")
             st.write("📄 **Live Data**: Resume loaded from local file. Always up-to-date!")
             
-            # Manual AI Provider Switch
-            st.markdown("**Provider Selection**")
-            st.caption("Choose between local or cloud AI processing")
-            provider_mode = st.radio(
-                "Choose AI provider:",
-                ["Local (Ollama)", "Production (OpenRouter)"],
-                index=0 if st.session_state.get('current_provider', 'ollama') == 'ollama' else 1,
-                key="provider_mode_switch"
+            # Production (OpenRouter) only
+            st.markdown("**Provider**")
+            st.caption("Cloud AI via OpenRouter")
+            st.session_state.current_provider = "openrouter"
+            st.session_state.current_model = st.session_state.get(
+                'current_model', DEFAULT_OPENROUTER_MODEL
             )
-            
-            # Update provider based on selection
-            if provider_mode == "Local (Ollama)":
-                st.session_state.current_provider = "ollama"
-                st.session_state.current_model = "llama3.2"
-            else:
-                st.session_state.current_provider = "openrouter"
-                st.session_state.current_model = DEFAULT_OPENROUTER_MODEL
-            
-            # Show current AI provider
-            current_provider = st.session_state.get('current_provider', 'ollama')
-            current_model = st.session_state.get('current_model', 'llama3.2')
-            
+
+            current_provider = st.session_state.get('current_provider', 'openrouter')
+            current_model = st.session_state.get('current_model', DEFAULT_OPENROUTER_MODEL)
+
             st.markdown("**Current Configuration**")
-            if current_provider == 'ollama':
-                st.write(f"🤖 Provider: {current_provider.upper()} - {current_model}")
-                st.write("✅ Local AI: Using Ollama with Llama 3.2 - No API key needed!")
-                st.caption("💻 Running locally on your Apple M1 Max GPU")
+            st.write(f"🌐 Provider: {current_provider.upper()} - {current_model}")
+            st.write("✅ Cloud AI: Using OpenRouter")
+            st.caption("☁️ Production (OpenRouter)")
+
+            st.markdown("**API Key Management**")
+            st.caption("Manage your OpenRouter API key")
+            if st.session_state.openrouter_api_key:
+                masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
+                st.write(f"🔑 API Key: {masked_key}")
+
+                if st.button("🔄 Change Key", use_container_width=True, key="sidebar_change_key"):
+                    st.session_state.openrouter_api_key = ""
+                    st.toast("API key cleared")
+                    st.rerun()
+                if st.button("🗑️ Remove Key", use_container_width=True, key="sidebar_remove_key"):
+                    st.session_state.openrouter_api_key = ""
+                    st.toast("API key removed")
+                    st.rerun()
             else:
-                st.write(f"🌐 Provider: {current_provider.upper()} - {current_model}")
-                st.write("✅ Cloud AI: Using OpenRouter - API key configured!")
-                st.caption("☁️ Running on OpenRouter's cloud infrastructure")
-                
-                st.markdown("**API Key Management**")
-                st.caption("Manage your OpenRouter API key")
-                if st.session_state.openrouter_api_key:
-                    masked_key = st.session_state.openrouter_api_key[:8] + "..." + st.session_state.openrouter_api_key[-4:] if len(st.session_state.openrouter_api_key) > 12 else "***"
-                    st.write(f"🔑 API Key: {masked_key}")
-                    
-                    # Mobile-first: stack buttons vertically
-                    if st.button("🔄 Change Key", use_container_width=True, key="sidebar_change_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("API key cleared")
+                st.write("⚠️ No API key configured")
+                api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
+                if st.button("➕ Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
+                    if api_key_input:
+                        st.session_state.openrouter_api_key = api_key_input
+                        st.toast("OpenRouter API key added!")
                         st.rerun()
-                    if st.button("🗑️ Remove Key", use_container_width=True, key="sidebar_remove_key"):
-                        st.session_state.openrouter_api_key = ""
-                        st.toast("API key removed")
-                        st.rerun()
-                else:
-                    st.write("⚠️ No API key configured")
-                    api_key_input = st.text_input("Enter API key", type="password", placeholder="sk-or-...", key="sidebar_openrouter_api_key_input", label_visibility="collapsed")
-                    if st.button("➕ Add Key", use_container_width=True, key="sidebar_add_openrouter_api_key"):
-                        if api_key_input:
-                            st.session_state.openrouter_api_key = api_key_input
-                            st.toast("OpenRouter API key added!")
-                            st.rerun()
-                        else:
-                            st.toast("Please enter an API key")
-                
-                st.caption("🔗 Get free key at [OpenRouter.ai](https://openrouter.ai)")
-            
-            # Model selection
-            if current_provider == 'openrouter':
-                st.markdown("**Model Selection**")
-                st.caption("Choose from available OpenRouter models")
-                selected_model = st.selectbox(
-                    "Choose a model:",
-                    AVAILABLE_OPENROUTER_MODELS,
-                    index=AVAILABLE_OPENROUTER_MODELS.index(DEFAULT_OPENROUTER_MODEL),
-                    key="sidebar_openrouter_model_select"
-                )
-                st.session_state['current_model'] = selected_model
-                st.write(f"✅ Selected: {selected_model}")
-            elif current_provider == 'ollama':
-                st.markdown("**Model Selection**")
-                st.caption("Local model optimized for your hardware")
-                st.write(f"🤖 Model: {current_model} - 3.2B parameters, optimized for Apple Silicon")
+                    else:
+                        st.toast("Please enter an API key")
+
+            st.caption("🔗 Get free key at [OpenRouter.ai](https://openrouter.ai)")
+
+            st.markdown("**Model Selection**")
+            st.caption("Auto rotates through free models when one is rate-limited")
+            current_model_pick = st.session_state.get('current_model', DEFAULT_OPENROUTER_MODEL)
+            if current_model_pick not in AVAILABLE_OPENROUTER_MODELS:
+                current_model_pick = DEFAULT_OPENROUTER_MODEL
+            selected_model = st.selectbox(
+                "Choose a model:",
+                AVAILABLE_OPENROUTER_MODELS,
+                index=AVAILABLE_OPENROUTER_MODELS.index(current_model_pick),
+                format_func=lambda m: OPENROUTER_MODEL_LABELS.get(m, m),
+                key="sidebar_openrouter_model_select"
+            )
+            st.session_state['current_model'] = selected_model
+            st.write(f"✅ Selected: {selected_model}")
         
         # ===== HELP & GUIDANCE SECTION =====
         # Help & Tips
@@ -1087,12 +1075,11 @@ def render_sidebar():
         with st.expander("💡 Quick Tips", expanded=False):
             st.caption("Helpful tips and troubleshooting")
             st.markdown("""
-            **💻 Local vs Cloud:**
-            - **Local (Ollama)**: Free, private, runs on your device
-            - **Cloud (OpenRouter)**: More powerful models, requires API key
+            **☁️ Cloud AI:**
+            - Uses **Production (OpenRouter)** for all chat responses
+            - Requires a free OpenRouter API key in the sidebar
             
             **🔧 Troubleshooting:**
-            - If local AI is slow, try cloud provider
             - If you hit rate limits, get a free OpenRouter key
             - Check the compliance dashboard for system status
             """)
@@ -1140,8 +1127,9 @@ def main():
     # Render quick actions and handle clicks
     actions = UIComponents.render_quick_actions()
     if any(actions.values()):
-        # Clear any modal flags when action buttons are clicked
-        st.session_state.show_job_analysis_modal = False
+        # Close Smart Match when another quick action runs (not when opening it)
+        if not actions.get("match"):
+            st.session_state.show_job_analysis_modal = False
         SessionManager.quick_start_setup()
         handle_quick_actions(actions)
     
